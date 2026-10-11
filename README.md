@@ -1,405 +1,320 @@
 # TransCarga Express
 
-Sistema **gestión de transportistas y ofertas de carga**, desarrollado con
-**Django 5.2 LTS (5.2.18)** y **SQLite**. La interfaz, las etiquetas y los mensajes están en
-español; se usan plantillas Django y Bootstrap 5 por CDN, y el panel de administración de
-Django queda disponible como alternativa de administración.
+**Sistema académico de gestión de transportistas, empresas clientes y ofertas de carga.**
 
-Alcance del MVP: transportistas (con su vehículo principal), empresas clientes, ofertas de
-carga, asignaciones y advertencias, con clasificación por nivel derivada de la capacidad y
-validación documental (licencia, revisión técnica y SOAT).
+TransCarga Express es una aplicación web desarrollada como MVP académico para apoyar la gestión de operaciones de transporte de carga. Permite registrar transportistas y sus vehículos principales, gestionar empresas clientes y ofertas, controlar asignaciones, validar documentación, administrar advertencias y consultar reportes operativos.
 
----
+> **Estado del proyecto:** MVP académico de ejecución local. No está preparado para producción ni para exponerse directamente a Internet sin una revisión de seguridad y configuración de despliegue.
 
-## 1. Requisitos del entorno
+## Tabla de contenidos
 
-| Componente | Versión usada |
+- [Características principales](#características-principales)
+- [Tecnologías](#tecnologías)
+- [Requisitos previos](#requisitos-previos)
+- [Instalación en Windows](#instalación-en-windows)
+- [Acceso al sistema](#acceso-al-sistema)
+- [Roles y permisos](#roles-y-permisos)
+- [Datos de demostración](#datos-de-demostración)
+- [Ejecución y pruebas](#ejecución-y-pruebas)
+- [Módulos y rutas principales](#módulos-y-rutas-principales)
+- [Reglas de negocio relevantes](#reglas-de-negocio-relevantes)
+- [Estructura del proyecto](#estructura-del-proyecto)
+- [Limitaciones conocidas](#limitaciones-conocidas)
+- [Buenas prácticas antes de subir a GitHub](#buenas-prácticas-antes-de-subir-a-github)
+- [Documentación adicional](#documentación-adicional)
+
+## Características principales
+
+- **Transportistas:** registro, edición, consulta de ficha, documentación, fotografía, nivel operativo e historial.
+- **Vehículo principal:** registro de capacidad, tipo de vehículo y placa.
+- **Empresas clientes:** mantenimiento de información empresarial y consulta de ofertas asociadas.
+- **Ofertas de carga:** registro, búsqueda y filtrado de ofertas disponibles o cubiertas.
+- **Asignaciones:** evaluación de elegibilidad, confirmación, finalización y cancelación con motivo, manteniendo el historial.
+- **Documentación:** control de vigencia de licencia de conducir, revisión técnica y SOAT; alertas para documentos próximos a vencer o vencidos.
+- **Advertencias e incidencias:** seguimiento de advertencias, quejas, renuncias y reglas de baja.
+- **Formatos semanales y liquidaciones:** flujo de firma semanal y cálculos sujetos a parámetros configurables.
+- **Capacitación:** administración de cursos, participaciones e historial.
+- **Usuarios y roles:** administración de cuentas y permisos.
+- **Reportes:** consultas operativas y exportación a CSV según permisos.
+- **Auditoría:** registro de operaciones críticas para usuarios autorizados.
+- **Panel principal:** indicadores calculados a partir de los datos almacenados.
+
+## Tecnologías
+
+| Componente | Versión documentada |
 |---|---|
-| Python | 3.13.5 |
-| Django | 5.2.18 (última versión correctiva de la rama 5.2 LTS) |
-| Pillow | 12.3.0 (obligatoria: el modelo `Transportista` usa `ImageField`) |
-| Base de datos | SQLite (archivo `db.sqlite3`, no versionado) |
-| Sistema probado | Windows 11 con PowerShell 7 (los comandos funcionan igual en cmd) |
+| Python | 3.13.5 en el entorno de desarrollo documentado |
+| Django | 5.2.18 (rama 5.2 LTS) |
+| Pillow | 12.3.0 |
+| Base de datos | SQLite (`db.sqlite3`) |
+| Interfaz | Django Templates y Bootstrap 5 por CDN |
+| Sistema probado | Windows 11 y PowerShell 7 |
 
-> **Nota sobre el stack:** el enunciado pedía Python 3.12. El equipo de desarrollo solo tiene
-> Python 3.13.5 instalado, por lo que se documentó la desviación (decisión **D1** en
-> [docs/DECISIONES.md](docs/DECISIONES.md)). Django 5.2.18 declara `requires_python >=3.10`, así
-> que la aplicación funciona igual, no usa características exclusivas de 3.13 y migrar a 3.12 es
-> inmediato: basta crear el entorno virtual con `py -3.12`.
+El enunciado académico contemplaba Python 3.12; el entorno de desarrollo documentado utiliza Python 3.13.5. La versión de Python debe ser compatible con las dependencias fijadas en `requirements.txt`.
 
-## 2. Instalación y puesta en marcha
+## Requisitos previos
 
-Todos los comandos se ejecutan **desde la carpeta del proyecto** (donde está `manage.py`).
+- Windows 11 o un entorno compatible con Python.
+- Python instalado y disponible mediante el comando `py` o `python`.
+- Git, si se va a clonar o versionar el proyecto.
+- Conexión a Internet durante la instalación de dependencias y para cargar Bootstrap desde su CDN.
 
-### 2.1 Crear el entorno virtual (solo la primera vez)
+Todos los comandos de esta guía se ejecutan desde la **carpeta raíz del proyecto**, donde se encuentra `manage.py`.
+
+## Instalación en Windows
+
+### 1. Abrir la carpeta del proyecto
+
+En PowerShell, entra a la ruta local donde guardaste el código. Sustituye la ruta de ejemplo por la ubicación real:
+
+```powershell
+cd C:\Proyectos\TransCargaExpress
+```
+
+Comprueba que existe `manage.py`:
+
+```powershell
+dir
+```
+
+### 2. Crear el entorno virtual
+
+Si aún no existe `.venv`, créalo con la versión de Python disponible. Para reproducir el entorno documentado:
 
 ```powershell
 py -3.13 -m venv .venv
 ```
 
-Si el equipo solo tiene otro Python disponible, use `python -m venv .venv` (debe ser 3.10 o
-superior). El proyecto **ya incluye** un `.venv` funcional: si existe, puede saltar este paso.
+Si tienes otra versión compatible de Python, puedes crear el entorno con `python -m venv .venv`.
 
-### 2.2 Activar el entorno virtual
-
-PowerShell:
+### 3. Instalar las dependencias
 
 ```powershell
-.\.venv\Scripts\Activate.ps1
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
 ```
 
-Símbolo del sistema (cmd):
-
-```bat
-.venv\Scripts\activate.bat
-```
-
-Si PowerShell rechaza la activación por política de ejecución («la ejecución de scripts está
-deshabilitada en este sistema»), habilítela solo para esa ventana:
+### 4. Crear las tablas de la base de datos
 
 ```powershell
-Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
-.\.venv\Scripts\Activate.ps1
+.\.venv\Scripts\python.exe manage.py migrate
 ```
 
-También puede **no activar nada** y llamar al intérprete del entorno directamente; es lo que se
-usa en el resto de este documento:
+Esto crea o actualiza el archivo local `db.sqlite3` con las tablas definidas por las migraciones.
+
+### 5. Crear un usuario administrador
+
+El proyecto no incluye un usuario predeterminado creado automáticamente. Para crear un superusuario, ejecuta:
 
 ```powershell
-.\.venv\Scripts\python.exe manage.py <comando>
+.\.venv\Scripts\python.exe manage.py createsuperuser
 ```
 
-### 2.3 Instalar las dependencias
+Sigue las instrucciones de la terminal. El usuario creado podrá acceder a la aplicación y al panel de administración de Django (`/admin/`).
+
+### 6. Inicializar los roles
 
 ```powershell
-.\.venv\Scripts\python -m pip install -r requirements.txt
+.\.venv\Scripts\python.exe manage.py inicializar_roles
 ```
 
-`requirements.txt` fija Django 5.2.18 y Pillow 12.3.0. No hay más dependencias: no se usa
-Node.js, ni React, ni ninguna API REST.
+Este comando crea los grupos de permisos **Administrador**, **Operador** y **Consulta**. Es idempotente: puede ejecutarse más de una vez y no asigna roles automáticamente a los usuarios existentes ni modifica sus contraseñas.
 
-### 2.4 Crear la base de datos (migraciones)
+### 7. Cargar datos de demostración (opcional)
 
 ```powershell
-.\.venv\Scripts\python manage.py migrate
+.\.venv\Scripts\python.exe manage.py cargar_datos_demo
 ```
 
-Crea `db.sqlite3` con todas las tablas. Para comprobar que no queda ninguna migración pendiente:
+El comando carga registros ficticios para probar los módulos. No crea usuarios ni contraseñas y está diseñado para no borrar ni modificar registros existentes. Los nombres, documentos y RUC de demostración son ficticios.
 
-```powershell
-.\.venv\Scripts\python manage.py makemigrations --check --dry-run
-.\.venv\Scripts\python manage.py migrate --check
-```
-
-### 2.5 Crear el usuario para ingresar
-
-El sistema no tiene registro público de usuarios ni credenciales en el código:
-
-```powershell
-.\.venv\Scripts\python manage.py createsuperuser
-```
-
-Ese usuario sirve tanto para la aplicación como para el panel de administración de Django
-(`/admin/`). Si además necesita acceso al panel de administración, el usuario debe ser *staff*
-(`createsuperuser` ya lo crea así).
-
-### 2.5.1 Inicializar roles y asignar accesos
-
-```powershell
-.\.venv\Scripts\python manage.py inicializar_roles
-```
-
-Crea los grupos **Administrador**, **Operador** y **Consulta** con su matriz de permisos
-(idempotente: puede repetirse; no toca usuarios ni contraseñas). El superusuario elude los
-permisos por diseño nativo de Django, así que el acceso actual se conserva.
-
-| Rol | Acceso |
-|---|---|
-| Administrador | Completo: opera todos los módulos, gestiona usuarios, configura parámetros financieros y consulta la auditoría |
-| Operador | Opera transportistas, clientes, ofertas, asignaciones, advertencias, incidencias, formatos, liquidaciones y capacitación; no administra usuarios ni ve la auditoría |
-| Consulta | Solo lectura de los módulos autorizados |
-
-Asigne roles desde **Usuarios** (solo Administrador) o con `groups.set()` en el shell.
-Detalle en [docs/DECISIONES.md](docs/DECISIONES.md) (D16) y [docs/ARQUITECTURA.md](docs/ARQUITECTURA.md).
-
-### 2.6 Inicializar los roles y asignar accesos
-
-```powershell
-.\.venv\Scripts\python manage.py inicializar_roles
-```
-
-Crea los grupos **Administrador**, **Operador** y **Consulta** con su matriz de permisos
-(21/18/5 permisos; detalle en [docs/DECISIONES.md](docs/DECISIONES.md), decisión **D16**).
-El comando es **idempotente** (puede repetirse), **no asigna roles a los usuarios
-existentes** y **no toca contraseñas**. Los superusuarios eluden los permisos por diseño
-nativo de Django, así que el acceso del administrador actual se conserva.
-
-Estrategia de asignación (sin asignar Administrador masivamente):
-
-1. Ingrese con el superusuario y abra **Usuarios** en la barra lateral.
-2. **Nuevo usuario** para cada persona (rol + contraseña inicial) o **Editar** para asignar
-   rol a una cuenta existente. Los roles son exclusivos (uno por usuario).
-3. El último administrador activo no puede degradarse ni desactivarse; las cuentas nunca
-   se eliminan, solo se desactivan. Un administrador no superusuario no puede gestionar
-   cuentas de superusuario.
-
-### 2.7 Cargar datos ficticios de demostración (opcional)
-
-```powershell
-.\.venv\Scripts\python manage.py cargar_datos_demo
-```
-
-El comando es **idempotente** (puede ejecutarse las veces que haga falta), **no borra ni modifica**
-registros existentes y **no crea usuarios ni contraseñas**. Carga un conjunto pensado para poder
-probar todos los casos del MVP:
-
-| Contenido | Cantidad y detalle |
-|---|---|
-| Empresas clientes | **6** (alimentos, agroexportación, minería, cadena de frío, ferretería y agroindustria) |
-| Transportistas | **17**: 12 Activos, 2 En Reserva y 3 de Baja; 6 de Nivel 1, 9 de Nivel 2 y 2 de Nivel 3 |
-| Ofertas de carga | **18**: 11 Disponibles y 7 Cubiertas, de los tres niveles y de todos los tipos de vehículo |
-| Asignaciones | **7**: 3 Activas, 3 Finalizadas y 1 Cancelada (el historial se conserva en las tres) |
-| Advertencias | **10**, repartidas entre transportistas con 1, 2 y 3 advertencias |
-| Capacitación | **2** cursos con **3** participaciones: inscrita, en progreso y completada aprobada sin constancia (muestra el aviso) |
-| Incidencias | **2**: queja pendiente sin advertencia formal y renuncia con acuerdo de reemplazo |
-| Formatos y liquidaciones | Semanas firmadas de las asignaciones finalizadas (una regularizada) con borradores; parámetros sin configurar, cierre bloqueado |
-| Documentación | 2 transportistas con documentos vencidos y 11 documentos que vencen en los próximos 30 días |
-
-Incluye casos borde a propósito: un transportista con 1 advertencia y otro con 2 (siguen
-habilitados), dos que llegaron a 3 (baja automática), una **baja administrativa sin advertencias**,
-documentos vencidos y por vencer, capacidad **exactamente en el límite de 20 t** (Nivel 2), un
-transportista con documento **RUC** en lugar de DNI y otro con **0 años de experiencia**.
-Nombres, documentos y RUC son inventados y no corresponden a personas ni empresas reales.
-
-### 2.8 Ejecutar la aplicación
-
-**Comando exacto para iniciar la aplicación:**
+### 8. Iniciar el servidor
 
 ```powershell
 .\.venv\Scripts\python.exe manage.py runserver
 ```
 
-La aplicación queda disponible en <http://127.0.0.1:8000/>. Todas las pantallas de negocio exigen
-sesión iniciada; sin sesión se redirige a `/accounts/login/`. Para detener el servidor, `Ctrl+C`.
+Abre [http://127.0.0.1:8000/](http://127.0.0.1:8000/) en el navegador. Para detener el servidor, vuelve a la terminal y pulsa `Ctrl+C`.
 
-## 3. Pruebas y comprobaciones
+> Este servidor de desarrollo está pensado para pruebas locales, no para publicar la aplicación en producción.
+
+## Acceso al sistema
+
+### Credenciales para demostración académica local
+
+Si la cuenta ya fue creada en la base de datos de esta instalación, las credenciales de demostración son:
+
+| Campo | Valor |
+|---|---|
+| Usuario | `mariano` |
+| Contraseña | `admin123` |
+
+**Importante:** estas credenciales se documentan para la demostración académica local. No se crean automáticamente mediante las migraciones ni mediante `cargar_datos_demo`. Si no funcionan, comprueba que la cuenta exista en tu base de datos y que tenga la contraseña indicada. Puedes crear un usuario con `createsuperuser` o cambiar la contraseña de una cuenta existente con:
 
 ```powershell
-# Suite completa (371 pruebas)
-.\.venv\Scripts\python manage.py test
-
-# Solo una aplicación o un módulo
-.\.venv\Scripts\python manage.py test transportistas
-.\.venv\Scripts\python manage.py test panel.tests_comandos
-
-# Comprobaciones del proyecto
-.\.venv\Scripts\python manage.py check
-
-# Comprobaciones de despliegue (informativas; el MVP es local, con DEBUG activo)
-.\.venv\Scripts\python manage.py check --deploy
+.\.venv\Scripts\python.exe manage.py changepassword mariano
 ```
 
-Las **371 pruebas** cubren las reglas críticas (clasificación por capacidad, certificación, vigencias
-documentales, formato y normalización de la placa, carga de archivos, estados del transportista y
-de la asignación, bloqueo de campos críticos de una oferta asignada, elegibilidad para asignar,
-baja automática y diferida por advertencias, integridad del historial, paginación con filtros, acceso
-protegido por roles, documentación y copia SOAT, motivo de cancelación, quejas y reemplazos,
-formatos y liquidaciones, capacitación, reportes con CSV, auditoría, coincidencia del panel con la base de datos, cobertura del conjunto de datos demo y los comandos de gestión). Detalle en [docs/ARQUITECTURA.md](docs/ARQUITECTURA.md), sección **G**.
+`admin123` es una contraseña débil: úsala únicamente en una base de datos local de demostración. No reutilices esta contraseña en otras cuentas ni publiques una instalación con estas credenciales. Cámbiala antes de cualquier despliegue compartido o accesible desde Internet.
 
-Las pruebas **no escriben en `media/`**: durante `manage.py test` las fotografías se guardan en
-`.tmp/media_pruebas` (ignorado por Git), de modo que la suite no deja archivos en el proyecto.
+## Roles y permisos
 
-## 4. Recorrido de demostración en cinco minutos
+| Rol | Alcance general |
+|---|---|
+| **Administrador** | Acceso amplio a los módulos, gestión de usuarios, configuración de parámetros financieros y consulta de auditoría. |
+| **Operador** | Operación de transportistas, clientes, ofertas, asignaciones, advertencias, incidencias, formatos, liquidaciones y capacitación; no administra usuarios ni consulta auditoría. |
+| **Consulta** | Acceso de lectura a los módulos autorizados. |
 
-Requisito previo: `migrate`, `inicializar_roles`, `createsuperuser` y `cargar_datos_demo` ejecutados, y el servidor
-levantado con el comando de la sección 2.8. Los identificadores que se citan son los que crea el
-comando de demostración.
+Los permisos deben asignarse a cada usuario desde el módulo **Usuarios** cuando corresponda. El comando `inicializar_roles` crea los grupos, pero no asigna un rol automáticamente a todas las cuentas. El superusuario de Django conserva el comportamiento privilegiado nativo.
 
-| Minuto | Qué hacer | Qué se demuestra |
-|---|---|---|
-| 0:00–0:45 | Entre en <http://127.0.0.1:8000/> y observe el panel | Todos los indicadores salen de la base de datos: conteos por estado (12 activos, 2 en reserva, 3 de baja), ofertas disponibles y cubiertas, asignaciones activas, transportistas por nivel (6/9/2), alertas de SOAT vencido o por vencer, advertencias recientes y la tarjeta **Transportistas dados de baja** |
-| 0:45–1:30 | Menú **Transportistas** → filtre Estado `Baja` y luego `En Reserva`; abra la ficha de **Jorge Salazar Pinto** (Baja, «3 de 3» advertencias) | Estados, insignias de nivel, historial de advertencias y de asignaciones conservado, y el aviso de que un transportista en Baja no puede recibir asignaciones. En la lista de bajas también aparece **Nadia Fuentes** (baja administrativa, sin advertencias) |
-| 1:30–2:00 | Menú **Advertencias** → filtre por transportista y por rango de fechas; vea el resumen lateral «N de 3» | Listado general con 10 advertencias, filtros por transportista y fecha, total por transportista calculado desde los registros |
-| 2:00–3:00 | Abra la ficha de **Ana Lucía Vargas Medina** (Activo, «2 de 3») → **Registrar advertencia** → guarde un motivo | La tercera advertencia pasa al transportista a **Baja** en la misma operación y la pantalla lo informa. Compruebe después que ya no aparece en `/ofertas/1/asignar/` |
-| 3:00–4:00 | Menú **Ofertas de carga** → abra **OF-00005** (Arequipa → Puerto de Matarani, Tráiler, Nivel 1) → **Asignar transportista** | Tabla de **candidatos evaluados** con el motivo exacto de cada rechazo (nivel, tipo de vehículo, certificación de carga peligrosa, SOAT, asignación activa, estado). Elija a **Carlos Mendoza Ríos** (Tráiler Nivel 1 con certificación) → pantalla de **resumen y confirmación** → confirme |
-| 4:00–5:00 | Menú **Asignaciones** → filtre por estado para ver las 3 activas, 3 finalizadas y 1 cancelada; abra la asignación recién creada → **Finalizar asignación** (con fecha de hoy) y luego intente reasignar la misma oferta | La asignación pasa a **Finalizada** conservando el historial, el transportista queda libre y la oferta **permanece Cubierta**: una oferta cubierta no admite otra asignación (el sistema lo explica con un mensaje) |
+## Datos de demostración
 
-Dos cambios quedan en la base de datos tras el recorrido: Ana Lucía pasa a Baja y OF-00005 queda
-Cubierta. Son parte de la demostración; si quiere volver al estado inicial, cambie el estado de
-Ana a **Activo** desde `/admin/` (la aplicación no permite reactivar a un transportista dado de
-baja, por diseño) y tenga en cuenta que una oferta cubierta no vuelve a «Disponible» desde la
-aplicación. Si prefiere un recorrido que no toque los datos de demostración, cree una oferta nueva
-(`/ofertas/nueva/`) y un transportista nuevo (`/transportistas/nuevo/`) y utilícelos en los pasos
-3 a 5.
+El conjunto de demostración está diseñado para recorrer los casos principales y algunos escenarios límite. Según la documentación del proyecto, incluye:
 
-Si tiene más tiempo, el conjunto ampliado permite además: ver ofertas con **todos los candidatos
-rechazados** (por ejemplo la oferta de cisterna de Nivel 1 en `/ofertas/<id>/asignar/`, donde solo
-Héctor Ramírez es elegible), revisar una **asignación cancelada** que no libera su oferta, y
-comprobar los avisos de **documentos por vencer** (Teresa Núñez con la revisión técnica y el SOAT
-a menos de un mes).
+- 6 empresas clientes.
+- 17 transportistas con diferentes estados y niveles.
+- 18 ofertas de carga.
+- 7 asignaciones: activas, finalizadas y canceladas.
+- 10 advertencias.
+- 2 cursos y 3 participaciones de capacitación.
+- Registros de incidencias, formatos semanales y liquidaciones.
+- Casos con documentación vencida o próxima a vencer.
 
-## 5. Pantallas principales
+Los datos se cargan con `cargar_datos_demo`. Las cantidades anteriores describen el conjunto inicial de demostración; después de utilizar el sistema pueden cambiar.
 
-La interfaz reutiliza `templates/base.html`: barra lateral de navegación fija en escritorio y
-deslizante (offcanvas) en móvil, barra superior solo en pantallas pequeñas, mensajes de éxito,
-error y aviso, tablas desplazables horizontalmente en pantallas pequeñas y Bootstrap 5 por CDN
-(sin dependencias visuales adicionales).
+## Ejecución y pruebas
+
+### Verificar la configuración de Django
+
+```powershell
+.\.venv\Scripts\python.exe manage.py check
+```
+
+### Ejecutar la suite de pruebas
+
+```powershell
+.\.venv\Scripts\python.exe manage.py test
+```
+
+La documentación de desarrollo registra **371 pruebas** para la versión correspondiente del proyecto. El número puede variar a medida que se incorporen nuevas pruebas o se actualice el código; considera como resultado válido el que informe tu ejecución actual.
+
+### Comprobar migraciones
+
+```powershell
+.\.venv\Scripts\python.exe manage.py makemigrations --check --dry-run
+.\.venv\Scripts\python.exe manage.py migrate --check
+```
+
+### Revisar un módulo concreto
+
+Por ejemplo:
+
+```powershell
+.\.venv\Scripts\python.exe manage.py test transportistas
+.\.venv\Scripts\python.exe manage.py test panel.tests_comandos
+```
+
+`check --deploy` también puede utilizarse como revisión informativa, pero el MVP está configurado para desarrollo local y puede mostrar advertencias de despliegue que deben resolverse antes de publicarlo.
+
+## Módulos y rutas principales
 
 | Ruta | Descripción |
 |---|---|
-| `/` | Panel: conteos por estado, transportistas por nivel, asignaciones activas, advertencias recientes, transportistas dados de baja, alertas de SOAT vencido o por vencer y vencimientos a 30 días |
-| `/transportistas/` | Listado con búsqueda (nombre, documento, placa) y filtros por estado y nivel; alta, ficha, edición y cambio de estado |
-| `/transportistas/<id>/` | Ficha: datos, documentación con su vigencia, fotografía, advertencias e historial de asignaciones |
-| `/transportistas/<id>/advertencia/` | Registro de una advertencia (fecha, motivo y asignación opcional) |
-| `/transportistas/advertencias/` | Listado general de advertencias con búsqueda y filtros por transportista y rango de fechas, y resumen por transportista |
-| `/clientes/` | Empresas clientes con búsqueda por RUC o razón social y filtro con/sin ofertas; alta, ficha y edición |
-| `/ofertas/` | Ofertas de carga con búsqueda y filtros por empresa, nivel, estado y tipo de vehículo; alta, ficha y edición |
-| `/ofertas/<id>/estado/` | Cambio de estado con pantalla de confirmación (no se edita en el formulario) |
-| `/ofertas/<id>/asignar/` | Asignación de un transportista con la tabla de elegibilidad; continúa en el paso de confirmación |
-| `/asignaciones/` | Asignaciones con conteos y filtro por estado (activas, finalizadas y canceladas) |
-| `/asignaciones/nueva/` → `/asignaciones/confirmar/` | Flujo en dos pasos: se eligen oferta y transportista, se revisa el resumen (oferta, empresa cliente, transportista y vehículo) y se confirma |
-| `/asignaciones/<id>/` | Detalle de la asignación, con las acciones *Finalizar* y *Cancelar* |
-| `/asignaciones/<id>/finalizar/` · `/asignaciones/<id>/cancelar/` | Confirmaciones explícitas; ninguna borra el historial y la oferta permanece Cubierta |
-| `/usuarios/` | Listado con búsqueda, rol, estado y último acceso (solo Administrador) |
-| `/liquidaciones/formatos/` · `/liquidaciones/` | Formatos semanales (firma los viernes) y liquidaciones por asignación y periodo |
-| `/capacitacion/cursos/` · `/capacitacion/` | Cursos y participaciones con historial por transportista |
-| `/reportes/` | Seis reportes con filtros y exportación CSV (según permisos de lectura) |
-| `/auditoria/` | Auditoría de operaciones críticas (solo Administrador) |
-| `/usuarios/nuevo/` · `/usuarios/<id>/editar/` · `/usuarios/<id>/estado/` · `/usuarios/<id>/clave/` | Alta, edición, activar/desactivar con confirmación y restablecimiento de contraseña (solo Administrador; sin borrado) |
-| `/admin/` | Panel de administración de Django (alternativa; requiere usuario *staff*) |
+| `/` | Panel principal con indicadores, advertencias recientes y alertas documentales. |
+| `/transportistas/` | Listado, búsqueda y filtros de transportistas. |
+| `/transportistas/<id>/` | Ficha, documentación, fotografía, advertencias e historial. |
+| `/transportistas/advertencias/` | Listado y filtros de advertencias. |
+| `/clientes/` | Gestión de empresas clientes. |
+| `/ofertas/` | Gestión de ofertas de carga y búsqueda por criterios. |
+| `/asignaciones/` | Listado y seguimiento de asignaciones. |
+| `/usuarios/` | Administración de usuarios, según permisos. |
+| `/liquidaciones/formatos/` | Gestión de formatos semanales. |
+| `/liquidaciones/` | Consulta de liquidaciones. |
+| `/capacitacion/cursos/` | Administración de cursos. |
+| `/capacitacion/` | Participaciones e historial de capacitación. |
+| `/reportes/` | Reportes y exportación CSV, según permisos. |
+| `/auditoria/` | Registro de operaciones críticas, solo para usuarios autorizados. |
+| `/admin/` | Panel de administración de Django para usuarios con acceso `staff`. |
 
-## 6. Reglas de negocio implementadas
+Las rutas concretas pueden depender de la configuración de URL y de la versión actual del proyecto. Los módulos de negocio requieren autenticación.
 
-1. **Nivel derivado de la capacidad:** menos de 5 t → Nivel 3; de 5 a 20 t inclusive → Nivel 2;
-   más de 20 t → Nivel 1 **con certificación de carga peligrosa obligatoria**. El nivel nunca se
-   recibe del formulario: se recalcula al guardar. La placa se valida y se normaliza a «ABC-123»;
-   el número de documento exige 8 dígitos (DNI) u 11 (RUC), sin consultas externas.
-2. **Documentación obligatoria:** no se registra ni se activa un transportista sin fotografía,
-   licencia vigente y revisión técnica vigente. El SOAT puede estar vencido al registrarlo, pero
-   **bloquea cualquier asignación**.
-3. **Estados:** Activo (puede recibir asignaciones), En Reserva (no recibe asignaciones),
-   Baja (no recibe asignaciones y no se reactiva desde la interfaz).
-4. **Asignaciones:** la oferta debe estar Disponible; se exige coincidencia exacta de **nivel** y
-   de **tipo de vehículo**, SOAT vigente, y que el transportista no tenga otra asignación activa.
-   Al crear la asignación, la oferta pasa a **Cubierta** en la misma transacción. Una asignación
-   puede **finalizarse** o **cancelarse** conservando siempre el historial; cancelar no libera la
-   oferta.
-5. **Advertencias:** al acumular **tres**, el transportista pasa automáticamente a **Baja** y sus
-   nuevas asignaciones se rechazan. El total se cuenta desde los registros (nunca un contador
-   manual), la baja se aplica en la misma transacción que registra la advertencia, una cuarta
-   advertencia **no reactiva** al transportista y el formulario no permite registrar dos veces el
-   mismo envío. La asignación en curso no se cancela y el historial se conserva.
-6. **Historial protegido:** las claves foráneas usan `PROTECT` y no existen pantallas de borrado
-   para transportistas, clientes ni asignaciones.
-7. **Ofertas asignadas:** una oferta con asignación **bloquea** los cambios de empresa cliente,
-   tipo de vehículo y nivel requerido (invalidarían la asignación); solo admite ajustar origen,
-   destino y remuneración. El estado se cambia con confirmación y nunca vuelve a «Disponible» si
-   tiene asignación.
-8. **Elegibilidad para asignar:** transportista **Activo**, con fotografía, licencia y revisión
-técnica **vigentes**, SOAT vigente, compatibilidad de nivel y tipo de vehículo, certificación
-cuando la oferta es de Nivel 1, sin otra asignación activa y con la oferta Disponible. Todo se
-valida en el servidor (y se revalida al confirmar, dentro de una transacción) con mensajes que
-indican cómo resolver cada impedimento.
-9. **Baja diferida:** con tres advertencias y rechazo documentado del reemplazo con contrato en
-curso, el estado pasa a **«Baja pendiente»** (termina su servicio sin nuevas asignaciones); la
-baja formal la aplica una acción autorizada al terminar el contrato. La cuarta advertencia no
-cambia nada.
-10. **Cancelación con motivo:** cancelar exige fecha y motivo registrados; la oferta permanece
-Cubierta y el historial se conserva.
-11. **Documentación:** cada documento informa Vigente / Próximo (aviso a 30 días) / Vencido /
-Pendiente; la copia del SOAT es opcional (PDF/JPG/PNG ≤ 5 MB). La vigencia se exige a la fecha
-de inicio del servicio; vencer en servicio solo genera alerta.
-12. **Formatos y liquidaciones:** semana lunes–domingo con firma el viernes; sin formato firmado
-no se paga; neto = base − comisión − penalidad con parámetros configurables (sin ellos no hay
-cierre); la cerrada es inmutable.
-13. **Capacitación y reportes:** cursos con código único, participaciones únicas por
-convocatoria, finalización solo por confirmación autorizada; seis reportes con CSV y auditoría
-de operaciones críticas (solo Administrador).
+## Reglas de negocio relevantes
 
-## 7. Estructura del proyecto
+1. **Nivel del transportista:** se calcula a partir de la capacidad del vehículo principal. Menos de 5 toneladas corresponde al Nivel 3; de 5 a 20 toneladas inclusive, Nivel 2; más de 20 toneladas, Nivel 1, que exige certificación de carga peligrosa.
+2. **Documentación:** se exige fotografía, licencia vigente y revisión técnica vigente para registrar o activar al transportista. El SOAT vencido bloquea las nuevas asignaciones.
+3. **Estados del transportista:** Activo puede recibir asignaciones; En Reserva y Baja no pueden recibirlas. Baja pendiente bloquea nuevas asignaciones mientras se completa el servicio vigente.
+4. **Elegibilidad para una asignación:** la oferta debe estar disponible y deben coincidir el nivel y el tipo de vehículo. También se comprueban el SOAT, la documentación, las certificaciones necesarias y que el transportista no tenga otra asignación activa.
+5. **Integridad del historial:** finalizar o cancelar una asignación no elimina el registro histórico. La cancelación requiere un motivo y la oferta permanece cubierta conforme a las reglas del MVP.
+6. **Advertencias:** al llegar a tres advertencias, se aplica la baja automática, salvo la excepción documentada de baja diferida cuando el cliente rechaza el reemplazo inmediato y existe un servicio en curso. La cuarta advertencia no reactiva al transportista.
+7. **Documentos:** se distinguen los estados Vigente, Próximo a vencer, Vencido y Pendiente. La copia del SOAT es opcional y admite PDF/JPG/PNG de hasta 5 MB, según las validaciones implementadas.
+8. **Formatos y liquidaciones:** el periodo semanal es de lunes a domingo, con firma prevista para el viernes. Sin formato firmado no se liquida la semana. La liquidación depende de parámetros configurables de comisión y penalidad; no se debe cerrar mientras falten los valores necesarios.
+9. **Capacitación y reportes:** se conserva el historial de participaciones. Los reportes se exportan a CSV conforme a los permisos del usuario.
+10. **Protección de registros:** transportistas, clientes y asignaciones conservan su historial; las interfaces de negocio no ofrecen borrado indiscriminado de estos registros.
 
-```
-config/            configuración del proyecto (settings, urls, wsgi/asgi)
-comun/             catálogos, utilidades de fechas, mezclas de formularios y ayudas de prueba
-formats/           formatos regionales del Perú (`es_PE` y su alias `es`): 09/10/2026 y 2100.00
-panel/             inicio, reportes con CSV, usuarios y comandos de gestión
-transportistas/    Transportista, Advertencia e Incidencia + pantallas
-clientes/          EmpresaCliente + pantallas
-ofertas/           OfertaCarga + pantallas (incluye la asignación)
-asignaciones/      Asignacion + reglas.py (reglas de elegibilidad) + pantallas
-liquidaciones/     FormatoSemanal, Liquidacion y parámetros + pantallas
-capacitacion/      Curso y Participacion + pantallas
-auditoria/         RegistroAuditoria + pantallas
-templates/         plantillas compartidas y por aplicación
-static/            hoja de estilos propia (Bootstrap se carga por CDN)
-docs/              arquitectura, decisiones y limitaciones
+Consulta `docs/ARQUITECTURA.md` y `docs/DECISIONES.md` para conocer los detalles y las decisiones del proyecto.
+
+## Estructura del proyecto
+
+```text
+config/          Configuración de Django, URL, WSGI y ASGI
+comun/           Utilidades comunes, catálogos y ayudas
+formats/         Formatos regionales y localización
+panel/           Inicio, reportes, usuarios y comandos de gestión
+transportistas/  Transportistas, advertencias, incidencias y vistas
+clientes/        Empresas clientes
+ofertas/         Ofertas de carga y flujos de asignación
+asignaciones/    Asignaciones y reglas de elegibilidad
+liquidaciones/   Formatos semanales, liquidaciones y parámetros
+capacitacion/    Cursos y participaciones
+auditoria/       Registro y consulta de auditoría
+templates/       Plantillas HTML compartidas y de cada aplicación
+static/          Hojas de estilo y recursos estáticos propios
+docs/            Arquitectura, decisiones y limitaciones
+manage.py        Utilidad de administración de Django
+requirements.txt Dependencias Python del proyecto
 ```
 
-Las pruebas de cada módulo viven en su `<aplicación>/tests.py`; las de la auditoría funcional, en
-`<aplicación>/tests_auditoria.py` y `panel/tests_comandos.py`.
+La estructura exacta puede variar según la versión de trabajo. Conserva las migraciones de Django y los archivos necesarios para reproducir el esquema de la base de datos.
 
-## 8. Solución de errores comunes
+## Limitaciones conocidas
 
-| Síntoma | Causa | Solución |
-|---|---|---|
-| «No se puede cargar el archivo …\Activate.ps1 porque la ejecución de scripts está deshabilitada en este sistema» | Política de ejecución de PowerShell | `Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass` y volver a activar, o usar `.\.venv\Scripts\python.exe manage.py <comando>` sin activar |
-| `ModuleNotFoundError: No module named 'django'` | El entorno virtual no está activado o las dependencias no están instaladas | Activar `.venv` (sección 2.2) y ejecutar `pip install -r requirements.txt` |
-| `ModuleNotFoundError: No module named 'PIL'` | Falta Pillow (obligatoria por el `ImageField` de la fotografía) | `.\.venv\Scripts\python -m pip install -r requirements.txt` |
-| «No se reconoce 'python' como un comando» | Python no está en el `PATH` | Usar `py -3.13 -m venv .venv` para crear el entorno y `.\.venv\Scripts\python.exe` para ejecutarlo |
-| `no such table: transportistas_transportista` (o similar) | La base de datos no existe o no tiene las migraciones aplicadas | `.\.venv\Scripts\python manage.py migrate` |
-| `You have N unapplied migration(s)` al arrancar | Hay migraciones pendientes tras actualizar el código | `.\.venv\Scripts\python manage.py migrate` (nunca `migrate zero`) |
-| `Error: That port is already in use.` | Otro proceso usa el puerto 8000 | `.\.venv\Scripts\python manage.py runserver 8001` o cierre el proceso anterior |
-| `DisallowedHost` / `Invalid HTTP_HOST header` | Se entró por un nombre de host distinto de `127.0.0.1` o `localhost` | Use <http://127.0.0.1:8000/>; `ALLOWED_HOSTS` es deliberadamente local |
-| Las imágenes de los vehículos dan 404 en el navegador | `DEBUG` desactivado o servidor de producción | En este MVP las imágenes se sirven solo con `DEBUG=1` y `runserver` (`DJANGO_DEBUG` no debe valer `0`) |
-| `makemigrations --check` informa de cambios | Se modificó un modelo sin generar su migración | `.\.venv\Scripts\python manage.py makemigrations` y `migrate`; si el cambio es solo de presentación, revise el modelo |
-| No puedo entrar: «usuario o contraseña incorrectos» | No existe un usuario creado | `.\.venv\Scripts\python manage.py createsuperuser` (el comando de datos demo no crea usuarios) |
-| Un transportista quedó en Baja y no puedo volver a activarlo | Es una regla del MVP: la pantalla de cambio de estado lo impide a propósito | Solo el panel de administración (`/admin/`) puede corregir ese estado; es la decisión D7 |
-| No puedo reasignar una oferta ya cubierta | Es una regla del MVP (`Asignacion.oferta` es `OneToOne`) | Registre una oferta nueva para esa carga; la reasignación está fuera del alcance (decisión D6) |
-| La suite deja archivos o `media/` crece mucho | Ejecuciones antiguas anteriores al aislamiento de `MEDIA_ROOT`, o uso normal de la aplicación | Durante las pruebas las fotos van a `.tmp/media_pruebas`; puede borrar `media/vehiculos/` si no necesita las fotografías cargadas |
-| Caracteres raros (`Ã³`, `â†’`) al redirigir la salida a un archivo en Windows | Codificación de la consola | Ejecute con `$env:PYTHONIOENCODING="utf-8"` antes del comando |
-| `pip` falla o se queda colgado al crear directorios temporales dentro de un sandbox de desarrollo | Restricciones de ACL del entorno aislado | Ejecute la instalación en una terminal normal; en el sandbox las dependencias se provisionan desde `.tmp/` (no versionado) |
-| Quiero empezar de cero | — | **Operación destructiva**: detenga el servidor, borre `db.sqlite3` y ejecute `migrate` + `createsuperuser`. El sistema no borra registros por sí solo |
+- El proyecto es un **MVP académico local**, no un despliegue de producción.
+- La base de datos utilizada es SQLite.
+- Bootstrap 5 se carga por CDN, por lo que algunos recursos visuales requieren conexión a Internet.
+- No incluye pagos reales ni integración bancaria.
+- No cuenta con un servicio independiente de notificaciones.
+- No incluye una API REST separada, React, Docker, microservicios ni una base de datos externa.
+- Los valores comerciales de comisión y penalidad no están definidos por defecto; deben configurarse antes de efectuar el cierre correspondiente.
+- Antes de desplegarlo en Internet deben revisarse `DEBUG`, `SECRET_KEY`, `ALLOWED_HOSTS`, HTTPS, archivos estáticos y multimedia, gestión de secretos, copias de seguridad, autenticación y controles de acceso.
 
-## 9. Documentación
+## Buenas prácticas antes de subir a GitHub
 
-- [docs/ARQUITECTURA.md](docs/ARQUITECTURA.md) — arquitectura, modelos, reglas, pantallas,
-  estructura, iteraciones y casos de prueba (T-01 … T-60).
-- [docs/DECISIONES.md](docs/DECISIONES.md) — requisitos proporcionados frente a decisiones
-  propuestas, incluida la desviación del runtime y las decisiones pendientes P1–P7.
-- [docs/LIMITACIONES.md](docs/LIMITACIONES.md) — alcance excluido y limitaciones conocidas.
+No publiques archivos privados ni información real de transportistas o empresas. Como mínimo, revisa que `.gitignore` excluya los siguientes elementos:
 
-## 10. Fuera del alcance del MVP
+```gitignore
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.env
+.env.*
+!.env.example
+db.sqlite3
+db.sqlite3-journal
+media/
+.tmp/
+```
 
-Pagos y registro de pagos, notificaciones, despliegue en Internet,
-React/Node.js, APIs REST independientes, Docker, microservicios y bases de datos externas.
-Tampoco se definieron valores comerciales de comisión ni penalidad (son parámetros vacíos
-hasta que la empresa los configure).
+Adapta las exclusiones a los archivos que realmente necesite versionar el proyecto. No ignores las migraciones ni los recursos estáticos requeridos por la aplicación.
 
-## 11. Respaldo de la base de datos
+**Seguridad de las credenciales:** aunque el repositorio sea privado, publicar una contraseña en el README significa que cualquier colaborador con acceso al repositorio podrá verla. Utiliza `mariano / admin123` solo para una demostración local controlada. Para compartir el proyecto con docentes o compañeros, es preferible crear cuentas de prueba independientes y cambiar la contraseña antes de cualquier uso fuera del equipo local.
 
-La base es un único archivo SQLite (`db.sqlite3`, no versionado). Respaldo: detenga el
-servidor y copie el archivo a un lugar seguro; para restaurar, devuélvalo a la carpeta del
-proyecto. Las fotografías viven en `media/` (ignorada por Git): respáldela junto con la base.
-La suite de pruebas usa una base temporal y `.tmp/media_pruebas`, así que probar no altera
-los datos reales.
+## Documentación adicional
 
-## 12. Checklist de verificación de los casos del negocio
+- [`docs/ARQUITECTURA.md`](docs/ARQUITECTURA.md): arquitectura, modelos, reglas de negocio y pruebas.
+- [`docs/DECISIONES.md`](docs/DECISIONES.md): decisiones de implementación y aspectos pendientes.
+- [`docs/LIMITACIONES.md`](docs/LIMITACIONES.md): alcance excluido y limitaciones conocidas.
 
-Con datos demo cargados y sesión de Operador (salvo indicación):
+---
 
-| # | Caso | Cómo verificarlo | Resultado esperado |
-|---|---|---|---|
-| 1 | Nivel por capacidad | Crear transportista de 22 t sin certificación | Error que exige certificación; con ella, Nivel 1 |
-| 2 | SOAT bloquea asignar | Oferta disponible + transportista con SOAT vencido → Nueva asignación | Motivo «SOAT» y no se crea nada |
-| 3 | Doble asignación | Asignar dos ofertas al mismo transportista | Segunda rechazada («ya tiene una asignación activa») |
-| 4 | Oferta cubierta | Reasignar OF cubierta | Rechazo («ya está cubierta»); sigue Cubierta |
-| 5 | Tercera advertencia | Registrar 3.ª a transportista activo | Baja inmediata + mensaje; historial intacto |
-| 6 | Baja pendiente | 3.ª con excepción y contrato en curso | Estado «Baja pendiente»; sin nuevas asignaciones |
-| 7 | Aplicar baja | Finalizar el servicio → Aplicar baja formal | Baja + excepción revisada |
-| 8 | Cancelar con motivo | Cancelar sin motivo y con motivo | Sin motivo se rechaza; con motivo queda Cancelada |
-| 9 | Formato viernes | Generar formatos → firmar el viernes | Presentado; sin firma no se liquida |
-| 10 | Cierre bloqueado | Cerrar sin parámetros configurados | Error que pide configurar comisión y penalidad |
-| 11 | Roles | Consulta intenta crear; Operador intenta ver usuarios | 403 en ambos; Admin gestiona |
-| 12 | Inactivo | Desactivar cuenta e intentar entrar | Acceso denegado |
-| 13 | Reportes y CSV | Abrir reporte y exportar | Mismas filas; sin fórmulas ejecutables |
-| 14 | Auditoría | Operar y abrir `/auditoria/` como Admin | Rastro con usuario, acción y resumen |
+**Proyecto académico — TransCarga Express**  
+Desarrollado con Django y SQLite para apoyar la gestión de transportistas y ofertas de carga.
