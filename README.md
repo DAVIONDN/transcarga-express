@@ -1,10 +1,10 @@
 # TransCarga Express
 
-**Sistema académico de gestión de transportistas, empresas clientes y ofertas de carga.**
+**Sistema de gestión de transportistas, empresas clientes y ofertas de carga.**
 
-TransCarga Express es una aplicación web desarrollada como MVP académico para apoyar la gestión de operaciones de transporte de carga. Permite registrar transportistas y sus vehículos principales, gestionar empresas clientes y ofertas, controlar asignaciones, validar documentación, administrar advertencias y consultar reportes operativos.
+TransCarga Express es una aplicación web desarrollada como producto mínimo viable (MVP) para apoyar la gestión de operaciones de transporte de carga. Permite registrar transportistas y sus vehículos principales, gestionar empresas clientes y ofertas, controlar asignaciones, validar documentación, administrar advertencias y consultar reportes operativos.
 
-> **Estado del proyecto:** MVP académico de ejecución local. No está preparado para producción ni para exponerse directamente a Internet sin una revisión de seguridad y configuración de despliegue.
+> **Estado del proyecto:** MVP para ejecución local. Antes de utilizarlo en producción o exponerlo a Internet, requiere una revisión de seguridad y una configuración adecuada de despliegue.
 
 ## Tabla de contenidos
 
@@ -50,7 +50,7 @@ TransCarga Express es una aplicación web desarrollada como MVP académico para 
 | Interfaz | Django Templates y Bootstrap 5 por CDN |
 | Sistema probado | Windows 11 y PowerShell 7 |
 
-El enunciado académico contemplaba Python 3.12; el entorno de desarrollo documentado utiliza Python 3.13.5. La versión de Python debe ser compatible con las dependencias fijadas en `requirements.txt`.
+El entorno de desarrollo documentado utiliza Python 3.13.5. La versión de Python debe ser compatible con las dependencias fijadas en `requirements.txt`.
 
 ## Requisitos previos
 
@@ -139,7 +139,7 @@ Abre [http://127.0.0.1:8000/](http://127.0.0.1:8000/) en el navegador. Para dete
 
 ## Acceso al sistema
 
-### Credenciales para demostración académica local
+### Credenciales para demostración local
 
 Si la cuenta ya fue creada en la base de datos de esta instalación, las credenciales de demostración son:
 
@@ -148,7 +148,7 @@ Si la cuenta ya fue creada en la base de datos de esta instalación, las credenc
 | Usuario | `mariano` |
 | Contraseña | `admin123` |
 
-**Importante:** estas credenciales se documentan para la demostración académica local. No se crean automáticamente mediante las migraciones ni mediante `cargar_datos_demo`. Si no funcionan, comprueba que la cuenta exista en tu base de datos y que tenga la contraseña indicada. Puedes crear un usuario con `createsuperuser` o cambiar la contraseña de una cuenta existente con:
+**Importante:** estas credenciales se documentan para la demostración local. No se crean automáticamente mediante las migraciones ni mediante `cargar_datos_demo`. Si no funcionan, comprueba que la cuenta exista en tu base de datos y que tenga la contraseña indicada. Puedes crear un usuario con `createsuperuser` o cambiar la contraseña de una cuenta existente con:
 
 ```powershell
 .\.venv\Scripts\python.exe manage.py changepassword mariano
@@ -277,7 +277,7 @@ La estructura exacta puede variar según la versión de trabajo. Conserva las mi
 
 ## Limitaciones conocidas
 
-- El proyecto es un **MVP académico local**, no un despliegue de producción.
+- El proyecto es un **MVP de ejecución local**, no un despliegue de producción.
 - La base de datos utilizada es SQLite.
 - Bootstrap 5 se carga por CDN, por lo que algunos recursos visuales requieren conexión a Internet.
 - No incluye pagos reales ni integración bancaria.
@@ -286,35 +286,8 @@ La estructura exacta puede variar según la versión de trabajo. Conserva las mi
 - Los valores comerciales de comisión y penalidad no están definidos por defecto; deben configurarse antes de efectuar el cierre correspondiente.
 - Antes de desplegarlo en Internet deben revisarse `DEBUG`, `SECRET_KEY`, `ALLOWED_HOSTS`, HTTPS, archivos estáticos y multimedia, gestión de secretos, copias de seguridad, autenticación y controles de acceso.
 
-## Buenas prácticas antes de subir a GitHub
-
-No publiques archivos privados ni información real de transportistas o empresas. Como mínimo, revisa que `.gitignore` excluya los siguientes elementos:
-
-```gitignore
-.venv/
-venv/
-__pycache__/
-*.py[cod]
-.env
-.env.*
-!.env.example
-db.sqlite3
-db.sqlite3-journal
-media/
-.tmp/
-```
-
-Adapta las exclusiones a los archivos que realmente necesite versionar el proyecto. No ignores las migraciones ni los recursos estáticos requeridos por la aplicación.
-
-**Seguridad de las credenciales:** aunque el repositorio sea privado, publicar una contraseña en el README significa que cualquier colaborador con acceso al repositorio podrá verla. Utiliza `mariano / admin123` solo para una demostración local controlada. Para compartir el proyecto con docentes o compañeros, es preferible crear cuentas de prueba independientes y cambiar la contraseña antes de cualquier uso fuera del equipo local.
-
-## Documentación adicional
-
-- [`docs/ARQUITECTURA.md`](docs/ARQUITECTURA.md): arquitectura, modelos, reglas de negocio y pruebas.
-- [`docs/DECISIONES.md`](docs/DECISIONES.md): decisiones de implementación y aspectos pendientes.
-- [`docs/LIMITACIONES.md`](docs/LIMITACIONES.md): alcance excluido y limitaciones conocidas.
 
 ---
 
-**Proyecto académico — TransCarga Express**  
+**TransCarga Express**  
 Desarrollado con Django y SQLite para apoyar la gestión de transportistas y ofertas de carga.
