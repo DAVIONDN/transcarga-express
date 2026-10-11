@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% block titulo %}Participaciones · TransCarga Express{% endblock %}
+
+{% block miga %}<li aria-current="page">Participaciones</li>{% endblock %}
+{% block titulo_pagina %}Participaciones{% endblock %}
+{% block subtitulo_pagina %}Historial de capacitación: {{ completadas }} participación(es) completada(s) con los filtros actuales.{% endblock %}
+{% block acciones_pagina %}
+  {% if perms.capacitacion.add_participacion %}
+    <a class="btn btn-primary btn-sm" href="{% url 'capacitacion:participaciones_inscribir' %}">Inscribir participación</a>
+  {% endif %}
+  {% if perms.capacitacion.view_curso %}
+    <a class="btn btn-outline-primary btn-sm" href="{% url 'capacitacion:cursos_lista' %}">Ver cursos</a>
+  {% endif %}
+{% endblock %}
+
+{% block contenido %}
+  <form method="get" class="card card-body tc-filtros mb-3" role="search" aria-label="Buscar y filtrar participaciones">
+    <div class="row g-2 align-items-end">
+      <div class="col-md-4">
+        <label class="form-label" for="q">Buscar</label>
+        <input type="search" class="form-control" id="q" name="q" value="{{ filtros.q }}"
+               placeholder="Transportista, curso o convocatoria" autocomplete="off">
+      </div>
+      <div class="col-md-3">
+        <label class="form-label" for="curso">Curso</label>
+        <select class="form-select" id="curso" name="curso">
+          <option value="">Todos</option>
+          {% for curso in cursos %}
+            <option value="{{ curso.pk }}" {% if filtros.curso == curso.pk|stringformat:"s" %}selected{% endif %}>{{ curso.codigo }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="col-md-3">
+        <label class="form-label" for="estado">Estado</label>
+        <select class="form-select" id="estado" name="estado">
+          <option value="">Todos</option>
+          {% for valor, etiqueta in estados %}
+            <option value="{{ valor }}" {% if filtros.estado == valor %}selected{% endif %}>{{ etiqueta }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="col-md-2 d-grid">
+        <button class="btn btn-outline-secondary" type="submit">Filtrar</button>
+      </div>
+    </div>
+    {% if hay_filtros %}
+      <div class="mt-2"><a class="small" href="{% url 'capacitacion:participaciones_lista' %}">Limpiar filtros</a></div>
+    {% endif %}
+  </form>
+
+  <div class="table-responsive tc-tabla">
+    <table class="table table-hover align-middle mb-0">
+      <caption class="visually-hidden">Historial de participaciones</caption>
+      <thead>
+        <tr>
+          <th scope="col">Transportista</th>
+          <th scope="col">Curso</th>
+          <th scope="col">Convocatoria</th>
+          <th scope="col">Fecha</th>
+          <th scope="col">Estado</th>
+          <th scope="col">Resultado</th>
+          <th scope="col"><span class="visually-hidden">Acciones</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for participacion in participaciones %}
+          <tr>
+            <td><a href="{% url 'transportistas:detalle' participacion.transportista.pk %}">{{ participacion.transportista.nombre }}</a></td>
+            <td>{{ participacion.curso.codigo }}</td>
+            <td>{{ participacion.convocatoria }}</td>
+            <td>{{ participacion.fecha|date:"d/m/Y" }}</td>
+            <td>
+              {% if participacion.estado == "COMPLETADO" %}
+                <span class="tc-etiqueta tc-etiqueta-exito">Completado</span>
+              {% elif participacion.estado == "EN_PROGRESO" %}
+                <span class="tc-etiqueta tc-etiqueta-info">En progreso</span>
+              {% else %}
+                <span class="tc-etiqueta tc-etiqueta-aviso">Inscrito</span>
+              {% endif %}
+            </td>
+            <td>{{ participacion.get_resultado_display|default:"—" }}</td>
+            <td class="text-end text-nowrap">
+              <a class="btn btn-sm btn-outline-primary" href="{% url 'capacitacion:participacion_detalle' participacion.pk %}">Ver</a>
+            </td>
+          </tr>
+        {% empty %}
+          <tr><td colspan="7">{% include "includes/vacio.html" with titulo="No hay participaciones" descripcion="Inscriba un transportista en un curso para empezar." %}</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="mt-3">{% include "includes/paginacion.html" %}</div>
+{% endblock %}

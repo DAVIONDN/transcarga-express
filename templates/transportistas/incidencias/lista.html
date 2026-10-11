@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+
+{% block titulo %}Quejas e incidencias · TransCarga Express{% endblock %}
+
+{% block miga %}<li aria-current="page">Quejas e incidencias</li>{% endblock %}
+{% block titulo_pagina %}Quejas e incidencias{% endblock %}
+{% block subtitulo_pagina %}Quejas de clientes, renuncias y excepciones. Una incidencia no es una advertencia formal hasta su conversión explícita.{% endblock %}
+{% block acciones_pagina %}
+  {% if perms.transportistas.add_advertencia %}
+    <a class="btn btn-primary btn-sm" href="{% url 'transportistas:incidencias_crear' %}">Registrar incidencia</a>
+  {% endif %}
+{% endblock %}
+
+{% block contenido %}
+  <form method="get" class="card card-body tc-filtros mb-3" role="search" aria-label="Buscar y filtrar incidencias">
+    <div class="row g-2 align-items-end">
+      <div class="col-md-4">
+        <label class="form-label" for="q">Buscar</label>
+        <input type="search" class="form-control" id="q" name="q" value="{{ filtros.q }}"
+               placeholder="Descripción, transportista o empresa" autocomplete="off">
+      </div>
+      <div class="col-md-3">
+        <label class="form-label" for="tipo">Tipo</label>
+        <select class="form-select" id="tipo" name="tipo">
+          <option value="">Todos</option>
+          {% for valor, etiqueta in tipos %}
+            <option value="{{ valor }}" {% if filtros.tipo == valor %}selected{% endif %}>{{ etiqueta }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="col-md-3">
+        <label class="form-label" for="revision">Revisión</label>
+        <select class="form-select" id="revision" name="revision">
+          <option value="">Todas</option>
+          {% for valor, etiqueta in revisiones %}
+            <option value="{{ valor }}" {% if filtros.revision == valor %}selected{% endif %}>{{ etiqueta }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="col-md-2 d-grid">
+        <button class="btn btn-outline-secondary" type="submit">Filtrar</button>
+      </div>
+    </div>
+    {% if hay_filtros %}
+      <div class="mt-2"><a class="small" href="{% url 'transportistas:incidencias' %}">Limpiar filtros</a></div>
+    {% endif %}
+  </form>
+
+  <div class="table-responsive tc-tabla">
+    <table class="table table-hover align-middle mb-0">
+      <caption class="visually-hidden">Historial de quejas e incidencias</caption>
+      <thead>
+        <tr>
+          <th scope="col">Fecha</th>
+          <th scope="col">Tipo</th>
+          <th scope="col">Transportista</th>
+          <th scope="col">Empresa / Asignación</th>
+          <th scope="col">Descripción</th>
+          <th scope="col">Revisión</th>
+          <th scope="col"><span class="visually-hidden">Acciones</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for incidencia in incidencias %}
+          <tr>
+            <td class="text-nowrap">{{ incidencia.fecha|date:"d/m/Y" }}</td>
+            <td>{{ incidencia.get_tipo_display }}</td>
+            <td>
+              <a href="{% url 'transportistas:detalle' incidencia.transportista.pk %}">{{ incidencia.transportista.nombre }}</a>
+            </td>
+            <td class="small">
+              {{ incidencia.empresa_cliente.razon_social|default:"—" }}
+              {% if incidencia.asignacion %}
+                <div><a href="{% url 'asignaciones:detalle' incidencia.asignacion.pk %}">{{ incidencia.asignacion.oferta.codigo }}</a></div>
+              {% endif %}
+            </td>
+            <td class="small">{{ incidencia.descripcion|truncatechars:60 }}</td>
+            <td>
+              {% if incidencia.estado_revision == "REVISADA" %}
+                <span class="tc-etiqueta tc-etiqueta-neutra">Revisada</span>
+              {% else %}
+                <span class="tc-etiqueta tc-etiqueta-aviso">Pendiente</span>
+              {% endif %}
+              {% if incidencia.advertencia_generada %}
+                <div><span class="tc-etiqueta tc-etiqueta-error mt-1">Generó advertencia</span></div>
+              {% endif %}
+            </td>
+            <td class="text-end text-nowrap">
+              <a class="btn btn-sm btn-outline-primary" href="{% url 'transportistas:incidencias_detalle' incidencia.pk %}">Ver</a>
+            </td>
+          </tr>
+        {% empty %}
+          <tr>
+            <td colspan="7">
+              {% include "includes/vacio.html" with titulo="No hay incidencias registradas" descripcion="Las quejas de clientes y las renuncias se registran desde aquí." %}
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="mt-3">{% include "includes/paginacion.html" %}</div>
+{% endblock %}

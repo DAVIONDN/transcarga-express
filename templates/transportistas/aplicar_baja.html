@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block titulo %}{{ titulo }} · TransCarga Express{% endblock %}
+
+{% block miga %}<li><a href="{% url 'transportistas:lista' %}">Transportistas</a></li><li><a href="{% url 'transportistas:detalle' transportista.pk %}">{{ transportista.nombre }}</a></li><li aria-current="page">{{ titulo }}</li>{% endblock %}
+{% block titulo_pagina %}{{ titulo }}{% endblock %}
+{% block subtitulo_pagina %}Solo procede con el contrato afectado ya terminado. No se borra ningún registro.{% endblock %}
+{% block acciones_pagina %}{% endblock %}
+
+{% block contenido %}
+  <div class="row justify-content-center">
+    <div class="col-md-7">
+      <form method="post" novalidate>
+        {% csrf_token %}
+        <section class="card mb-3" aria-labelledby="sec-aplicar">
+          <div class="card-header" id="sec-aplicar">Confirmación de baja formal</div>
+          <div class="card-body">
+            <p class="mb-2">
+              Va a aplicar la <strong>baja formal</strong> a
+              <strong>{{ transportista.nombre }}</strong>, actualmente en estado
+              «Baja pendiente» con {{ transportista.advertencias_total }} advertencias.
+            </p>
+            {% if excepcion %}
+              <p class="mb-2 small">
+                Excepción registrada el {{ excepcion.fecha|date:"d/m/Y" }}
+                {% if excepcion.registrado_por %}por {{ excepcion.registrado_por.get_username }}{% endif %}
+                {% if excepcion.asignacion %}
+                  · asignación afectada
+                  <a href="{% url 'asignaciones:detalle' excepcion.asignacion.pk %}">{{ excepcion.asignacion.oferta.codigo }}</a>
+                  ({{ excepcion.asignacion.get_estado_display }})
+                {% endif %}.
+              </p>
+            {% endif %}
+            {% if contrato_en_curso %}
+              <div class="alert alert-warning mb-0" role="alert">
+                El contrato afectado <strong>sigue en curso</strong>: la baja se aplica cuando el
+                servicio termine (finalizado o cancelado). Si confirma ahora, la operación se
+                rechazará sin cambios.
+              </div>
+            {% else %}
+              <p class="text-muted small mb-0">
+                El contrato afectado ya terminó. Al confirmar, el transportista pasará a «Baja»,
+                la excepción quedará marcada como revisada y el historial se conservará.
+              </p>
+            {% endif %}
+          </div>
+        </section>
+        <div class="d-flex gap-2">
+          <button class="btn btn-danger" type="submit">Aplicar baja formal</button>
+          <a class="btn btn-outline-secondary" href="{% url 'transportistas:detalle' transportista.pk %}">Volver sin aplicar</a>
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock %}

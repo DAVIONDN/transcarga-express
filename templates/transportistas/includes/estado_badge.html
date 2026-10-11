@@ -1,0 +1,10 @@
+{% comment %}Etiqueta de estado del transportista: texto + color semántico.{% endcomment %}
+{% if transportista.estado == "ACTIVO" %}
+  <span class="tc-etiqueta tc-etiqueta-exito">Activo</span>
+{% elif transportista.estado == "EN_RESERVA" %}
+  <span class="tc-etiqueta tc-etiqueta-aviso">En reserva</span>
+{% elif transportista.estado == "BAJA_PENDIENTE" %}
+  <span class="tc-etiqueta tc-etiqueta-aviso">Baja pendiente</span>
+{% else %}
+  <span class="tc-etiqueta tc-etiqueta-error">De baja</span>
+{% endif %}

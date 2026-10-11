@@ -1,0 +1,147 @@
+{% extends "base.html" %}
+
+{% block titulo %}{{ titulo }} · TransCarga Express{% endblock %}
+
+{% block miga %}<li><a href="{% url 'asignaciones:lista' %}">Asignaciones</a></li><li aria-current="page">Oferta {{ asignacion.oferta.codigo }}</li>{% endblock %}
+{% block titulo_pagina %}Asignación de la oferta {{ asignacion.oferta.codigo }}{% endblock %}
+{% block subtitulo_pagina %}{% include "asignaciones/includes/estado_badge.html" with asignacion=asignacion %}{% endblock %}
+{% block acciones_pagina %}
+  {% if perms.transportistas.add_advertencia %}
+    <a class="btn btn-warning btn-sm" href="{% url 'transportistas:registrar_advertencia' asignacion.transportista.pk %}">
+      Registrar advertencia
+    </a>
+  {% endif %}
+{% endblock %}
+
+{% block contenido %}
+  {% if asignacion.alerta_documental %}
+    <div class="alert alert-danger" role="alert">
+      <strong>Incidencia documental en servicio.</strong>
+      El transportista tiene documentos obligatorios vencidos o pendientes durante la ejecución:
+      {{ asignacion.alerta_documental|join:", " }}.
+      Regularícelos desde <a class="alert-link" href="{% url 'transportistas:detalle' asignacion.transportista.pk %}">su ficha</a>.
+      El estado de la asignación no cambia solo y no se crea ninguna advertencia automática.
+    </div>
+  {% endif %}
+  <div class="row g-3">
+    <div class="col-lg-6">
+      <section class="card h-100" aria-labelledby="titulo-datos">
+        <div class="card-header" id="titulo-datos">Datos de la asignación</div>
+        <div class="card-body">
+          <table class="table table-sm tabla-datos mb-0">
+            <tbody>
+              <tr><th scope="row">Oferta</th>
+                <td><a href="{% url 'ofertas:detalle' asignacion.oferta.pk %}">{{ asignacion.oferta.codigo }}</a>
+                  — {{ asignacion.oferta.origen }} → {{ asignacion.oferta.destino }}</td>
+              </tr>
+              <tr><th scope="row">Empresa cliente</th>
+                <td><a href="{% url 'clientes:detalle' asignacion.oferta.empresa_cliente.pk %}">{{ asignacion.oferta.empresa_cliente.razon_social }}</a></td>
+              </tr>
+              <tr><th scope="row">Transportista</th>
+                <td><a href="{% url 'transportistas:detalle' asignacion.transportista.pk %}">{{ asignacion.transportista.nombre }}</a>
+                  ({{ asignacion.transportista.placa }})</td>
+              </tr>
+              <tr><th scope="row">Fecha de inicio</th><td>{{ asignacion.fecha_inicio|date:"d/m/Y" }}</td></tr>
+              <tr><th scope="row">Fecha de finalización</th><td>{{ asignacion.fecha_fin|date:"d/m/Y"|default:"En curso" }}</td></tr>
+              <tr><th scope="row">Estado</th><td>{{ asignacion.get_estado_display }}</td></tr>
+              {% if asignacion.esta_cancelada and asignacion.motivo_cancelacion %}
+                <tr><th scope="row">Motivo de la cancelación</th><td>{{ asignacion.motivo_cancelacion }}</td></tr>
+              {% endif %}
+              <tr><th scope="row">Registrada</th><td>{{ asignacion.creado|date:"d/m/Y H:i" }}</td></tr>
+              <tr><th scope="row">Última actualización</th><td>{{ asignacion.actualizado|date:"d/m/Y H:i" }}</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+
+    <div class="col-lg-6">
+      <section class="card mb-3" aria-labelledby="titulo-acciones">
+        <div class="card-header" id="titulo-acciones">Acciones sobre la asignación</div>
+        <div class="card-body">
+          {% if asignacion.esta_activa %}
+            <p class="text-muted small">
+              Ambas acciones conservan el historial: la asignación no se borra y la oferta
+              permanece <strong>Cubierta</strong>, porque representa una carga que ya fue asignada.
+            </p>
+            <div class="d-flex flex-wrap gap-2">
+              <a class="btn btn-outline-primary" href="{% url 'asignaciones:finalizar' asignacion.pk %}">
+                Finalizar asignación
+              </a>
+              <a class="btn btn-outline-danger" href="{% url 'asignaciones:cancelar' asignacion.pk %}">
+                Cancelar asignación
+              </a>
+            </div>
+          {% elif asignacion.esta_cancelada %}
+            <p class="text-muted mb-0">
+              La asignación está <strong>cancelada</strong>; el registro se conserva en el historial
+              y el transportista quedó libre para otra asignación.
+            </p>
+          {% else %}
+            <p class="text-muted mb-0">
+              La asignación está <strong>finalizada</strong>; el registro se conserva en el
+              historial y el transportista quedó libre para otra asignación.
+            </p>
+          {% endif %}
+        </div>
+      </section>
+
+      <section class="card" aria-labelledby="titulo-advertencias">
+        <div class="card-header" id="titulo-advertencias">Advertencias de esta asignación</div>
+        <div class="card-body p-0">
+          <table class="table table-sm mb-0">
+            <caption class="visually-hidden">Advertencias asociadas a la asignación</caption>
+            <thead class="table-light"><tr><th scope="col">Fecha</th><th scope="col">Descripción</th></tr></thead>
+            <tbody>
+              {% for advertencia in advertencias %}
+                <tr><td class="text-nowrap">{{ advertencia.fecha|date:"d/m/Y" }}</td><td>{{ advertencia.descripcion }}</td></tr>
+              {% empty %}
+                <tr><td colspan="2">{% include "includes/vacio.html" with titulo="Sin advertencias asociadas" %}</td></tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <section class="card mt-3" aria-labelledby="titulo-formatos">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <span id="titulo-formatos">Formatos semanales y liquidación ({{ formatos|length }})</span>
+      {% if perms.liquidaciones.generar_formatos %}
+        <a class="btn btn-sm btn-outline-primary" href="{% url 'liquidaciones:formatos_generar' asignacion.pk %}">Generar formatos</a>
+      {% endif %}
+    </div>
+    <div class="card-body p-0">
+      <div class="table-responsive">
+        <table class="table table-sm mb-0">
+          <caption class="visually-hidden">Formatos semanales de la asignación</caption>
+          <thead class="table-light"><tr><th scope="col">Periodo</th><th scope="col">Firma prevista</th><th scope="col">Firma real</th><th scope="col">Estado</th><th scope="col">Liquidación</th></tr></thead>
+          <tbody>
+            {% for formato in formatos %}
+              <tr>
+                <td><a href="{% url 'liquidaciones:formato_detalle' formato.pk %}">{{ formato.periodo_inicio|date:"d/m/Y" }} – {{ formato.periodo_fin|date:"d/m/Y" }}</a></td>
+                <td>{{ formato.fecha_prevista|date:"d/m/Y" }}</td>
+                <td>{{ formato.fecha_firma|date:"d/m/Y"|default:"—" }}</td>
+                <td>{{ formato.etiqueta_estado }}</td>
+                <td>
+                  {% if formato.liquidacion %}
+                    <a href="{% url 'liquidaciones:liquidacion_detalle' formato.liquidacion.pk %}">{{ formato.liquidacion.get_estado_display }} · S/ {{ formato.liquidacion.total }}</a>
+                  {% else %}
+                    <span class="text-muted">—</span>
+                  {% endif %}
+                </td>
+              </tr>
+            {% empty %}
+              <tr><td colspan="5">{% include "includes/vacio.html" with titulo="Sin formatos generados" %}</td></tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <div class="mt-3">
+    <a class="btn btn-outline-secondary" href="{% url 'asignaciones:lista' %}">Volver al listado</a>
+  </div>
+{% endblock %}

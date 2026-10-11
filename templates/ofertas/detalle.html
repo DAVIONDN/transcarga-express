@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+
+{% block titulo %}Oferta {{ oferta.codigo }} · TransCarga Express{% endblock %}
+
+{% block miga %}<li><a href="{% url 'ofertas:lista' %}">Ofertas de carga</a></li><li aria-current="page">{{ oferta.codigo }}</li>{% endblock %}
+{% block titulo_pagina %}Oferta {{ oferta.codigo }}{% endblock %}
+{% block subtitulo_pagina %}
+  {% if oferta.esta_disponible %}
+    <span class="tc-etiqueta tc-etiqueta-exito">Disponible</span>
+  {% else %}
+    <span class="tc-etiqueta tc-etiqueta-neutra">Cubierta</span>
+  {% endif %}
+  <span class="badge nivel-{{ oferta.nivel_requerido }} text-white">Nivel {{ oferta.nivel_requerido }}</span>
+  <span class="text-muted small">{{ oferta.origen }} → {{ oferta.destino }}</span>
+{% endblock %}
+{% block acciones_pagina %}
+  {% if oferta.esta_disponible and perms.asignaciones.add_asignacion %}
+    <a class="btn btn-primary btn-sm" href="{% url 'ofertas:asignar' oferta.pk %}">Asignar transportista</a>
+  {% endif %}
+  {% if perms.ofertas.change_ofertacarga %}
+    <a class="btn btn-outline-primary btn-sm" href="{% url 'ofertas:editar' oferta.pk %}">Editar</a>
+  {% endif %}
+  {% if perms.ofertas.cambiar_estado_oferta %}
+    <a class="btn btn-outline-secondary btn-sm" href="{% url 'ofertas:cambiar_estado' oferta.pk %}">Cambiar estado</a>
+  {% endif %}
+{% endblock %}
+
+{% block contenido %}
+  <div class="row g-3">
+    <div class="col-lg-6">
+      <section class="card h-100" aria-labelledby="titulo-oferta">
+        <div class="card-header" id="titulo-oferta">Datos de la oferta</div>
+        <div class="card-body">
+          <table class="table table-sm tabla-datos mb-0">
+            <tbody>
+              <tr><th scope="row">Código</th><td>{{ oferta.codigo }}</td></tr>
+              <tr><th scope="row">Empresa cliente</th>
+                <td><a href="{% url 'clientes:detalle' oferta.empresa_cliente.pk %}">{{ oferta.empresa_cliente.razon_social }}</a></td>
+              </tr>
+              <tr><th scope="row">Origen</th><td>{{ oferta.origen }}</td></tr>
+              <tr><th scope="row">Destino</th><td>{{ oferta.destino }}</td></tr>
+              <tr><th scope="row">Tipo de vehículo requerido</th><td>{{ oferta.get_tipo_vehiculo_requerido_display }}</td></tr>
+              <tr><th scope="row">Nivel requerido</th><td>{{ oferta.get_nivel_requerido_display }}</td></tr>
+              <tr><th scope="row">Remuneración</th><td>S/ {{ oferta.remuneracion }}</td></tr>
+              <tr><th scope="row">Estado</th><td>{{ oferta.get_estado_display }}</td></tr>
+              <tr><th scope="row">Registrada</th><td>{{ oferta.creado|date:"d/m/Y H:i" }}</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+
+    <div class="col-lg-6">
+      <section class="card h-100" aria-labelledby="titulo-asignacion">
+        <div class="card-header" id="titulo-asignacion">Asignación</div>
+        <div class="card-body">
+          {% if asignacion %}
+            <table class="table table-sm tabla-datos mb-0">
+              <tbody>
+                <tr><th scope="row">Transportista</th>
+                  <td><a href="{% url 'transportistas:detalle' asignacion.transportista.pk %}">{{ asignacion.transportista.nombre }}</a></td>
+                </tr>
+                <tr><th scope="row">Placa</th><td>{{ asignacion.transportista.placa }}</td></tr>
+                <tr><th scope="row">Inicio</th><td>{{ asignacion.fecha_inicio|date:"d/m/Y" }}</td></tr>
+                <tr><th scope="row">Finalización</th><td>{{ asignacion.fecha_fin|date:"d/m/Y"|default:"—" }}</td></tr>
+                <tr><th scope="row">Estado</th><td>{{ asignacion.get_estado_display }}</td></tr>
+              </tbody>
+            </table>
+            <a class="btn btn-sm btn-outline-primary mt-3" href="{% url 'asignaciones:detalle' asignacion.pk %}">Ver asignación</a>
+          {% else %}
+            <p class="text-muted mb-0">
+              La oferta está disponible. Al asignar un transportista se verifican el nivel, el tipo de
+              vehículo, el SOAT vigente y que el transportista no tenga otra asignación activa.
+            </p>
+          {% endif %}
+        </div>
+      </section>
+    </div>
+  </div>
+
+  {% if oferta.esta_disponible %}
+    <section class="card mt-3" aria-labelledby="titulo-candidatos">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <span id="titulo-candidatos">Candidatos evaluados ({{ elegibles|length }} elegible(s) de {{ candidatos|length }})</span>
+        {% if perms.asignaciones.add_asignacion %}
+          <a class="btn btn-sm btn-primary" href="{% url 'ofertas:asignar' oferta.pk %}">Asignar</a>
+        {% endif %}
+      </div>
+      <div class="card-body p-0">
+        <div class="table-responsive">
+          <table class="table table-sm mb-0 align-middle">
+            <caption class="visually-hidden">Evaluación de elegibilidad de transportistas para la oferta</caption>
+            <thead class="table-light">
+              <tr><th scope="col">Transportista</th><th scope="col">Nivel</th><th scope="col">Vehículo</th><th scope="col" class="text-end">Capacidad</th><th scope="col">Resultado</th></tr>
+            </thead>
+            <tbody>
+              {% for candidato in candidatos %}
+                <tr>
+                  <td><a href="{% url 'transportistas:detalle' candidato.transportista.pk %}">{{ candidato.transportista.nombre }}</a></td>
+                  <td>Nivel {{ candidato.transportista.nivel }}</td>
+                  <td>{{ candidato.transportista.get_tipo_vehiculo_display }}</td>
+                  <td class="text-end">{{ candidato.transportista.capacidad_toneladas }} t</td>
+                  <td>
+                    {% if candidato.elegible %}
+                      <span class="tc-etiqueta tc-etiqueta-exito">Elegible</span>
+                    {% else %}
+                      <ul class="mb-0 ps-3 small text-danger">
+                        {% for motivo in candidato.motivos %}<li>{{ motivo }}</li>{% endfor %}
+                      </ul>
+                    {% endif %}
+                  </td>
+                </tr>
+              {% empty %}
+                <tr><td colspan="5">{% include "includes/vacio.html" with titulo="No hay transportistas registrados" %}</td></tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  {% endif %}
+
+  <div class="mt-3">
+    <a class="btn btn-outline-secondary" href="{% url 'ofertas:lista' %}">Volver al listado</a>
+  </div>
+{% endblock %}

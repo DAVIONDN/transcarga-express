@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block titulo %}{{ titulo }} · TransCarga Express{% endblock %}
+
+{% block miga %}<li><a href="{% url 'ofertas:lista' %}">Ofertas de carga</a></li><li aria-current="page">{{ titulo }}</li>{% endblock %}
+{% block titulo_pagina %}{{ titulo }}{% endblock %}
+{% block subtitulo_pagina %}El código se genera automáticamente. Los campos marcados con * son obligatorios.{% endblock %}
+{% block acciones_pagina %}{% endblock %}
+
+{% block contenido %}
+  <div class="row g-3">
+    <div class="col-lg-7">
+      <form method="post" novalidate>
+        {% csrf_token %}
+        {% include "includes/errores_formulario.html" with form=form %}
+        <section class="card mb-3" aria-labelledby="sec-empresa">
+          <div class="card-header" id="sec-empresa">1 · Empresa y ruta</div>
+          <div class="card-body">
+            {% include "includes/campo_formulario.html" with campo=form.empresa_cliente %}
+            {% include "includes/campo_formulario.html" with campo=form.origen %}
+            {% include "includes/campo_formulario.html" with campo=form.destino %}
+          </div>
+        </section>
+        <section class="card mb-3" aria-labelledby="sec-requisitos">
+          <div class="card-header" id="sec-requisitos">2 · Requisitos y remuneración</div>
+          <div class="card-body">
+            {% include "includes/campo_formulario.html" with campo=form.tipo_vehiculo_requerido %}
+            {% include "includes/campo_formulario.html" with campo=form.nivel_requerido %}
+            {% include "includes/campo_formulario.html" with campo=form.remuneracion %}
+          </div>
+        </section>
+        <div class="d-flex gap-2">
+          <button class="btn btn-primary" type="submit">{{ texto_boton }}</button>
+          {% if form.instance.pk %}
+            <a class="btn btn-outline-secondary" href="{% url 'ofertas:detalle' form.instance.pk %}">Cancelar</a>
+          {% else %}
+            <a class="btn btn-outline-secondary" href="{% url 'ofertas:lista' %}">Cancelar</a>
+          {% endif %}
+        </div>
+      </form>
+    </div>
+    <div class="col-lg-5">
+      <aside class="alert alert-info" aria-label="Ayuda sobre el nivel requerido">
+        <h2 class="h6">Sobre el nivel requerido</h2>
+        <ul class="mb-0 ps-3">
+          <li><strong>Nivel 3:</strong> hasta menos de 5 t.</li>
+          <li><strong>Nivel 2:</strong> de 5 a 20 t.</li>
+          <li><strong>Nivel 1:</strong> más de 20 t, con certificación de carga peligrosa.</li>
+        </ul>
+        <p class="mb-0 mt-2 small">
+          Para asignar el transportista se exige coincidencia exacta de nivel y tipo de vehículo,
+          SOAT vigente y que no tenga otra asignación activa.
+        </p>
+      </aside>
+    </div>
+  </div>
+{% endblock %}

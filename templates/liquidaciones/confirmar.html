@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block titulo %}{{ titulo }} · TransCarga Express{% endblock %}
+
+{% block miga %}<li><a href="{% url 'liquidaciones:formatos_lista' %}">Formatos semanales</a></li><li aria-current="page">{{ titulo }}</li>{% endblock %}
+{% block titulo_pagina %}{{ titulo }}{% endblock %}
+{% block subtitulo_pagina %}El borrador se recalcula desde datos verificables; una liquidación cerrada no se toca.{% endblock %}
+{% block acciones_pagina %}{% endblock %}
+
+{% block contenido %}
+  <div class="row justify-content-center">
+    <div class="col-md-7">
+      <section class="card mb-3" aria-labelledby="sec-confirmar">
+        <div class="card-header" id="sec-confirmar">Confirmación</div>
+        <div class="card-body">
+          {% if liquidacion %}
+            <p class="mb-2">
+              Va a <strong>cerrar</strong> la liquidación de
+              <strong>{{ liquidacion.formato }}</strong> por
+              <strong>S/ {{ liquidacion.total }}</strong>.
+            </p>
+            {% if not parametros.configurados %}
+              <div class="alert alert-warning small mb-0" role="alert">
+                Parámetros sin configurar: el cierre está bloqueado hasta definir la comisión y
+                la penalidad.
+              </div>
+            {% else %}
+              <p class="text-muted small mb-0">Al cerrar, la liquidación y su formato quedan inmutables.</p>
+            {% endif %}
+          {% else %}
+            <p class="mb-2">
+              Va a generar el <strong>borrador</strong> de
+              <strong>{{ formato }}</strong>.
+              {% if not formato.esta_firmado %}
+                <span class="text-danger">El formato aún no está firmado: no se puede liquidar.</span>
+              {% endif %}
+            </p>
+          {% endif %}
+        </div>
+      </section>
+      <form method="post" class="d-flex gap-2">
+        {% csrf_token %}
+        <button class="btn btn-primary" type="submit">
+          {% if liquidacion %}Cerrar liquidación{% else %}Generar borrador{% endif %}
+        </button>
+        {% if liquidacion %}
+          <a class="btn btn-outline-secondary" href="{% url 'liquidaciones:liquidacion_detalle' liquidacion.pk %}">Cancelar</a>
+        {% else %}
+          <a class="btn btn-outline-secondary" href="{% url 'liquidaciones:formato_detalle' formato.pk %}">Cancelar</a>
+        {% endif %}
+      </form>
+    </div>
+  </div>
+{% endblock %}

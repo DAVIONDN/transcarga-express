@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block titulo %}{{ titulo }} · TransCarga Express{% endblock %}
+
+{% block miga %}<li><a href="{% url 'ofertas:lista' %}">Ofertas de carga</a></li><li><a href="{% url 'ofertas:detalle' oferta.pk %}">{{ oferta.codigo }}</a></li><li aria-current="page">{{ titulo }}</li>{% endblock %}
+{% block titulo_pagina %}{{ titulo }}{% endblock %}
+{% block subtitulo_pagina %}El estado no se edita en el formulario de datos: se cambia desde aquí con confirmación explícita.{% endblock %}
+{% block acciones_pagina %}{% endblock %}
+
+{% block contenido %}
+  <div class="row g-3">
+    <div class="col-lg-6">
+      <form method="post" novalidate>
+        {% csrf_token %}
+        {% include "includes/errores_formulario.html" with form=form %}
+        <section class="card mb-3" aria-labelledby="sec-estado">
+          <div class="card-header" id="sec-estado">Cambio de estado</div>
+          <div class="card-body">
+            <p class="mb-3">
+              Estado actual:
+              {% if oferta.esta_disponible %}
+                <span class="tc-etiqueta tc-etiqueta-exito">Disponible</span>
+              {% else %}
+                <span class="tc-etiqueta tc-etiqueta-neutra">Cubierta</span>
+              {% endif %}
+            </p>
+
+            {% if asignacion %}
+              <div class="alert alert-warning small" role="alert">
+                Esta oferta tiene registrada la asignación con
+                <strong>{{ asignacion.transportista.nombre }}</strong>
+                ({{ asignacion.transportista.placa }}), en estado
+                {{ asignacion.get_estado_display|lower }}. Por eso no puede volver a «Disponible».
+              </div>
+            {% endif %}
+
+            {% for campo in form %}
+              {% include "includes/campo_formulario.html" with campo=campo %}
+            {% endfor %}
+          </div>
+        </section>
+        <div class="d-flex gap-2">
+          <button class="btn btn-primary" type="submit">Confirmar cambio de estado</button>
+          <a class="btn btn-outline-secondary" href="{% url 'ofertas:detalle' oferta.pk %}">Cancelar</a>
+        </div>
+      </form>
+    </div>
+
+    <div class="col-lg-6">
+      <aside class="alert alert-info" aria-label="Significado de cada estado">
+        <h2 class="h6">Qué implica cada estado</h2>
+        <ul class="mb-0 ps-3">
+          <li><strong>Disponible:</strong> admite que se le asigne un transportista.</li>
+          <li>
+            <strong>Cubierta:</strong> no admite nuevas asignaciones. Si la marca manualmente sin
+            transportista asignado, la oferta quedará bloqueada para asignaciones hasta que vuelva
+            a «Disponible».
+          </li>
+        </ul>
+      </aside>
+    </div>
+  </div>
+{% endblock %}

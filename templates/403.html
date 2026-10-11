@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block titulo %}Acceso denegado · TransCarga Express{% endblock %}
+
+{% block titulo_pagina %}Acceso denegado{% endblock %}
+{% block subtitulo_pagina %}No tiene permisos para realizar esta acción o ver esta página.{% endblock %}
+{% block acciones_pagina %}{% endblock %}
+
+{% block contenido %}
+  <div class="row justify-content-center">
+    <div class="col-md-7 col-lg-6">
+      <section class="card border-danger" aria-labelledby="titulo-403">
+        <div class="card-body text-center py-5">
+          <h2 class="h4 mb-3" id="titulo-403">Acceso denegado</h2>
+          <p class="mb-0">No tiene permisos para realizar esta acción o ver esta página.</p>
+          {% if permiso_requerido %}
+            <p class="text-muted small mt-3 mb-0">
+              Permiso requerido: <code>{{ permiso_requerido }}</code>.<br>
+              Si cree que esto es un error, solicite acceso a un administrador.
+            </p>
+          {% endif %}
+          <a class="btn btn-outline-secondary mt-4" href="{% url 'panel:inicio' %}">Volver al panel</a>
+        </div>
+      </section>
+    </div>
+  </div>
+{% endblock %}

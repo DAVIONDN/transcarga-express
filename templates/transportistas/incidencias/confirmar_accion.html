@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block titulo %}{{ titulo }} · TransCarga Express{% endblock %}
+
+{% block miga %}<li><a href="{% url 'transportistas:incidencias' %}">Quejas e incidencias</a></li><li><a href="{% url 'transportistas:incidencias_detalle' incidencia.pk %}">{{ incidencia.get_tipo_display }}</a></li><li aria-current="page">{{ titulo }}</li>{% endblock %}
+{% block titulo_pagina %}{{ titulo }}{% endblock %}
+{% block subtitulo_pagina %}{{ incidencia.get_tipo_display }} · {{ incidencia.transportista.nombre }} · {{ incidencia.fecha|date:"d/m/Y" }}.{% endblock %}
+{% block acciones_pagina %}{% endblock %}
+
+{% block contenido %}
+  <div class="row justify-content-center">
+    <div class="col-md-7">
+      <form method="post" novalidate>
+        {% csrf_token %}
+        {% if token %}<input type="hidden" name="token" value="{{ token }}">{% endif %}
+        <section class="card mb-3" aria-labelledby="sec-confirmar">
+          <div class="card-header" id="sec-confirmar">Confirmación</div>
+          <div class="card-body">
+            <p class="mb-2">{{ descripcion_accion }}</p>
+            <p class="text-muted small mb-0">{{ incidencia.descripcion|truncatechars:160 }}</p>
+          </div>
+        </section>
+        <div class="d-flex gap-2">
+          <button class="btn btn-primary" type="submit">{{ texto_boton }}</button>
+          <a class="btn btn-outline-secondary" href="{% url 'transportistas:incidencias_detalle' incidencia.pk %}">Cancelar</a>
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock %}

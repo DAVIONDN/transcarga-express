@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+
+{% block titulo %}Confirmar asignación · TransCarga Express{% endblock %}
+
+{% block miga %}<li><a href="{% url 'asignaciones:lista' %}">Asignaciones</a></li><li aria-current="page">Confirmar asignación</li>{% endblock %}
+{% block titulo_pagina %}Confirmar asignación{% endblock %}
+{% block subtitulo_pagina %}Revise el resumen antes de confirmar. Las reglas se vuelven a validar en el servidor en ese momento.{% endblock %}
+{% block acciones_pagina %}{% endblock %}
+
+{% block contenido %}
+  {% if motivos %}
+    <div class="alert alert-danger" role="alert">
+      <strong>No se puede confirmar esta asignación:</strong>
+      <ul class="mb-0 mt-2">
+        {% for motivo in motivos %}<li>{{ motivo }}</li>{% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+
+  <div class="row g-3">
+    <div class="col-lg-6">
+      <section class="card h-100" aria-labelledby="titulo-oferta">
+        <div class="card-header" id="titulo-oferta">Oferta de carga</div>
+        <div class="card-body">
+          <table class="table table-sm tabla-datos mb-0">
+            <tbody>
+              <tr><th scope="row">Código</th><td>{{ oferta.codigo }}</td></tr>
+              <tr>
+                <th scope="row">Empresa cliente</th>
+                <td>
+                  {{ oferta.empresa_cliente.razon_social }}
+                  <div class="text-muted small">RUC {{ oferta.empresa_cliente.ruc }}</div>
+                </td>
+              </tr>
+              <tr><th scope="row">Ruta</th><td>{{ oferta.origen }} → {{ oferta.destino }}</td></tr>
+              <tr><th scope="row">Vehículo requerido</th><td>{{ oferta.get_tipo_vehiculo_requerido_display }}</td></tr>
+              <tr>
+                <th scope="row">Nivel requerido</th>
+                <td>
+                  Nivel {{ oferta.nivel_requerido }}
+                  {% if oferta.requiere_certificacion %}
+                    <div class="text-muted small">Exige certificación de carga peligrosa</div>
+                  {% endif %}
+                </td>
+              </tr>
+              <tr><th scope="row">Remuneración</th><td>S/ {{ oferta.remuneracion }}</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+
+    <div class="col-lg-6">
+      <section class="card h-100" aria-labelledby="titulo-transportista">
+        <div class="card-header" id="titulo-transportista">Transportista y vehículo</div>
+        <div class="card-body">
+          <table class="table table-sm tabla-datos mb-0">
+            <tbody>
+              <tr>
+                <th scope="row">Transportista</th>
+                <td>
+                  {{ transportista.nombre }}
+                  <div class="text-muted small">
+                    {{ transportista.get_tipo_documento_display }} {{ transportista.numero_documento }}
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Vehículo</th>
+                <td>
+                  {{ transportista.get_tipo_vehiculo_display }} · {{ transportista.placa }}
+                  <div class="text-muted small">
+                    {{ transportista.capacidad_toneladas }} t · Nivel {{ transportista.nivel }}
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Certificación de carga peligrosa</th>
+                <td>
+                  {% if transportista.certificacion_carga_peligrosa %}
+                    <span class="tc-etiqueta tc-etiqueta-exito">Sí</span>
+                  {% else %}
+                    <span class="tc-etiqueta tc-etiqueta-neutra">No</span>
+                  {% endif %}
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Vencimientos</th>
+                <td class="small">
+                  Licencia {{ transportista.fecha_vencimiento_licencia|date:"d/m/Y" }}<br>
+                  Revisión técnica {{ transportista.fecha_vencimiento_revision_tecnica|date:"d/m/Y" }}<br>
+                  SOAT {{ transportista.fecha_vencimiento_soat|date:"d/m/Y" }}
+                </td>
+              </tr>
+              <tr><th scope="row">Inicio del servicio</th><td>{{ fecha_inicio|date:"d/m/Y" }}</td></tr>
+              <tr>
+                <th scope="row">Finalización prevista</th>
+                <td>{{ fecha_fin|date:"d/m/Y"|default:"Se registrará al finalizar" }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <div class="card mt-3">
+    <div class="card-body d-flex flex-wrap align-items-center gap-2">
+      {% if not motivos %}
+        <form method="post" class="d-inline">
+          {% csrf_token %}
+          <button class="btn btn-primary" type="submit">Confirmar asignación</button>
+        </form>
+      {% endif %}
+      <a class="btn btn-outline-secondary" href="{% url 'asignaciones:nueva' %}">
+        Volver y cambiar la selección
+      </a>
+      <span class="text-muted small ms-auto">
+        Al confirmar, la oferta pasa a <strong>Cubierta</strong> y el transportista queda con una
+        asignación activa.
+      </span>
+    </div>
+  </div>
+{% endblock %}

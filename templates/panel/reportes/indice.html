@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block titulo %}Reportes · TransCarga Express{% endblock %}
+
+{% block miga %}<li aria-current="page">Reportes</li>{% endblock %}
+{% block titulo_pagina %}Reportes{% endblock %}
+{% block subtitulo_pagina %}Solo los autorizados para su usuario. La exportación respeta los mismos filtros y permisos.{% endblock %}
+{% block acciones_pagina %}{% endblock %}
+
+{% block contenido %}
+  <div class="row g-3">
+    {% for reporte in reportes %}
+      <div class="col-md-6 col-xl-4">
+        <div class="card h-100">
+          <div class="card-body">
+            <h2 class="h6 mb-1">{{ reporte.nombre }}</h2>
+            <p class="text-muted small mb-3">{{ reporte.descripcion }}</p>
+            <a class="btn btn-sm btn-outline-primary" href="{% url reporte.url %}">Abrir reporte</a>
+          </div>
+        </div>
+      </div>
+    {% empty %}
+      <div class="col-12">
+        {% include "includes/vacio.html" with titulo="Sin reportes autorizados" descripcion="Su rol es de consulta limitada o sin permisos de lectura." %}
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

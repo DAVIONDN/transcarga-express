@@ -1,0 +1,19 @@
+# TransCarga Express — dependencias directas
+#
+# Entorno de referencia: Python 3.13.5 (ver docs/DECISIONES.md, decisión D1).
+# Django 5.2 LTS, última versión correctiva disponible de la rama 5.2 (5.2.18).
+#
+# Instalación:
+#     python -m venv .venv
+#     .venv\Scripts\python -m pip install -r requirements.txt
+#
+# Pillow es obligatoria: el modelo Transportista usa ImageField para la
+# fotografía del vehículo.
+
+Django==5.2.18
+Pillow==12.3.0
+
+# Dependencias transitivas de Django (las instala pip automáticamente):
+#   asgiref==3.12.1
+#   sqlparse==0.6.0
+#   tzdata==2026.5      (necesaria en Windows para la zona horaria America/Lima)

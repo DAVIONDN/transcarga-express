@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block titulo %}Liquidación {{ liquidacion.formato }} · TransCarga Express{% endblock %}
+
+{% block miga %}<li><a href="{% url 'liquidaciones:liquidaciones_lista' %}">Liquidaciones</a></li><li aria-current="page">{{ liquidacion.formato.asignacion.oferta.codigo }}</li>{% endblock %}
+{% block titulo_pagina %}Liquidación {{ liquidacion.formato.asignacion.oferta.codigo }}{% endblock %}
+{% block subtitulo_pagina %}
+  {% if liquidacion.esta_cerrada %}
+    <span class="tc-etiqueta tc-etiqueta-neutra">Cerrada: no admite cambios</span>
+  {% else %}
+    <span class="tc-etiqueta tc-etiqueta-aviso">Borrador: el cierre exige parámetros configurados</span>
+  {% endif %}
+{% endblock %}
+{% block acciones_pagina %}
+  {% if not liquidacion.esta_cerrada and perms.liquidaciones.generar_liquidacion %}
+    <a class="btn btn-outline-secondary btn-sm" href="{% url 'liquidaciones:liquidacion_generar' liquidacion.formato.pk %}">Reprocesar borrador</a>
+  {% endif %}
+  {% if not liquidacion.esta_cerrada and perms.liquidaciones.cerrar_liquidacion %}
+    <a class="btn btn-primary btn-sm" href="{% url 'liquidaciones:liquidacion_cerrar' liquidacion.pk %}">Cerrar liquidación</a>
+  {% endif %}
+{% endblock %}
+
+{% block contenido %}
+  <div class="row g-3">
+    <div class="col-lg-6">
+      <section class="card h-100" aria-labelledby="titulo-componentes">
+        <div class="card-header" id="titulo-componentes">Componentes del importe</div>
+        <div class="card-body">
+          <table class="table table-sm tabla-datos mb-0">
+            <tbody>
+              <tr><th scope="row">Periodo</th><td>{{ liquidacion.formato.periodo_inicio|date:"d/m/Y" }} – {{ liquidacion.formato.periodo_fin|date:"d/m/Y" }}</td></tr>
+              <tr><th scope="row">Base semanal</th><td>S/ {{ liquidacion.base }}</td></tr>
+              <tr><th scope="row">Comisión</th><td>S/ {{ liquidacion.comision_monto }}</td></tr>
+              <tr><th scope="row">Penalidad ({{ liquidacion.semanas_retraso }} sem.)</th><td>S/ {{ liquidacion.penalidad_monto }}</td></tr>
+              <tr><th scope="row">Neto a pagar</th><td class="fw-semibold">S/ {{ liquidacion.total }}</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+
+    <div class="col-lg-6">
+      <section class="card h-100" aria-labelledby="titulo-explicacion">
+        <div class="card-header" id="titulo-explicacion">Explicación del cálculo</div>
+        <div class="card-body">
+          <p class="small mb-2" style="white-space: pre-line;">{{ liquidacion.detalle }}</p>
+          {% if not parametros.configurados %}
+            <div class="alert alert-warning small mb-0" role="alert">
+              Parámetros sin configurar: el cierre definitivo está bloqueado hasta definir la
+              comisión y la penalidad.
+              {% if perms.liquidaciones.configurar_liquidacion %}
+                <a class="alert-link" href="{% url 'liquidaciones:parametros' %}">Configurar parámetros</a>.
+              {% endif %}
+            </div>
+          {% endif %}
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <div class="mt-3">
+    <a class="btn btn-outline-secondary" href="{% url 'liquidaciones:liquidaciones_lista' %}">Volver al listado</a>
+  </div>
+{% endblock %}

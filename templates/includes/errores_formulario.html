@@ -1,0 +1,9 @@
+{% comment %}
+  Resumen de errores no asociados a un campo. Rol de alerta para lector de pantalla.
+{% endcomment %}
+{% if form.non_field_errors %}
+  <div class="alert alert-danger tc-resumen-errores" role="alert" tabindex="-1">
+    <strong>Revise los siguientes puntos antes de continuar:</strong>
+    {% for error in form.non_field_errors %}<div>{{ error }}</div>{% endfor %}
+  </div>
+{% endif %}

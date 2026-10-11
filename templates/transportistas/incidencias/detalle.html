@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+
+{% block titulo %}Incidencia: {{ incidencia.get_tipo_display }} · TransCarga Express{% endblock %}
+
+{% block miga %}<li><a href="{% url 'transportistas:incidencias' %}">Quejas e incidencias</a></li><li aria-current="page">{{ incidencia.get_tipo_display }}</li>{% endblock %}
+{% block titulo_pagina %}{{ incidencia.get_tipo_display }} · {{ incidencia.transportista.nombre }}{% endblock %}
+{% block subtitulo_pagina %}
+  {{ incidencia.fecha|date:"d/m/Y" }} ·
+  {% if incidencia.estado_revision == "REVISADA" %}
+    <span class="tc-etiqueta tc-etiqueta-neutra">Revisada</span>
+  {% else %}
+    <span class="tc-etiqueta tc-etiqueta-aviso">Pendiente de revisión</span>
+  {% endif %}
+  {% if incidencia.advertencia_generada %}
+    <span class="tc-etiqueta tc-etiqueta-error">Generó advertencia formal</span>
+  {% endif %}
+{% endblock %}
+{% block acciones_pagina %}
+  {% if perms.transportistas.add_advertencia %}
+    {% if incidencia.estado_revision == "PENDIENTE" %}
+      <a class="btn btn-outline-secondary btn-sm" href="{% url 'transportistas:incidencias_revisar' incidencia.pk %}">Marcar revisada</a>
+    {% endif %}
+    {% if not incidencia.advertencia_generada %}
+      <a class="btn btn-warning btn-sm" href="{% url 'transportistas:incidencias_convertir' incidencia.pk %}">Convertir en advertencia</a>
+    {% endif %}
+    <a class="btn btn-outline-primary btn-sm" href="{% url 'transportistas:incidencias_vincular' incidencia.pk %}">Vincular reemplazo</a>
+  {% endif %}
+{% endblock %}
+
+{% block contenido %}
+  <div class="row g-3">
+    <div class="col-lg-6">
+      <section class="card h-100" aria-labelledby="titulo-datos">
+        <div class="card-header" id="titulo-datos">Datos de la incidencia</div>
+        <div class="card-body">
+          <table class="table table-sm tabla-datos mb-0">
+            <tbody>
+              <tr><th scope="row">Tipo</th><td>{{ incidencia.get_tipo_display }}</td></tr>
+              <tr><th scope="row">Fecha</th><td>{{ incidencia.fecha|date:"d/m/Y" }}</td></tr>
+              <tr><th scope="row">Descripción</th><td>{{ incidencia.descripcion }}</td></tr>
+              <tr><th scope="row">Empresa cliente</th><td>{{ incidencia.empresa_cliente.razon_social|default:"—" }}</td></tr>
+              <tr><th scope="row">Transportista</th>
+                <td><a href="{% url 'transportistas:detalle' incidencia.transportista.pk %}">{{ incidencia.transportista.nombre }}</a></td>
+              </tr>
+              <tr><th scope="row">Asignación</th>
+                <td>
+                  {% if incidencia.asignacion %}
+                    <a href="{% url 'asignaciones:detalle' incidencia.asignacion.pk %}">{{ incidencia.asignacion.oferta.codigo }}</a>
+                    ({{ incidencia.asignacion.get_estado_display }})
+                  {% else %}—{% endif %}
+                </td>
+              </tr>
+              <tr><th scope="row">Registrado por</th>
+                <td>{{ incidencia.registrado_por.get_username|default:"—" }}</td>
+              </tr>
+              <tr><th scope="row">Registrada el</th><td>{{ incidencia.creado|date:"d/m/Y H:i" }}</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+
+    <div class="col-lg-6">
+      <section class="card mb-3" aria-labelledby="titulo-decisiones">
+        <div class="card-header" id="titulo-decisiones">Cronología y decisiones</div>
+        <div class="card-body">
+          <ul class="mb-0 ps-3 small">
+            <li>Registrada el {{ incidencia.creado|date:"d/m/Y H:i" }}{% if incidencia.registrado_por %} por {{ incidencia.registrado_por.get_username }}{% endif %}.</li>
+            {% if incidencia.estado_revision == "REVISADA" %}
+              <li>Marcada como revisada.</li>
+            {% else %}
+              <li>Pendiente de revisión.</li>
+            {% endif %}
+            {% if incidencia.advertencia_generada %}
+              <li>Generó advertencia formal (cuenta hacia la baja por tres advertencias).</li>
+            {% else %}
+              <li>Sin advertencia formal: la queja por sí sola no cuenta hacia la baja.</li>
+            {% endif %}
+            {% if incidencia.acuerdo_reemplazo %}
+              <li>Acuerdo de reemplazo: {{ incidencia.acuerdo_reemplazo }}</li>
+            {% endif %}
+            {% if incidencia.nueva_asignacion %}
+              <li>
+                Reemplazo vinculado: {{ incidencia.transportista_reemplazo.nombre }} en la
+                asignación <a href="{% url 'asignaciones:detalle' incidencia.nueva_asignacion.pk %}">{{ incidencia.nueva_asignacion.oferta.codigo }}</a>.
+                La asignación original se conserva.
+              </li>
+            {% endif %}
+          </ul>
+        </div>
+      </section>
+
+      {% if incidencia.tipo == "EXCEPCION_BAJA" %}
+        <div class="alert alert-warning small mb-0" role="alert">
+          Excepción registrada de forma explícita (decisión del cliente, fecha, responsable y
+          asignación afectada). Su tratamiento diferido está pendiente de confirmación: hoy no
+          altera la baja automática.
+        </div>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="mt-3">
+    <a class="btn btn-outline-secondary" href="{% url 'transportistas:incidencias' %}">Volver al listado</a>
+  </div>
+{% endblock %}

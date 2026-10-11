@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block titulo %}{{ titulo }} · TransCarga Express{% endblock %}
+
+{% block miga %}<li><a href="{% url 'transportistas:incidencias' %}">Quejas e incidencias</a></li><li aria-current="page">{{ titulo }}</li>{% endblock %}
+{% block titulo_pagina %}{{ titulo }}{% endblock %}
+{% block subtitulo_pagina %}Registrar la incidencia no cambia estados ni crea advertencias solas. Los campos marcados con * son obligatorios.{% endblock %}
+{% block acciones_pagina %}{% endblock %}
+
+{% block contenido %}
+  <div class="row g-3">
+    <div class="col-lg-7">
+      <form method="post" novalidate>
+        {% csrf_token %}
+        {% include "includes/errores_formulario.html" with form=form %}
+        <section class="card mb-3" aria-labelledby="sec-incidencia">
+          <div class="card-header" id="sec-incidencia">Datos de la incidencia</div>
+          <div class="card-body">
+            {% include "includes/campo_formulario.html" with campo=form.tipo %}
+            {% include "includes/campo_formulario.html" with campo=form.fecha %}
+            {% include "includes/campo_formulario.html" with campo=form.descripcion %}
+            {% include "includes/campo_formulario.html" with campo=form.empresa_cliente %}
+            {% include "includes/campo_formulario.html" with campo=form.transportista %}
+            {% include "includes/campo_formulario.html" with campo=form.asignacion %}
+            {% include "includes/campo_formulario.html" with campo=form.acuerdo_reemplazo %}
+          </div>
+        </section>
+        <div class="d-flex gap-2">
+          <button class="btn btn-primary" type="submit">{{ texto_boton }}</button>
+          <a class="btn btn-outline-secondary" href="{% url 'transportistas:incidencias' %}">Cancelar</a>
+        </div>
+      </form>
+    </div>
+    <div class="col-lg-5">
+      <aside class="alert alert-info" aria-label="Qué es cada tipo">
+        <h2 class="h6">Tipos de incidencia</h2>
+        <ul class="mb-0 ps-3">
+          <li><strong>Queja:</strong> reporte de una empresa cliente (exige cliente). No cuenta como advertencia.</li>
+          <li><strong>Renuncia:</strong> solicitud voluntaria con motivo y, si lo hay, acuerdo de reemplazo. No cambia estados por sí sola.</li>
+          <li><strong>Excepción a la baja:</strong> decisión del cliente que rechaza el reemplazo inmediato (exige la asignación afectada). Queda registrada de forma explícita.</li>
+        </ul>
+      </aside>
+    </div>
+  </div>
+{% endblock %}

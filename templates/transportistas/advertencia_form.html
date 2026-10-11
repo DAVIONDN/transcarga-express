@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block titulo %}{{ titulo }} · TransCarga Express{% endblock %}
+
+{% block miga %}<li><a href="{% url 'transportistas:lista' %}">Transportistas</a></li><li><a href="{% url 'transportistas:detalle' transportista.pk %}">{{ transportista.nombre }}</a></li><li aria-current="page">{{ titulo }}</li>{% endblock %}
+{% block titulo_pagina %}{{ titulo }}{% endblock %}
+{% block subtitulo_pagina %}Transportista: {{ transportista.nombre }} ({{ transportista.placa }}).{% endblock %}
+{% block acciones_pagina %}{% endblock %}
+
+{% block contenido %}
+  <div class="row g-3">
+    <div class="col-lg-7">
+      <form method="post" novalidate>
+        {% csrf_token %}
+        <input type="hidden" name="token" value="{{ token }}">
+        {% include "includes/errores_formulario.html" with form=form %}
+        <section class="card mb-3" aria-labelledby="sec-advertencia">
+          <div class="card-header" id="sec-advertencia">Datos de la advertencia</div>
+          <div class="card-body">
+            {% for campo in form.visible_fields %}
+              {% include "includes/campo_formulario.html" with campo=campo %}
+            {% endfor %}
+          </div>
+        </section>
+        <div class="d-flex gap-2">
+          <button class="btn btn-warning" type="submit">Registrar advertencia</button>
+          <a class="btn btn-outline-secondary" href="{% url 'transportistas:detalle' transportista.pk %}">Cancelar</a>
+        </div>
+      </form>
+    </div>
+    <div class="col-lg-5">
+      <aside class="alert alert-warning" aria-label="Regla de advertencias">
+        <h2 class="h6">Regla de advertencias</h2>
+        <p class="mb-2">
+          El transportista tiene {{ advertencias_actuales }} de {{ maximo_advertencias }} advertencias.
+          Al alcanzar {{ maximo_advertencias }}, su estado cambia automáticamente a <strong>Baja</strong>
+          y no podrá recibir nuevas asignaciones.
+        </p>
+        <p class="mb-0 small">
+          La asignación es opcional: complete ese campo solo si la advertencia se originó en una
+          asignación concreta de este transportista.
+        </p>
+      </aside>
+    </div>
+  </div>
+{% endblock %}

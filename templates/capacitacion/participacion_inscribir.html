@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block titulo %}{{ titulo }} · TransCarga Express{% endblock %}
+
+{% block miga %}<li><a href="{% url 'capacitacion:participaciones_lista' %}">Participaciones</a></li><li aria-current="page">{{ titulo }}</li>{% endblock %}
+{% block titulo_pagina %}{{ titulo }}{% endblock %}
+{% block subtitulo_pagina %}La inscripción nace en estado Inscrito. Los campos marcados con * son obligatorios.{% endblock %}
+{% block acciones_pagina %}{% endblock %}
+
+{% block contenido %}
+  <div class="row g-3">
+    <div class="col-lg-7">
+      <form method="post" novalidate>
+        {% csrf_token %}
+        {% include "includes/errores_formulario.html" with form=form %}
+        <section class="card mb-3" aria-labelledby="sec-inscripcion">
+          <div class="card-header" id="sec-inscripcion">Datos de la inscripción</div>
+          <div class="card-body">
+            {% for campo in form %}
+              {% include "includes/campo_formulario.html" with campo=campo %}
+            {% endfor %}
+            <p class="text-muted small mb-0">Cada convocatoria es una edición distinta: el mismo transportista puede recursar en otra convocatoria, pero no duplicarse en la misma.</p>
+          </div>
+        </section>
+        <div class="d-flex gap-2">
+          <button class="btn btn-primary" type="submit">{{ texto_boton }}</button>
+          <a class="btn btn-outline-secondary" href="{% url 'capacitacion:participaciones_lista' %}">Cancelar</a>
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock %}

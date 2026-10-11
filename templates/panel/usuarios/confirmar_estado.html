@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block titulo %}{{ titulo }} · Usuarios · TransCarga Express{% endblock %}
+
+{% block miga %}<li><a href="{% url 'panel:usuarios_lista' %}">Usuarios</a></li><li aria-current="page">{{ titulo }}</li>{% endblock %}
+{% block titulo_pagina %}{{ titulo }}{% endblock %}
+{% block subtitulo_pagina %}Operación sensible con confirmación explícita. No se borra ningún dato histórico.{% endblock %}
+{% block acciones_pagina %}{% endblock %}
+
+{% block contenido %}
+  <div class="row justify-content-center">
+    <div class="col-md-7">
+      <form method="post" novalidate>
+        {% csrf_token %}
+        <section class="card border-warning mb-3" aria-labelledby="sec-confirmar">
+          <div class="card-header" id="sec-confirmar">Confirmación</div>
+          <div class="card-body">
+            <p class="mb-3">
+              {% if accion == "desactivar" %}
+                Va a <strong>desactivar</strong> la cuenta <strong>{{ usuario.username }}</strong>.
+                El usuario dejará de poder iniciar sesión, pero <strong>no se borrará ningún dato
+                ni operación histórica</strong>.
+              {% else %}
+                Va a <strong>activar</strong> la cuenta <strong>{{ usuario.username }}</strong> para
+                que vuelva a poder iniciar sesión.
+              {% endif %}
+            </p>
+            <p class="text-muted small mb-0">
+              Nombre: {{ usuario.get_full_name|default:"—" }} · Rol actual:
+              {% if usuario.is_superuser %}Superusuario{% else %}{{ usuario.groups.all|join:", "|default:"Sin rol" }}{% endif %}
+            </p>
+          </div>
+        </section>
+        <div class="d-flex gap-2">
+          <button class="btn {% if accion == 'desactivar' %}btn-danger{% else %}btn-success{% endif %}" type="submit">
+            Confirmar {{ accion }}
+          </button>
+          <a class="btn btn-outline-secondary" href="{% url 'panel:usuarios_lista' %}">Cancelar</a>
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock %}

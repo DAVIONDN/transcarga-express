@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block titulo %}Parámetros financieros · TransCarga Express{% endblock %}
+
+{% block miga %}<li><a href="{% url 'liquidaciones:liquidaciones_lista' %}">Liquidaciones</a></li><li aria-current="page">Parámetros</li>{% endblock %}
+{% block titulo_pagina %}Parámetros financieros{% endblock %}
+{% block subtitulo_pagina %}Sin comisión ni penalidad configuradas, el cierre definitivo queda bloqueado. No hay valores comerciales predefinidos.{% endblock %}
+{% block acciones_pagina %}{% endblock %}
+
+{% block contenido %}
+  <div class="row justify-content-center">
+    <div class="col-md-7">
+      <form method="post" novalidate>
+        {% csrf_token %}
+        {% include "includes/errores_formulario.html" with form=form %}
+        <section class="card mb-3" aria-labelledby="sec-parametros">
+          <div class="card-header" id="sec-parametros">Valores definidos por la empresa</div>
+          <div class="card-body">
+            {% for campo in form %}
+              {% include "includes/campo_formulario.html" with campo=campo %}
+            {% endfor %}
+          </div>
+        </section>
+        <div class="d-flex gap-2">
+          <button class="btn btn-primary" type="submit">Guardar parámetros</button>
+          <a class="btn btn-outline-secondary" href="{% url 'liquidaciones:liquidaciones_lista' %}">Cancelar</a>
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock %}

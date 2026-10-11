@@ -1,0 +1,317 @@
+{% extends "base.html" %}
+
+{% block titulo %}{{ transportista.nombre }} · Transportistas · TransCarga Express{% endblock %}
+
+{% block miga %}<li><a href="{% url 'transportistas:lista' %}">Transportistas</a></li><li aria-current="page">{{ transportista.nombre }}</li>{% endblock %}
+{% block titulo_pagina %}{{ transportista.nombre }}{% endblock %}
+{% block subtitulo_pagina %}
+  {% include "transportistas/includes/estado_badge.html" with transportista=transportista %}
+  <span class="badge nivel-{{ transportista.nivel }} text-white">Nivel {{ transportista.nivel }}</span>
+  <span class="text-muted small">{{ transportista.get_tipo_documento_display }} {{ transportista.numero_documento }} · Placa {{ transportista.placa }}</span>
+{% endblock %}
+{% block acciones_pagina %}
+  {% if perms.transportistas.change_transportista %}
+    <a class="btn btn-outline-primary btn-sm" href="{% url 'transportistas:editar' transportista.pk %}">Editar</a>
+  {% endif %}
+  {% if perms.transportistas.cambiar_estado_transportista %}
+    <a class="btn btn-outline-secondary btn-sm" href="{% url 'transportistas:cambiar_estado' transportista.pk %}">Cambiar estado</a>
+  {% endif %}
+  {% if transportista.esta_baja_pendiente and perms.transportistas.cambiar_estado_transportista %}
+    <a class="btn btn-danger btn-sm" href="{% url 'transportistas:aplicar_baja' transportista.pk %}">Aplicar baja formal</a>
+  {% endif %}
+  {% if perms.transportistas.add_advertencia %}
+    <a class="btn btn-warning btn-sm" href="{% url 'transportistas:registrar_advertencia' transportista.pk %}">Registrar advertencia</a>
+  {% endif %}
+{% endblock %}
+
+{% block contenido %}
+  {% if transportista.esta_de_baja %}
+    <div class="alert alert-danger" role="alert">
+      Este transportista está dado de baja con {{ transportista.advertencias_total }} advertencias.
+      No puede recibir nuevas asignaciones.
+    </div>
+  {% elif transportista.esta_baja_pendiente %}
+    <div class="alert alert-warning" role="alert">
+      <strong>Baja pendiente.</strong>
+      Con {{ transportista.advertencias_total }} advertencias y excepción del cliente, solo puede
+      completar su servicio en curso; no puede recibir nuevas asignaciones.
+      {% if excepcion_baja and excepcion_baja.asignacion %}
+        Contrato afectado:
+        <a class="alert-link" href="{% url 'asignaciones:detalle' excepcion_baja.asignacion.pk %}">{{ excepcion_baja.asignacion.oferta.codigo }}</a>
+        ({{ excepcion_baja.asignacion.get_estado_display }}).
+      {% endif %}
+      {% if puede_aplicar_baja and perms.transportistas.cambiar_estado_transportista %}
+        El contrato ya terminó:
+        <a class="alert-link" href="{% url 'transportistas:aplicar_baja' transportista.pk %}">aplicar la baja formal</a>.
+      {% elif perms.transportistas.cambiar_estado_transportista %}
+        La baja formal se aplica cuando el servicio termine.
+      {% endif %}
+    </div>
+  {% elif transportista.estado == "EN_RESERVA" %}
+    <div class="alert alert-warning" role="alert">
+      El transportista está En Reserva: no puede recibir nuevas asignaciones hasta volver a Activo.
+    </div>
+  {% endif %}
+  {% if transportista.estado == "ACTIVO" and not transportista.documentacion_completa %}
+    <div class="alert alert-warning" role="alert">
+      La documentación obligatoria está incompleta o vencida (licencia, revisión técnica o fotografía).
+    </div>
+  {% endif %}
+
+  <div class="row g-3">
+    <div class="col-lg-7">
+      <section class="card h-100" aria-labelledby="titulo-identificacion">
+        <div class="card-header" id="titulo-identificacion">Identificación y estado operativo</div>
+        <div class="card-body">
+          <table class="table table-sm tabla-datos mb-0">
+            <tbody>
+              <tr><th scope="row">Nombre o razón social</th><td>{{ transportista.nombre }}</td></tr>
+              <tr><th scope="row">Documento</th><td>{{ transportista.get_tipo_documento_display }} {{ transportista.numero_documento }}</td></tr>
+              <tr><th scope="row">Dirección</th><td>{{ transportista.direccion }}</td></tr>
+              <tr><th scope="row">Años de experiencia</th><td>{{ transportista.anios_experiencia }}</td></tr>
+              <tr><th scope="row">Estado operativo</th>
+                <td>
+                  {% include "transportistas/includes/estado_badge.html" with transportista=transportista %}
+                  <span class="text-muted small">· {{ transportista.advertencias_total }} de {{ maximo_advertencias }} advertencias</span>
+                </td>
+              </tr>
+              <tr><th scope="row">Asignación activa</th>
+                <td>
+                  {% with asignacion=transportista.asignacion_activa %}
+                    {% if asignacion %}
+                      <a href="{% url 'asignaciones:detalle' asignacion.pk %}">{{ asignacion.oferta.codigo }}</a>
+                      <span class="tc-etiqueta tc-etiqueta-exito ms-1">En curso</span>
+                    {% else %}
+                      <span class="text-muted">Sin asignación activa</span>
+                    {% endif %}
+                  {% endwith %}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+
+    <div class="col-lg-5">
+      <section class="card h-100" aria-labelledby="titulo-vehiculo">
+        <div class="card-header" id="titulo-vehiculo">Vehículo y clasificación</div>
+        <div class="card-body">
+          <table class="table table-sm tabla-datos mb-3">
+            <tbody>
+              <tr><th scope="row">Placa</th><td>{{ transportista.placa }}</td></tr>
+              <tr><th scope="row">Tipo de vehículo</th><td>{{ transportista.get_tipo_vehiculo_display }}</td></tr>
+              <tr><th scope="row">Capacidad de carga</th><td>{{ transportista.capacidad_toneladas }} toneladas</td></tr>
+              <tr><th scope="row">Nivel calculado</th><td><span class="badge nivel-{{ transportista.nivel }} text-white">Nivel {{ transportista.nivel }}</span> {{ transportista.get_nivel_display }}</td></tr>
+              <tr>
+                <th scope="row">Certificación de carga peligrosa</th>
+                <td>
+                  {% if transportista.certificacion_carga_peligrosa %}
+                    <span class="tc-etiqueta tc-etiqueta-exito">Sí</span>
+                  {% else %}
+                    <span class="tc-etiqueta tc-etiqueta-neutra">No</span>
+                  {% endif %}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          {% if transportista.fotografia_vehiculo %}
+            <img src="{{ transportista.fotografia_vehiculo.url }}" alt="Fotografía del vehículo con placa {{ transportista.placa }}"
+                 class="img-fluid rounded tc-foto-vehiculo w-100">
+          {% else %}
+            <p class="text-muted mb-0 small">No se registró fotografía del vehículo.</p>
+          {% endif %}
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <section class="card mt-3" aria-labelledby="titulo-documentacion">
+    <div class="card-header" id="titulo-documentacion">Documentación, vencimientos y SOAT</div>
+    <div class="card-body p-0">
+      <div class="table-responsive">
+        <table class="table table-sm mb-0">
+          <caption class="visually-hidden">Estado de licencia, revisión técnica, SOAT y fotografía</caption>
+          <thead class="table-light"><tr><th scope="col">Documento</th><th scope="col">Vencimiento</th><th scope="col">Situación</th><th scope="col">Detalle</th></tr></thead>
+          <tbody>
+            {% for documento in documentos_detalle %}
+              <tr>
+                <td>{{ documento.nombre }}</td>
+                <td>{{ documento.fecha|date:"d/m/Y"|default:"—" }}</td>
+                <td>
+                  {% if documento.estado == "vencido" %}
+                    <span class="tc-etiqueta tc-etiqueta-error">Vencido</span>
+                  {% elif documento.estado == "proximo" %}
+                    <span class="tc-etiqueta tc-etiqueta-aviso">Próximo a vencer</span>
+                  {% elif documento.estado == "pendiente" %}
+                    <span class="tc-etiqueta tc-etiqueta-aviso">Pendiente</span>
+                  {% else %}
+                    <span class="tc-etiqueta tc-etiqueta-exito">Vigente</span>
+                  {% endif %}
+                </td>
+                <td class="small text-muted">{{ documento.detalle }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card-footer text-muted small">
+      La licencia y la revisión técnica deben estar vigentes para registrar o mantener
+      el estado Activo. El SOAT se verifica al crear la asignación y a su fecha de inicio:
+      sin SOAT vigente no se inicia la ruta. «Próximo a vencer» avisa con 30 días de
+      anticipación y no es una fecha legal de vencimiento.
+      Última actualización de la ficha: {{ transportista.actualizado|date:"d/m/Y H:i" }}.
+    </div>
+  </section>
+
+  {% if transportista.copia_soat %}
+    <p class="mt-2 mb-0">
+      <a class="btn btn-sm btn-outline-secondary" href="{{ transportista.copia_soat.url }}" target="_blank" rel="noopener">
+        Ver copia del SOAT registrada
+      </a>
+    </p>
+  {% endif %}
+
+  <div class="row g-3 mt-1">
+    <div class="col-lg-6">
+      <section class="card h-100" aria-labelledby="titulo-advertencias">
+        <div class="card-header d-flex justify-content-between align-items-center">
+          <span id="titulo-advertencias">Advertencias ({{ transportista.advertencias_total }} de {{ maximo_advertencias }})</span>
+          {% if perms.transportistas.add_advertencia %}
+            <a class="btn btn-sm btn-warning" href="{% url 'transportistas:registrar_advertencia' transportista.pk %}">Registrar</a>
+          {% endif %}
+        </div>
+        <div class="card-body p-0">
+          <div class="table-responsive">
+            <table class="table table-sm mb-0">
+              <caption class="visually-hidden">Advertencias del transportista</caption>
+              <thead class="table-light"><tr><th scope="col">Fecha</th><th scope="col">Descripción</th><th scope="col">Asignación</th></tr></thead>
+              <tbody>
+                {% for advertencia in advertencias %}
+                  <tr>
+                    <td class="text-nowrap">{{ advertencia.fecha|date:"d/m/Y" }}</td>
+                    <td>{{ advertencia.descripcion }}</td>
+                    <td>
+                      {% if advertencia.asignacion %}
+                        <a href="{% url 'asignaciones:detalle' advertencia.asignacion.pk %}">{{ advertencia.asignacion.oferta.codigo }}</a>
+                      {% else %}
+                        <span class="text-muted">—</span>
+                      {% endif %}
+                    </td>
+                  </tr>
+                {% empty %}
+                  <tr><td colspan="3">{% include "includes/vacio.html" with titulo="Sin advertencias registradas" %}</td></tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="col-lg-6">
+      <section class="card h-100" aria-labelledby="titulo-historial">
+        <div class="card-header" id="titulo-historial">Historial de asignaciones</div>
+        <div class="card-body p-0">
+          <div class="table-responsive">
+            <table class="table table-sm mb-0">
+              <caption class="visually-hidden">Historial de asignaciones del transportista</caption>
+              <thead class="table-light"><tr><th scope="col">Oferta</th><th scope="col">Inicio</th><th scope="col">Fin</th><th scope="col">Estado</th></tr></thead>
+              <tbody>
+                {% for asignacion in asignaciones %}
+                  <tr>
+                    <td><a href="{% url 'asignaciones:detalle' asignacion.pk %}">{{ asignacion.oferta.codigo }}</a></td>
+                    <td>{{ asignacion.fecha_inicio|date:"d/m/Y" }}</td>
+                    <td>{{ asignacion.fecha_fin|date:"d/m/Y"|default:"—" }}</td>
+                    <td>{{ asignacion.get_estado_display }}</td>
+                  </tr>
+                {% empty %}
+                  <tr><td colspan="4">{% include "includes/vacio.html" with titulo="Sin asignaciones registradas" %}</td></tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <section class="card mt-3" aria-labelledby="titulo-incidencias">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <span id="titulo-incidencias">Quejas e incidencias ({{ incidencias|length }})</span>
+      {% if perms.transportistas.add_advertencia %}
+        <a class="btn btn-sm btn-outline-primary" href="{% url 'transportistas:incidencias_crear' %}">Registrar</a>
+      {% endif %}
+    </div>
+    <div class="card-body p-0">
+      <div class="table-responsive">
+        <table class="table table-sm mb-0">
+          <caption class="visually-hidden">Quejas, renuncias y excepciones del transportista</caption>
+          <thead class="table-light"><tr><th scope="col">Fecha</th><th scope="col">Tipo</th><th scope="col">Descripción</th><th scope="col">Revisión</th><th scope="col">Advertencia</th></tr></thead>
+          <tbody>
+            {% for incidencia in incidencias %}
+              <tr>
+                <td class="text-nowrap">{{ incidencia.fecha|date:"d/m/Y" }}</td>
+                <td><a href="{% url 'transportistas:incidencias_detalle' incidencia.pk %}">{{ incidencia.get_tipo_display }}</a></td>
+                <td>{{ incidencia.descripcion|truncatechars:60 }}</td>
+                <td>{{ incidencia.get_estado_revision_display }}</td>
+                <td>
+                  {% if incidencia.advertencia_generada %}
+                    <span class="tc-etiqueta tc-etiqueta-error">Formal</span>
+                  {% else %}
+                    <span class="text-muted">—</span>
+                  {% endif %}
+                </td>
+              </tr>
+            {% empty %}
+              <tr><td colspan="5">{% include "includes/vacio.html" with titulo="Sin quejas ni incidencias registradas" %}</td></tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="card mt-3" aria-labelledby="titulo-capacitacion">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <span id="titulo-capacitacion">Capacitación ({{ participaciones|length }})</span>
+      {% if perms.capacitacion.add_participacion %}
+        <a class="btn btn-sm btn-outline-primary" href="{% url 'capacitacion:participaciones_inscribir' %}">Inscribir</a>
+      {% endif %}
+    </div>
+    <div class="card-body p-0">
+      <div class="table-responsive">
+        <table class="table table-sm mb-0">
+          <caption class="visually-hidden">Historial de capacitación del transportista</caption>
+          <thead class="table-light"><tr><th scope="col">Curso</th><th scope="col">Convocatoria</th><th scope="col">Fecha</th><th scope="col">Estado</th><th scope="col">Resultado</th></tr></thead>
+          <tbody>
+            {% for participacion in participaciones %}
+              <tr>
+                <td><a href="{% url 'capacitacion:participacion_detalle' participacion.pk %}">{{ participacion.curso.codigo }} — {{ participacion.curso.titulo }}</a></td>
+                <td>{{ participacion.convocatoria }}</td>
+                <td class="text-nowrap">{{ participacion.fecha|date:"d/m/Y" }}</td>
+                <td>{{ participacion.get_estado_display }}</td>
+                <td>
+                  {{ participacion.get_resultado_display|default:"—" }}
+                  {% if participacion.constancia_pendiente %}
+                    <span class="tc-etiqueta tc-etiqueta-aviso ms-1">Falta constancia</span>
+                  {% endif %}
+                </td>
+              </tr>
+            {% empty %}
+              <tr><td colspan="5">{% include "includes/vacio.html" with titulo="Sin historial de capacitación" %}</td></tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card-footer text-muted small">
+      Los cursos son formación interna: no otorgan acreditaciones externas ni cambian el nivel.
+    </div>
+  </section>
+
+  <div class="mt-3">
+    <a class="btn btn-outline-secondary" href="{% url 'transportistas:lista' %}">Volver al listado</a>
+  </div>
+{% endblock %}

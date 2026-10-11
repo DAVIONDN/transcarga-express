@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block titulo %}{{ titulo }} · TransCarga Express{% endblock %}
+
+{% block miga %}<li><a href="{% url 'liquidaciones:formatos_lista' %}">Formatos semanales</a></li><li><a href="{% url 'liquidaciones:formato_detalle' formato.pk %}">{{ formato.asignacion.oferta.codigo }}</a></li><li aria-current="page">{{ titulo }}</li>{% endblock %}
+{% block titulo_pagina %}{{ titulo }}{% endblock %}
+{% block subtitulo_pagina %}Periodo {{ formato.periodo_inicio|date:"d/m/Y" }} – {{ formato.periodo_fin|date:"d/m/Y" }} · prevista {{ formato.fecha_prevista|date:"d/m/Y" }}.{% endblock %}
+{% block acciones_pagina %}{% endblock %}
+
+{% block contenido %}
+  <div class="row justify-content-center">
+    <div class="col-md-7">
+      <form method="post" novalidate>
+        {% csrf_token %}
+        {% include "includes/errores_formulario.html" with form=form %}
+        <section class="card mb-3" aria-labelledby="sec-firma">
+          <div class="card-header" id="sec-firma">Fecha de firma</div>
+          <div class="card-body">
+            {% for campo in form %}
+              {% include "includes/campo_formulario.html" with campo=campo %}
+            {% endfor %}
+          </div>
+        </section>
+        <div class="d-flex gap-2">
+          <button class="btn btn-primary" type="submit">Registrar firma</button>
+          <a class="btn btn-outline-secondary" href="{% url 'liquidaciones:formato_detalle' formato.pk %}">Cancelar</a>
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock %}

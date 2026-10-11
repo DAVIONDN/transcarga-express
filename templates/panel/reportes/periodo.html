@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block titulo %}{{ titulo }} · TransCarga Express{% endblock %}
+
+{% block miga %}<li><a href="{% url 'panel:reportes' %}">Reportes</a></li><li aria-current="page">{{ titulo }}</li>{% endblock %}
+{% block titulo_pagina %}{{ titulo }}{% endblock %}
+{% block subtitulo_pagina %}Rango por fecha de creación (ofertas) y de inicio (asignaciones).{% endblock %}
+{% block acciones_pagina %}
+  <a class="btn btn-outline-secondary btn-sm" href="?{% if filtros.desde %}desde={{ filtros.desde }}&amp;{% endif %}{% if filtros.hasta %}hasta={{ filtros.hasta }}&amp;{% endif %}formato=csv">Exportar CSV</a>
+{% endblock %}
+
+{% block contenido %}
+  <form method="get" class="card card-body tc-filtros mb-3" aria-label="Filtrar reporte">
+    <div class="row g-2 align-items-end">
+      <div class="col-md-5">
+        <label class="form-label" for="desde">Desde</label>
+        <input type="date" class="form-control" id="desde" name="desde" value="{{ filtros.desde }}">
+      </div>
+      <div class="col-md-5">
+        <label class="form-label" for="hasta">Hasta</label>
+        <input type="date" class="form-control" id="hasta" name="hasta" value="{{ filtros.hasta }}">
+      </div>
+      <div class="col-md-2 d-grid">
+        <button class="btn btn-outline-secondary" type="submit">Filtrar</button>
+      </div>
+    </div>
+  </form>
+
+  <div class="row g-3 mb-3">
+    <div class="col-md-6">
+      <section class="card" aria-label="Resumen de ofertas">
+        <div class="card-header">Ofertas por estado</div>
+        <div class="card-body p-0">
+          <table class="table table-sm mb-0">
+            <tbody>
+              {% for fila in resumen_ofertas %}
+                <tr><td>{{ fila.estado }}</td><td class="text-end fw-semibold">{{ fila.total }}</td></tr>
+              {% empty %}
+                <tr><td class="text-muted small">Sin ofertas en el rango.</td></tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+    <div class="col-md-6">
+      <section class="card" aria-label="Resumen de asignaciones">
+        <div class="card-header">Asignaciones por estado</div>
+        <div class="card-body p-0">
+          <table class="table table-sm mb-0">
+            <tbody>
+              {% for fila in resumen_asignaciones %}
+                <tr><td>{{ fila.estado }}</td><td class="text-end fw-semibold">{{ fila.total }}</td></tr>
+              {% empty %}
+                <tr><td class="text-muted small">Sin asignaciones en el rango.</td></tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <div class="table-responsive tc-tabla">
+    <table class="table table-hover align-middle mb-0">
+      <caption class="visually-hidden">Ofertas y asignaciones del periodo</caption>
+      <thead>
+        <tr><th scope="col">Tipo</th><th scope="col">Código</th><th scope="col">Fecha</th><th scope="col">Estado</th><th scope="col">Detalle</th></tr>
+      </thead>
+      <tbody>
+        {% for tipo, codigo, fecha, estado, detalle in filas %}
+          <tr><td>{{ tipo }}</td><td>{{ codigo }}</td><td>{{ fecha }}</td><td>{{ estado }}</td><td>{{ detalle }}</td></tr>
+        {% empty %}
+          <tr><td colspan="5">{% include "includes/vacio.html" with titulo="Sin resultados" %}</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

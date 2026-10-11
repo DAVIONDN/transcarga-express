@@ -1,0 +1,8 @@
+{% comment %}Etiqueta del estado de la asignación: texto + color semántico.{% endcomment %}
+{% if asignacion.esta_activa %}
+  <span class="tc-etiqueta tc-etiqueta-exito">Activa</span>
+{% elif asignacion.esta_cancelada %}
+  <span class="tc-etiqueta tc-etiqueta-error">Cancelada</span>
+{% else %}
+  <span class="tc-etiqueta tc-etiqueta-neutra">Finalizada</span>
+{% endif %}

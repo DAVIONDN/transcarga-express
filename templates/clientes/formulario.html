@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block titulo %}{{ titulo }} · TransCarga Express{% endblock %}
+
+{% block miga %}<li><a href="{% url 'clientes:lista' %}">Empresas clientes</a></li><li aria-current="page">{{ titulo }}</li>{% endblock %}
+{% block titulo_pagina %}{{ titulo }}{% endblock %}
+{% block subtitulo_pagina %}Los campos marcados con * son obligatorios. El RUC debe tener 11 dígitos.{% endblock %}
+{% block acciones_pagina %}{% endblock %}
+
+{% block contenido %}
+  <div class="row g-3">
+    <div class="col-lg-7">
+      <form method="post" novalidate>
+        {% csrf_token %}
+        {% include "includes/errores_formulario.html" with form=form %}
+        <section class="card mb-3" aria-labelledby="sec-empresa">
+          <div class="card-header" id="sec-empresa">Datos de la empresa</div>
+          <div class="card-body">
+            {% include "includes/campo_formulario.html" with campo=form.ruc %}
+            {% include "includes/campo_formulario.html" with campo=form.razon_social %}
+            {% include "includes/campo_formulario.html" with campo=form.direccion %}
+            {% include "includes/campo_formulario.html" with campo=form.actividad_economica %}
+          </div>
+        </section>
+        <div class="d-flex gap-2">
+          <button class="btn btn-primary" type="submit">{{ texto_boton }}</button>
+          {% if form.instance.pk %}
+            <a class="btn btn-outline-secondary" href="{% url 'clientes:detalle' form.instance.pk %}">Cancelar</a>
+          {% else %}
+            <a class="btn btn-outline-secondary" href="{% url 'clientes:lista' %}">Cancelar</a>
+          {% endif %}
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock %}

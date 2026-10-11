@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block titulo %}Auditoría de operaciones · TransCarga Express{% endblock %}
+
+{% block miga %}<li aria-current="page">Auditoría</li>{% endblock %}
+{% block titulo_pagina %}Auditoría de operaciones{% endblock %}
+{% block subtitulo_pagina %}Quién hizo qué y cuándo. Nunca guarda contraseñas ni secretos.{% endblock %}
+{% block acciones_pagina %}{% endblock %}
+
+{% block contenido %}
+  <form method="get" class="card card-body tc-filtros mb-3" role="search" aria-label="Buscar en la auditoría">
+    <div class="row g-2 align-items-end">
+      <div class="col-md-4">
+        <label class="form-label" for="q">Buscar</label>
+        <input type="search" class="form-control" id="q" name="q" value="{{ filtros.q }}"
+               placeholder="Resumen, entidad o usuario" autocomplete="off">
+      </div>
+      <div class="col-md-3">
+        <label class="form-label" for="accion">Acción</label>
+        <select class="form-select" id="accion" name="accion">
+          <option value="">Todas</option>
+          {% for valor, etiqueta in acciones %}
+            <option value="{{ valor }}" {% if filtros.accion == valor %}selected{% endif %}>{{ etiqueta }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="col-md-2">
+        <label class="form-label" for="desde">Desde</label>
+        <input type="date" class="form-control" id="desde" name="desde" value="{{ filtros.desde }}">
+      </div>
+      <div class="col-md-2">
+        <label class="form-label" for="hasta">Hasta</label>
+        <input type="date" class="form-control" id="hasta" name="hasta" value="{{ filtros.hasta }}">
+      </div>
+      <div class="col-md-1 d-grid">
+        <button class="btn btn-outline-secondary" type="submit">Filtrar</button>
+      </div>
+    </div>
+    {% if hay_filtros %}
+      <div class="mt-2"><a class="small" href="{% url 'auditoria:lista' %}">Limpiar filtros</a></div>
+    {% endif %}
+  </form>
+
+  <div class="table-responsive tc-tabla">
+    <table class="table table-hover align-middle mb-0">
+      <caption class="visually-hidden">Registros de auditoría</caption>
+      <thead>
+        <tr>
+          <th scope="col">Fecha y hora</th>
+          <th scope="col">Usuario</th>
+          <th scope="col">Acción</th>
+          <th scope="col">Entidad</th>
+          <th scope="col">Resumen</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for registro in registros %}
+          <tr>
+            <td class="text-nowrap small">{{ registro.fecha_hora|date:"d/m/Y H:i" }}</td>
+            <td>{{ registro.usuario.get_username }}</td>
+            <td><span class="tc-etiqueta tc-etiqueta-neutra">{{ registro.get_accion_display }}</span></td>
+            <td class="small">{{ registro.entidad }}{% if registro.entidad_id %} #{{ registro.entidad_id }}{% endif %}</td>
+            <td class="small">{{ registro.resumen }}</td>
+          </tr>
+        {% empty %}
+          <tr><td colspan="5">{% include "includes/vacio.html" with titulo="Sin registros" descripcion="Las operaciones críticas aparecerán aquí." %}</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="mt-3">{% include "includes/paginacion.html" %}</div>
+{% endblock %}

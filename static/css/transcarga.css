@@ -1,0 +1,1097 @@
+/* ==========================================================================
+   TransCarga Express — Sistema de diseño
+   Base: Bootstrap 5 por CDN. Variables centralizadas: colores, radios,
+   sombras, espaciados y ancho de la barra lateral. Sin dependencias nuevas.
+   ========================================================================== */
+
+:root {
+  /* Marca: azul marino profundo + violeta de acción */
+  --tc-marino: #0b1024;
+  --tc-marino-2: #151d38;
+  --tc-marino-3: #232c4f;
+  --tc-violeta: #4f46e5;
+  --tc-violeta-oscuro: #4338ca;
+  --tc-violeta-claro: #eceafd;
+  --tc-azul: #2563eb;
+  --tc-azul-claro: #e3edfd;
+
+  /* Compatibilidad con componentes existentes */
+  --tc-primario: #4f46e5;
+  --tc-primario-oscuro: #4338ca;
+  --tc-primario-claro: #eceafd;
+
+  /* Fondos neutros */
+  --tc-fondo: #f4f7fb;
+  --tc-superficie: #ffffff;
+  --tc-borde: #e2e8f0;
+  --tc-borde-suave: #e9eff6;
+
+  /* Texto */
+  --tc-texto: #111827;
+  --tc-texto-secundario: #64748b;
+  --tc-texto-tenue: #94a3b8;
+
+  /* Semánticos (texto / fondo / borde) con contraste suficiente */
+  --tc-exito: #15803d;
+  --tc-exito-fondo: #e5f6ec;
+  --tc-exito-borde: #b7e2c6;
+  --tc-aviso: #92600a;
+  --tc-aviso-fondo: #fdf2d7;
+  --tc-aviso-borde: #ecd28f;
+  --tc-error: #b42318;
+  --tc-error-fondo: #fdecea;
+  --tc-error-borde: #f0b8b2;
+  --tc-info: #1d5fa8;
+  --tc-info-fondo: #e7f1fd;
+  --tc-info-borde: #bcd6f5;
+
+  /* Barra lateral */
+  --tc-lateral-fondo: var(--tc-marino);
+  --tc-lateral-fondo-activo: var(--tc-violeta);
+  --tc-lateral-texto: #dfe4f2;
+  --tc-lateral-tenue: #8f99b8;
+
+  /* Medidas */
+  --tc-radio: 0.75rem;
+  --tc-radio-sm: 0.5rem;
+  --tc-sombra: 0 1px 2px rgba(11, 16, 36, 0.06);
+  --tc-sombra-elevada: 0 4px 14px rgba(11, 16, 36, 0.1);
+  --tc-ancho-lateral: 264px;
+  --tc-ancho-lateral-compacto: 76px;
+  --tc-alto-topbar: 64px;
+
+  /* Tipografía moderna y legible (pila del sistema) */
+  --tc-fuente: "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--tc-fuente);
+  color: var(--tc-texto);
+  background-color: var(--tc-fondo);
+  line-height: 1.5;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  letter-spacing: -0.01em;
+}
+
+a {
+  color: var(--tc-violeta);
+  text-underline-offset: 0.15em;
+}
+
+a:hover {
+  color: var(--tc-violeta-oscuro);
+}
+
+:focus-visible {
+  outline: 2px solid var(--tc-violeta);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Transiciones suaves solo para estados interactivos */
+.btn, .nav-link, .tc-acceso, .page-link, .form-control, .form-select {
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+/* Enlace de salto para navegación por teclado */
+.tc-salto {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 2000;
+  background: var(--tc-violeta);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 0 0 8px 0;
+}
+
+.tc-salto:focus {
+  left: 0;
+  color: #fff;
+}
+
+/* ------------------------------------------------------------------ */
+/* Barra lateral                                                      */
+/* ------------------------------------------------------------------ */
+
+.tc-lateral {
+  background-color: var(--tc-lateral-fondo) !important;
+  color: var(--tc-lateral-texto);
+}
+
+/* Bootstrap 5.3 impone `background-color: transparent !important` a
+   `.offcanvas-lg` (y a su `.offcanvas-body`) en escritorio; sin este
+   `!important` la barra lateral quedaría transparente e ilegible. */
+@media (min-width: 992px) {
+  .offcanvas-lg.tc-lateral,
+  .offcanvas-lg.tc-lateral .offcanvas-body {
+    background-color: var(--tc-lateral-fondo) !important;
+  }
+}
+
+.tc-marca {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 1.1rem 1.1rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+  min-height: var(--tc-alto-topbar);
+}
+
+.tc-marca-insignia {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  flex: 0 0 2.4rem;
+  background: var(--tc-violeta);
+  color: #fff;
+  border-radius: 0.7rem;
+}
+
+.tc-marca-nombre {
+  font-weight: 750;
+  font-size: 1rem;
+  line-height: 1.2;
+  color: #fff;
+  white-space: nowrap;
+}
+
+.tc-marca-nombre em {
+  font-style: normal;
+  color: #a5b4fc;
+}
+
+.tc-marca-sub {
+  font-size: 0.72rem;
+  color: var(--tc-lateral-tenue);
+  white-space: nowrap;
+}
+
+.tc-seccion-nav {
+  padding: 1.1rem 1.4rem 0.4rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--tc-lateral-tenue);
+}
+
+.tc-lateral .nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  color: var(--tc-lateral-texto);
+  border-radius: var(--tc-radio-sm);
+  padding: 0.55rem 0.75rem;
+  font-size: 0.92rem;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+
+.tc-lateral .nav-link svg {
+  flex: 0 0 auto;
+  opacity: 0.92;
+}
+
+.tc-lateral .nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.07);
+  color: #fff;
+}
+
+.tc-lateral .nav-link.activo {
+  background-color: var(--tc-lateral-fondo-activo);
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: inset 3px 0 0 #a5b4fc;
+  color: #fff;
+  font-weight: 650;
+}
+
+.tc-usuario {
+  border-top: 1px solid rgba(255, 255, 255, 0.09);
+  padding: 0.9rem 1.1rem;
+  font-size: 0.85rem;
+}
+
+.tc-usuario-nombre {
+  color: #fff;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.tc-usuario-rol {
+  display: inline-block;
+  margin-top: 0.2rem;
+  padding: 0.1rem 0.55rem;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 999px;
+  color: var(--tc-lateral-texto);
+  font-size: 0.75rem;
+}
+
+@media (min-width: 992px) {
+  .tc-lateral {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: var(--tc-ancho-lateral);
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  .tc-contenido {
+    margin-left: var(--tc-ancho-lateral);
+  }
+
+  /* Modo compacto: solo iconos, con ayuda contextual por `title` */
+  body.nav-compacta .tc-lateral {
+    width: var(--tc-ancho-lateral-compacto);
+  }
+
+  body.nav-compacta .tc-contenido {
+    margin-left: var(--tc-ancho-lateral-compacto);
+  }
+
+  body.nav-compacta .tc-marca {
+    justify-content: center;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
+  body.nav-compacta .tc-marca-texto,
+  body.nav-compacta .tc-seccion-nav,
+  body.nav-compacta .tc-lateral .nav-link .tc-nav-etiqueta,
+  body.nav-compacta .tc-usuario-datos,
+  body.nav-compacta .tc-usuario .btn {
+    display: none;
+  }
+
+  body.nav-compacta .tc-lateral .nav-link {
+    justify-content: center;
+  }
+
+  body.nav-compacta .tc-usuario {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Barra superior blanca                                              */
+/* ------------------------------------------------------------------ */
+
+.tc-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+  min-height: var(--tc-alto-topbar);
+  background: var(--tc-superficie);
+  border-bottom: 1px solid var(--tc-borde);
+  box-shadow: var(--tc-sombra);
+}
+
+.tc-topbar-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 1px solid var(--tc-borde);
+  border-radius: var(--tc-radio-sm);
+  background: var(--tc-superficie);
+  color: var(--tc-texto-secundario);
+}
+
+.tc-topbar-btn:hover {
+  background: #f1f4fa;
+  color: var(--tc-texto);
+  border-color: #cbd5e1;
+}
+
+/* ------------------------------------------------------------------ */
+/* Marca compacta del topbar (visible solo cuando el sidebar no está) */
+/* ------------------------------------------------------------------ */
+
+.tc-topbar-marca {
+  line-height: 1;
+  color: var(--tc-marino);
+}
+
+.tc-topbar-marca .tc-marca-insignia {
+  width: 2rem;
+  height: 2rem;
+  flex: 0 0 2rem;
+  border-radius: 0.55rem;
+  background: var(--tc-violeta-claro);
+  color: var(--tc-violeta-oscuro);
+}
+
+.tc-topbar-marca-nombre {
+  color: var(--tc-marino);
+  letter-spacing: -0.01em;
+  font-size: 0.95rem;
+  white-space: nowrap;
+  max-width: 12rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tc-topbar-marca:hover .tc-topbar-marca-nombre,
+.tc-topbar-marca:focus .tc-topbar-marca-nombre {
+  color: var(--tc-violeta-oscuro);
+}
+
+/* ------------------------------------------------------------------ */
+
+.tc-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  flex: 0 0 2.4rem;
+  border-radius: 50%;
+  background: var(--tc-violeta);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.tc-userchip {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  border: 1px solid var(--tc-borde);
+  border-radius: 999px;
+  background: var(--tc-superficie);
+  color: var(--tc-texto);
+  padding: 0.25rem 0.7rem 0.25rem 0.3rem;
+  max-width: 100%;
+}
+
+.tc-userchip:hover {
+  border-color: #cbd5e1;
+  background: #f8fafc;
+}
+
+.tc-userchip-nombre {
+  font-weight: 650;
+  font-size: 0.86rem;
+  line-height: 1.15;
+  max-width: 11rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tc-userchip-rol {
+  font-size: 0.74rem;
+  color: var(--tc-texto-secundario);
+  line-height: 1.15;
+  max-width: 11rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dropdown-menu {
+  border: 1px solid var(--tc-borde);
+  border-radius: var(--tc-radio-sm);
+  box-shadow: var(--tc-sombra-elevada);
+}
+
+.dropdown-item {
+  font-size: 0.9rem;
+}
+
+.dropdown-item button {
+  all: unset;
+  display: block;
+  width: 100%;
+  cursor: pointer;
+}
+
+/* Barra móvil heredada (compatibilidad con pruebas de auditoría) */
+.tc-barra-movil {
+  background-color: var(--tc-marino);
+}
+
+/* ------------------------------------------------------------------ */
+/* Contenido y encabezado de página                                   */
+/* ------------------------------------------------------------------ */
+
+.tc-pagina {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 1.5rem 1.5rem 2.5rem;
+}
+
+.tc-miga {
+  font-size: 0.8rem;
+  color: var(--tc-texto-secundario);
+  margin-bottom: 0;
+}
+
+.tc-miga ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tc-miga li + li::before {
+  content: "/";
+  margin-right: 0.35rem;
+  color: var(--tc-texto-tenue);
+}
+
+.tc-encabezado {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.9rem;
+  margin: 1rem 0 1.25rem;
+}
+
+.tc-titulo {
+  font-size: 1.55rem;
+  font-weight: 750;
+  margin: 0;
+  color: var(--tc-texto);
+}
+
+.tc-subtitulo {
+  color: var(--tc-texto-secundario);
+  font-size: 0.9rem;
+  margin: 0.25rem 0 0;
+  max-width: 62ch;
+}
+
+.tc-acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* ------------------------------------------------------------------ */
+/* Tarjetas, indicadores y tablas                                     */
+/* ------------------------------------------------------------------ */
+
+.card {
+  border: 1px solid var(--tc-borde-suave);
+  border-radius: var(--tc-radio);
+  box-shadow: var(--tc-sombra);
+  background: var(--tc-superficie);
+}
+
+.card-header {
+  background: #f8fafc;
+  border-bottom: 1px solid var(--tc-borde-suave);
+  font-weight: 650;
+  font-size: 0.92rem;
+}
+
+.card-footer {
+  background: #f8fafc;
+  border-top: 1px solid var(--tc-borde-suave);
+}
+
+/* Tarjeta estadística con icono contextual */
+.tc-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.tc-stat-cabecera {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.tc-stat-etiqueta {
+  font-size: 0.78rem;
+  font-weight: 650;
+  color: var(--tc-texto-secundario);
+}
+
+.tc-stat-icono {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  flex: 0 0 2.5rem;
+  border-radius: 0.7rem;
+}
+
+.tc-stat-icono-violeta {
+  background: var(--tc-violeta-claro);
+  color: var(--tc-violeta);
+}
+
+.tc-stat-icono-azul {
+  background: var(--tc-azul-claro);
+  color: var(--tc-azul);
+}
+
+.tc-stat-icono-verde {
+  background: var(--tc-exito-fondo);
+  color: var(--tc-exito);
+}
+
+.tc-stat-icono-ambar {
+  background: var(--tc-aviso-fondo);
+  color: var(--tc-aviso);
+}
+
+.tc-stat-icono-rojo {
+  background: var(--tc-error-fondo);
+  color: var(--tc-error);
+}
+
+.tc-stat-valor {
+  font-size: 1.9rem;
+  font-weight: 780;
+  line-height: 1.1;
+  margin: 0;
+}
+
+.tc-stat-detalle {
+  font-size: 0.82rem;
+  color: var(--tc-texto-secundario);
+}
+
+/* Compatibilidad con tarjetas KPI anteriores */
+.tc-kpi {
+  border-top: 3px solid var(--tc-violeta);
+}
+
+.tc-kpi-etiqueta {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--tc-texto-secundario);
+}
+
+.tc-kpi-valor {
+  font-size: 1.7rem;
+  font-weight: 750;
+  line-height: 1.15;
+  margin: 0.15rem 0 0.4rem;
+}
+
+.tc-kpi-detalle {
+  font-size: 0.82rem;
+  color: var(--tc-texto-secundario);
+}
+
+.tc-tabla {
+  border: 1px solid var(--tc-borde-suave);
+  border-radius: var(--tc-radio);
+  background: var(--tc-superficie);
+  box-shadow: var(--tc-sombra);
+  overflow: hidden;
+}
+
+.tc-tabla table {
+  margin-bottom: 0;
+}
+
+.tc-tabla thead th {
+  background: #f1f5f9;
+  font-size: 0.74rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--tc-texto-secundario);
+  border-bottom: 1px solid var(--tc-borde);
+  white-space: nowrap;
+  padding-top: 0.7rem;
+  padding-bottom: 0.7rem;
+}
+
+.tc-tabla tbody td,
+.tc-tabla tbody th {
+  vertical-align: middle;
+  font-size: 0.9rem;
+  padding-top: 0.65rem;
+  padding-bottom: 0.65rem;
+}
+
+.table > :not(caption) > * > * {
+  vertical-align: middle;
+}
+
+.tc-filtros {
+  border: 1px solid var(--tc-borde-suave);
+  border-radius: var(--tc-radio);
+  background: var(--tc-superficie);
+  box-shadow: var(--tc-sombra);
+}
+
+/* Píldoras de filtro rápido con conteos reales */
+.tc-pildoras {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tc-pildora {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 0.9rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--tc-texto-secundario);
+  font-size: 0.87rem;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.tc-pildora:hover {
+  background: #eef2f7;
+  color: var(--tc-texto);
+  text-decoration: none;
+}
+
+.tc-pildora.activo {
+  background: var(--tc-violeta);
+  color: #fff;
+}
+
+.tc-pildora-conteo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.5rem;
+  padding: 0.05rem 0.4rem;
+  border-radius: 999px;
+  background: rgba(100, 116, 139, 0.15);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.tc-pildora.activo .tc-pildora-conteo {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* Etiquetas semánticas: siempre texto + color */
+.tc-etiqueta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.76rem;
+  font-weight: 650;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+
+.tc-etiqueta-exito {
+  color: var(--tc-exito);
+  background: var(--tc-exito-fondo);
+  border-color: var(--tc-exito-borde);
+}
+
+.tc-etiqueta-aviso {
+  color: var(--tc-aviso);
+  background: var(--tc-aviso-fondo);
+  border-color: var(--tc-aviso-borde);
+}
+
+.tc-etiqueta-error {
+  color: var(--tc-error);
+  background: var(--tc-error-fondo);
+  border-color: var(--tc-error-borde);
+}
+
+.tc-etiqueta-info {
+  color: var(--tc-info);
+  background: var(--tc-info-fondo);
+  border-color: var(--tc-info-borde);
+}
+
+.tc-etiqueta-neutra {
+  color: #475569;
+  background: #edf1f6;
+  border-color: #d3dce6;
+}
+
+.tc-etiqueta-primaria {
+  color: var(--tc-violeta-oscuro);
+  background: var(--tc-violeta-claro);
+  border-color: #cfc9fa;
+}
+
+/* Compatibilidad: distintivos de nivel anteriores */
+.badge.nivel-1,
+.badge.nivel-2,
+.badge.nivel-3 {
+  border: 1px solid transparent;
+}
+
+.badge.nivel-1 {
+  background-color: var(--tc-violeta) !important;
+}
+
+.badge.nivel-2 {
+  background-color: #2c6e49 !important;
+}
+
+.badge.nivel-3 {
+  background-color: #566273 !important;
+}
+
+/* Estado documental: texto, no solo color */
+.documento-vencido {
+  color: var(--tc-error);
+  font-weight: 650;
+}
+
+.documento-por-vencer {
+  color: var(--tc-aviso);
+  font-weight: 650;
+}
+
+.documento-vigente {
+  color: var(--tc-exito);
+  font-weight: 600;
+}
+
+/* Tablas de ficha (clave / valor) */
+.tabla-datos th {
+  width: 34%;
+  white-space: nowrap;
+  color: var(--tc-texto-secundario);
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+/* Estado vacío útil */
+.tc-vacio {
+  text-align: center;
+  padding: 2rem 1.25rem;
+  color: var(--tc-texto-secundario);
+}
+
+.tc-vacio-icono {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  background: #eef2f7;
+  color: var(--tc-texto-tenue);
+  margin-bottom: 0.6rem;
+}
+
+.tc-vacio-titulo {
+  font-weight: 700;
+  color: var(--tc-texto);
+  margin-bottom: 0.3rem;
+}
+
+/* Accesos rápidos del panel */
+.tc-acceso {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.7rem 0.8rem;
+  border: 1px solid var(--tc-borde-suave);
+  border-radius: var(--tc-radio-sm);
+  background: #fff;
+  text-decoration: none;
+}
+
+.tc-acceso:hover {
+  border-color: var(--tc-violeta);
+  background: #f6f5ff;
+  text-decoration: none;
+}
+
+.tc-acceso-icono {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.1rem;
+  height: 2.1rem;
+  flex: 0 0 2.1rem;
+  border-radius: 0.55rem;
+  background: var(--tc-violeta-claro);
+  color: var(--tc-violeta-oscuro);
+}
+
+.tc-acceso strong {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--tc-texto);
+}
+
+.tc-acceso span span,
+.tc-acceso > span > span {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--tc-texto-secundario);
+}
+
+/* ------------------------------------------------------------------ */
+/* Formularios                                                        */
+/* ------------------------------------------------------------------ */
+
+.tc-form-seccion {
+  border: 1px solid var(--tc-borde-suave);
+  border-radius: var(--tc-radio-sm);
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background: #fbfcfe;
+}
+
+.tc-form-seccion-titulo {
+  font-size: 0.8rem;
+  font-weight: 750;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--tc-violeta-oscuro);
+  margin-bottom: 0.8rem;
+}
+
+.form-label {
+  font-weight: 600;
+  font-size: 0.87rem;
+}
+
+.form-control,
+.form-select {
+  border-radius: var(--tc-radio-sm);
+  border-color: var(--tc-borde);
+  min-height: 2.6rem;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--tc-violeta);
+  box-shadow: 0 0 0 0.2rem rgba(79, 70, 229, 0.15);
+}
+
+.tc-error-campo {
+  font-size: 0.82rem;
+  color: var(--tc-error);
+  margin-top: 0.25rem;
+}
+
+.tc-resumen-errores {
+  border: 1px solid var(--tc-error-borde);
+  background: var(--tc-error-fondo);
+  border-radius: var(--tc-radio-sm);
+  padding: 0.8rem 1rem;
+}
+
+/* Botones: jerarquía clara */
+.btn-primary {
+  background-color: var(--tc-violeta);
+  border-color: var(--tc-violeta);
+  font-weight: 600;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: var(--tc-violeta-oscuro);
+  border-color: var(--tc-violeta-oscuro);
+}
+
+.btn-outline-primary {
+  color: var(--tc-violeta);
+  border-color: var(--tc-violeta);
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--tc-violeta);
+  border-color: var(--tc-violeta);
+}
+
+/* Alertas con esquinas coherentes */
+.alert {
+  border-radius: var(--tc-radio-sm);
+}
+
+/* Paginación */
+.page-link {
+  color: var(--tc-violeta);
+}
+
+.page-item.active .page-link {
+  background-color: var(--tc-violeta);
+  border-color: var(--tc-violeta);
+}
+
+/* Ficha del transportista: foto contenida */
+.tc-foto-vehiculo {
+  max-height: 230px;
+  object-fit: cover;
+}
+
+/* ------------------------------------------------------------------ */
+/* Login de pantalla dividida                                         */
+/* ------------------------------------------------------------------ */
+
+.tc-login {
+  min-height: 100vh;
+  background: var(--tc-fondo);
+}
+
+body.tc-login .tc-pagina {
+  max-width: none;
+  padding: 0;
+}
+
+.tc-login-panel {
+  min-height: 100vh;
+}
+
+.tc-login-marca {
+  background-color: var(--tc-marino);
+  background-image:
+    radial-gradient(circle at 85% 12%, rgba(79, 70, 229, 0.5) 0, transparent 42%),
+    radial-gradient(circle at 8% 90%, rgba(37, 99, 235, 0.45) 0, transparent 46%),
+    linear-gradient(135deg, #0b1024 0%, #151d38 58%, #1d2760 100%);
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+.tc-login-marca-contenido {
+  position: relative;
+  z-index: 1;
+  max-width: 30rem;
+}
+
+.tc-login-ruta {
+  position: absolute;
+  inset: auto 0 0 0;
+  width: 100%;
+  height: 38%;
+  opacity: 0.9;
+}
+
+.tc-login-formulario {
+  background: var(--tc-superficie);
+}
+
+.tc-login-caja {
+  width: 100%;
+  max-width: 26rem;
+}
+
+.tc-clave {
+  position: relative;
+}
+
+.tc-clave .form-control {
+  padding-right: 3rem;
+}
+
+.tc-clave-boton {
+  position: absolute;
+  top: 50%;
+  right: 0.4rem;
+  transform: translateY(-50%);
+  border: 0;
+  background: transparent;
+  color: var(--tc-texto-secundario);
+  font-size: 0.8rem;
+  font-weight: 650;
+  padding: 0.4rem 0.6rem;
+  border-radius: 0.4rem;
+}
+
+.tc-clave-boton:hover {
+  background: #eef2f7;
+  color: var(--tc-texto);
+}
+
+@media (max-width: 991.98px) {
+  .tc-login-marca {
+    min-height: auto;
+  }
+
+  .tc-login-ruta {
+    display: none;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Adaptación móvil                                                   */
+/* ------------------------------------------------------------------ */
+
+@media (max-width: 575.98px) {
+  .tc-pagina {
+    padding: 1rem 0.85rem 2rem;
+  }
+
+  .tc-titulo {
+    font-size: 1.3rem;
+  }
+
+  .tc-acciones {
+    width: 100%;
+  }
+
+  .tc-acciones .btn {
+    flex: 1 1 auto;
+  }
+
+  .tabla-datos th {
+    width: auto;
+    white-space: normal;
+  }
+
+  .table-responsive .btn-sm {
+    white-space: nowrap;
+  }
+
+  .tc-userchip-datos {
+    display: none;
+  }
+
+  .tc-userchip {
+    padding: 0.25rem 0.3rem;
+  }
+
+  /* En pantallas muy estrechas, solo el icono de la marca del topbar */
+  .tc-topbar-marca-nombre {
+    display: none;
+  }
+
+  .tc-topbar-marca .tc-marca-insignia {
+    width: 2.1rem;
+    height: 2.1rem;
+    flex: 0 0 2.1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}

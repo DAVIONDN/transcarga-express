@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block titulo %}Confirmar finalización · TransCarga Express{% endblock %}
+
+{% block miga %}<li><a href="{% url 'capacitacion:participaciones_lista' %}">Participaciones</a></li><li><a href="{% url 'capacitacion:participacion_detalle' participacion.pk %}">{{ participacion.curso.codigo }}</a></li><li aria-current="page">Confirmar</li>{% endblock %}
+{% block titulo_pagina %}Confirmar finalización{% endblock %}
+{% block subtitulo_pagina %}{{ participacion.transportista.nombre }} · {{ participacion.curso.codigo }} ({{ participacion.convocatoria }}). Esta operación autorizada es la única que marca el curso como completado.{% endblock %}
+{% block acciones_pagina %}{% endblock %}
+
+{% block contenido %}
+  <div class="row justify-content-center">
+    <div class="col-md-7">
+      <form method="post" enctype="multipart/form-data" novalidate>
+        {% csrf_token %}
+        {% include "includes/errores_formulario.html" with form=form %}
+        <section class="card mb-3" aria-labelledby="sec-confirmar">
+          <div class="card-header" id="sec-confirmar">Resultado verificado</div>
+          <div class="card-body">
+            {% for campo in form %}
+              {% include "includes/campo_formulario.html" with campo=campo %}
+            {% endfor %}
+          </div>
+        </section>
+        <div class="d-flex gap-2">
+          <button class="btn btn-primary" type="submit">Confirmar finalización</button>
+          <a class="btn btn-outline-secondary" href="{% url 'capacitacion:participacion_detalle' participacion.pk %}">Cancelar</a>
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock %}

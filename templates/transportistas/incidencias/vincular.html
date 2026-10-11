@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block titulo %}Vincular reemplazo · TransCarga Express{% endblock %}
+
+{% block miga %}<li><a href="{% url 'transportistas:incidencias' %}">Quejas e incidencias</a></li><li><a href="{% url 'transportistas:incidencias_detalle' incidencia.pk %}">{{ incidencia.get_tipo_display }}</a></li><li aria-current="page">Vincular reemplazo</li>{% endblock %}
+{% block titulo_pagina %}Vincular reemplazo{% endblock %}
+{% block subtitulo_pagina %}Sustituido: {{ incidencia.transportista.nombre }} · Asignación original: {{ incidencia.asignacion.oferta.codigo|default:"sin asignar" }}.{% endblock %}
+{% block acciones_pagina %}{% endblock %}
+
+{% block contenido %}
+  <div class="row g-3">
+    <div class="col-lg-7">
+      <form method="post" novalidate>
+        {% csrf_token %}
+        {% include "includes/errores_formulario.html" with form=form %}
+        <section class="card mb-3" aria-labelledby="sec-reemplazo">
+          <div class="card-header" id="sec-reemplazo">Nueva asignación del reemplazo</div>
+          <div class="card-body">
+            {% for campo in form %}
+              {% include "includes/campo_formulario.html" with campo=campo %}
+            {% endfor %}
+            <p class="text-muted small mb-0">
+              La nueva asignación debe existir sobre una oferta independiente y el reemplazo se
+              verifica (compatibilidad, disponibilidad y documentación a su fecha de inicio).
+              Nada se reemplaza ni se cancela silenciosamente: la asignación original se conserva.
+            </p>
+          </div>
+        </section>
+        <div class="d-flex gap-2">
+          <button class="btn btn-primary" type="submit">Vincular reemplazo</button>
+          <a class="btn btn-outline-secondary" href="{% url 'transportistas:incidencias_detalle' incidencia.pk %}">Cancelar</a>
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block titulo %}Iniciar sesión · TransCarga Express{% endblock %}
+
+{% block clase_body %}tc-login{% endblock %}
+
+{% block contenido %}
+  <div class="row g-0 tc-login-panel">
+    <div class="col-lg-7 tc-login-marca d-flex align-items-center">
+      <div class="tc-login-marca-contenido p-4 p-lg-5 w-100">
+        <p class="d-flex align-items-center gap-2 mb-4">
+          <span class="tc-marca-insignia" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M1.5 4.5h8v6h-8zM9.5 7h3.2l1.8 2.2v1.3H9.5"/><circle cx="4.5" cy="12" r="1.4"/><circle cx="11.5" cy="12" r="1.4"/></svg>
+          </span>
+          <span class="tc-marca-nombre">TransCarga <em>Express</em></span>
+        </p>
+        <h1 class="display-6 fw-bold mb-3">La carga en movimiento, bajo control.</h1>
+        <p class="mb-0 opacity-75">Gestión de transportistas, clientes y ofertas de carga en un solo lugar: del registro a la liquidación.</p>
+      </div>
+      <svg class="tc-login-ruta" viewBox="0 0 600 220" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+        <path d="M-20 180 C 120 150, 180 190, 300 150 S 480 90, 640 120" fill="none" stroke="#4f46e5" stroke-width="3" stroke-dasharray="10 8" opacity="0.8"/>
+        <circle cx="60" cy="172" r="7" fill="#4f46e5"/>
+        <circle cx="300" cy="150" r="7" fill="#2563eb"/>
+        <circle cx="540" cy="108" r="7" fill="#a5b4fc"/>
+        <g transform="translate(255 96)" opacity="0.95">
+          <rect x="0" y="0" width="90" height="34" rx="7" fill="#ffffff" opacity="0.12"/>
+          <path d="M8 12h40v14H8zM48 17h12l7 6v3H48z" fill="none" stroke="#ffffff" stroke-width="2"/>
+          <circle cx="18" cy="29" r="3" fill="#ffffff"/><circle cx="58" cy="29" r="3" fill="#ffffff"/>
+        </g>
+      </svg>
+    </div>
+    <div class="col-lg-5 tc-login-formulario d-flex align-items-center justify-content-center">
+      <div class="tc-login-caja p-4 p-lg-5">
+        <h2 class="h3 fw-bold mb-1" id="titulo-login">Bienvenido de nuevo</h2>
+        <p class="text-muted mb-4">Ingrese sus credenciales para acceder al sistema.</p>
+
+        {% include "includes/errores_formulario.html" with form=form %}
+
+        <form method="post" novalidate aria-labelledby="titulo-login">
+          {% csrf_token %}
+          {% for campo in form %}
+            {% if campo.name == "password" %}
+              <div class="mb-3">
+                <label class="form-label" for="{{ campo.id_for_label }}">
+                  {{ campo.label }}{% if campo.field.required %} <span class="text-danger" aria-hidden="true">*</span><span class="visually-hidden">(obligatorio)</span>{% endif %}
+                </label>
+                <div class="tc-clave">
+                  {{ campo }}
+                  <button type="button" class="tc-clave-boton" data-mostrar-clave
+                          aria-controls="{{ campo.id_for_label }}" aria-pressed="false">Mostrar</button>
+                </div>
+                {% if campo.help_text %}<div class="form-text">{{ campo.help_text }}</div>{% endif %}
+                {% for error in campo.errors %}<div class="tc-error-campo" role="alert">{{ error }}</div>{% endfor %}
+              </div>
+            {% else %}
+              {% include "includes/campo_formulario.html" with campo=campo %}
+            {% endif %}
+          {% endfor %}
+          <input type="hidden" name="next" value="{{ next }}">
+          <div class="d-grid mt-3">
+            <button type="submit" class="btn btn-primary btn-lg">Ingresar</button>
+          </div>
+        </form>
+        <p class="text-center text-muted small mt-4 mb-0">
+          Acceso restringido al personal autorizado.
+        </p>
+      </div>
+    </div>
+  </div>
+{% endblock %}

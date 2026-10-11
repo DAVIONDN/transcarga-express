@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+
+{% block titulo %}Transportistas · TransCarga Express{% endblock %}
+
+{% block miga %}<li aria-current="page">Transportistas</li>{% endblock %}
+{% block titulo_pagina %}Transportistas{% endblock %}
+{% block subtitulo_pagina %}Padrón de transportistas con su vehículo principal, nivel calculado y situación del SOAT.{% endblock %}
+{% block acciones_pagina %}
+  {% if perms.transportistas.add_transportista %}
+    <a class="btn btn-primary btn-sm" href="{% url 'transportistas:crear' %}">Nuevo transportista</a>
+  {% endif %}
+{% endblock %}
+
+{% block contenido %}
+  <form method="get" class="card card-body tc-filtros mb-3" role="search" aria-label="Buscar y filtrar transportistas">
+    <div class="row g-2 align-items-end">
+      <div class="col-md-4">
+        <label class="form-label" for="q">Buscar</label>
+        <input type="search" class="form-control" id="q" name="q" value="{{ filtros.q }}"
+               placeholder="Nombre, número de documento o placa" autocomplete="off">
+      </div>
+      <div class="col-md-2">
+        <label class="form-label" for="estado">Estado</label>
+        <select class="form-select" id="estado" name="estado">
+          <option value="">Todos</option>
+          {% for valor, etiqueta in estados %}
+            <option value="{{ valor }}" {% if filtros.estado == valor %}selected{% endif %}>{{ etiqueta }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="col-md-2">
+        <label class="form-label" for="nivel">Nivel</label>
+        <select class="form-select" id="nivel" name="nivel">
+          <option value="">Todos</option>
+          {% for valor, etiqueta in niveles %}
+            <option value="{{ valor }}" {% if filtros.nivel == valor|stringformat:"s" %}selected{% endif %}>Nivel {{ valor }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="col-md-2">
+        <label class="form-label" for="doc">Documentación</label>
+        <select class="form-select" id="doc" name="doc">
+          {% for valor, etiqueta in filtros_doc %}
+            <option value="{{ valor }}" {% if filtros.doc == valor %}selected{% endif %}>{{ etiqueta }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="col-md-2 d-grid">
+        <button class="btn btn-outline-secondary" type="submit">Filtrar</button>
+      </div>
+    </div>
+    {% if hay_filtros %}
+      <div class="mt-2"><a class="small" href="{% url 'transportistas:lista' %}">Limpiar filtros</a></div>
+    {% endif %}
+  </form>
+
+  <div class="table-responsive tc-tabla">
+    <table class="table table-hover align-middle mb-0">
+      <caption class="visually-hidden">Listado de transportistas registrados</caption>
+      <thead>
+        <tr>
+          <th scope="col">Nombre</th>
+          <th scope="col">Documento</th>
+          <th scope="col">Placa</th>
+          <th scope="col">Vehículo</th>
+          <th scope="col" class="text-end">Capacidad</th>
+          <th scope="col">Nivel</th>
+          <th scope="col">Estado</th>
+          <th scope="col">SOAT</th>
+          <th scope="col"><span class="visually-hidden">Acciones</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for transportista in transportistas %}
+          <tr>
+            <td>
+              <a href="{% url 'transportistas:detalle' transportista.pk %}">{{ transportista.nombre }}</a>
+              {% if transportista.advertencias_total %}
+                <span class="tc-etiqueta tc-etiqueta-neutra" title="Advertencias registradas">
+                  {{ transportista.advertencias_total }} advertencia(s)
+                </span>
+              {% endif %}
+            </td>
+            <td>{{ transportista.get_tipo_documento_display }} {{ transportista.numero_documento }}</td>
+            <td>{{ transportista.placa }}</td>
+            <td>{{ transportista.get_tipo_vehiculo_display }}</td>
+            <td class="text-end">{{ transportista.capacidad_toneladas }} t</td>
+            <td><span class="badge nivel-{{ transportista.nivel }} text-white">Nivel {{ transportista.nivel }}</span></td>
+            <td>{% include "transportistas/includes/estado_badge.html" with transportista=transportista %}</td>
+            <td>
+              {% if transportista.soat_vigente %}
+                <span class="tc-etiqueta tc-etiqueta-exito">Vigente</span>
+              {% else %}
+                <span class="tc-etiqueta tc-etiqueta-error">Vencido</span>
+              {% endif %}
+            </td>
+            <td class="text-end text-nowrap">
+              <a class="btn btn-sm btn-outline-primary" href="{% url 'transportistas:detalle' transportista.pk %}">Ver ficha</a>
+            </td>
+          </tr>
+        {% empty %}
+          <tr>
+            <td colspan="9">
+              {% include "includes/vacio.html" with titulo="No se encontraron transportistas" descripcion="Pruebe con otros filtros o registre un transportista nuevo." %}
+              {% if hay_filtros %}
+                <p class="text-center small mb-0"><a href="{% url 'transportistas:lista' %}">Limpiar filtros</a></p>
+              {% endif %}
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="mt-3">
+    {% include "includes/paginacion.html" %}
+  </div>
+{% endblock %}

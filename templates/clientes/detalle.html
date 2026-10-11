@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block titulo %}{{ empresa.razon_social }} · Empresas clientes · TransCarga Express{% endblock %}
+
+{% block miga %}<li><a href="{% url 'clientes:lista' %}">Empresas clientes</a></li><li aria-current="page">{{ empresa.razon_social }}</li>{% endblock %}
+{% block titulo_pagina %}{{ empresa.razon_social }}{% endblock %}
+{% block subtitulo_pagina %}RUC {{ empresa.ruc }} · {{ empresa.actividad_economica }} · {{ ofertas|length }} oferta(s) registrada(s).{% endblock %}
+{% block acciones_pagina %}
+  {% if perms.clientes.change_empresacliente %}
+    <a class="btn btn-outline-primary btn-sm" href="{% url 'clientes:editar' empresa.pk %}">Editar</a>
+  {% endif %}
+  {% if perms.ofertas.add_ofertacarga %}
+    <a class="btn btn-primary btn-sm" href="{% url 'ofertas:crear' %}?empresa={{ empresa.pk }}">Nueva oferta</a>
+  {% endif %}
+{% endblock %}
+
+{% block contenido %}
+  <div class="row g-3">
+    <div class="col-lg-5">
+      <section class="card h-100" aria-labelledby="titulo-datos">
+        <div class="card-header" id="titulo-datos">Datos de la empresa</div>
+        <div class="card-body">
+          <table class="table table-sm tabla-datos mb-0">
+            <tbody>
+              <tr><th scope="row">RUC</th><td>{{ empresa.ruc }}</td></tr>
+              <tr><th scope="row">Razón social</th><td>{{ empresa.razon_social }}</td></tr>
+              <tr><th scope="row">Dirección</th><td>{{ empresa.direccion }}</td></tr>
+              <tr><th scope="row">Actividad económica</th><td>{{ empresa.actividad_economica }}</td></tr>
+              <tr><th scope="row">Ofertas registradas</th><td>{{ ofertas|length }}</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+
+    <div class="col-lg-7">
+      <section class="card h-100" aria-labelledby="titulo-ofertas">
+        <div class="card-header" id="titulo-ofertas">Ofertas de carga</div>
+        <div class="card-body p-0">
+          <div class="table-responsive">
+            <table class="table table-sm mb-0">
+              <caption class="visually-hidden">Ofertas publicadas por la empresa</caption>
+              <thead class="table-light">
+                <tr><th scope="col">Código</th><th scope="col">Ruta</th><th scope="col">Nivel</th><th scope="col">Estado</th><th scope="col">Transportista</th></tr>
+              </thead>
+              <tbody>
+                {% for oferta in ofertas %}
+                  <tr>
+                    <td><a href="{% url 'ofertas:detalle' oferta.pk %}">{{ oferta.codigo }}</a></td>
+                    <td>{{ oferta.origen }} → {{ oferta.destino }}</td>
+                    <td><span class="badge nivel-{{ oferta.nivel_requerido }} text-white">Nivel {{ oferta.nivel_requerido }}</span></td>
+                    <td>
+                      {% if oferta.esta_disponible %}
+                        <span class="tc-etiqueta tc-etiqueta-exito">Disponible</span>
+                      {% else %}
+                        <span class="tc-etiqueta tc-etiqueta-neutra">Cubierta</span>
+                      {% endif %}
+                    </td>
+                    <td>
+                      {% if oferta.asignacion %}
+                        <a href="{% url 'asignaciones:detalle' oferta.asignacion.pk %}">{{ oferta.asignacion.transportista.nombre }}</a>
+                      {% else %}
+                        <span class="text-muted">—</span>
+                      {% endif %}
+                    </td>
+                  </tr>
+                {% empty %}
+                  <tr><td colspan="5">{% include "includes/vacio.html" with titulo="La empresa aún no tiene ofertas registradas" %}</td></tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <div class="mt-3">
+    <a class="btn btn-outline-secondary" href="{% url 'clientes:lista' %}">Volver al listado</a>
+  </div>
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block titulo %}{{ titulo }} · TransCarga Express{% endblock %}
+
+{% block miga %}<li><a href="{% url 'asignaciones:lista' %}">Asignaciones</a></li><li aria-current="page">{{ titulo }}</li>{% endblock %}
+{% block titulo_pagina %}{{ titulo }}{% endblock %}
+{% block subtitulo_pagina %}La finalización conserva el historial y libera al transportista para otra asignación.{% endblock %}
+{% block acciones_pagina %}{% endblock %}
+
+{% block contenido %}
+  <div class="row g-3">
+    <div class="col-lg-6">
+      <form method="post" novalidate>
+        {% csrf_token %}
+        {% include "includes/errores_formulario.html" with form=form %}
+        <section class="card mb-3" aria-labelledby="sec-finalizar">
+          <div class="card-header" id="sec-finalizar">Confirmación de finalización</div>
+          <div class="card-body">
+            <div class="alert alert-light border">
+              <strong>{{ asignacion.oferta.codigo }}</strong> ·
+              {{ asignacion.oferta.origen }} → {{ asignacion.oferta.destino }}<br>
+              <span class="small">
+                {{ asignacion.transportista.nombre }} ({{ asignacion.transportista.placa }}) ·
+                inicio {{ asignacion.fecha_inicio|date:"d/m/Y" }}
+              </span>
+            </div>
+            {% for campo in form %}
+              {% include "includes/campo_formulario.html" with campo=campo %}
+            {% endfor %}
+          </div>
+        </section>
+        <div class="d-flex gap-2">
+          <button class="btn btn-primary" type="submit">Confirmar finalización</button>
+          <a class="btn btn-outline-secondary" href="{% url 'asignaciones:detalle' asignacion.pk %}">
+            Cancelar
+          </a>
+        </div>
+      </form>
+    </div>
+
+    <div class="col-lg-6">
+      <aside class="alert alert-info" aria-label="Consecuencias de finalizar">
+        <h2 class="h6">Qué ocurre al finalizar</h2>
+        <ul class="mb-0 ps-3">
+          <li>La asignación queda registrada como <strong>Finalizada</strong>; no se borra.</li>
+          <li>El transportista queda libre para recibir otra asignación.</li>
+          <li>
+            La oferta <strong>permanece Cubierta</strong>, porque representa una carga que ya fue
+            asignada.
+          </li>
+        </ul>
+      </aside>
+    </div>
+  </div>
+{% endblock %}

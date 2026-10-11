@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block titulo %}{{ titulo }} · TransCarga Express{% endblock %}
+
+{% block miga %}<li><a href="{% url 'transportistas:lista' %}">Transportistas</a></li><li><a href="{% url 'transportistas:detalle' transportista.pk %}">{{ transportista.nombre }}</a></li><li aria-current="page">{{ titulo }}</li>{% endblock %}
+{% block titulo_pagina %}{{ titulo }}{% endblock %}
+{% block subtitulo_pagina %}El cambio de estado exige documentación vigente para pasar a Activo.{% endblock %}
+{% block acciones_pagina %}{% endblock %}
+
+{% block contenido %}
+  <div class="row g-3">
+    <div class="col-lg-6">
+      <form method="post" novalidate>
+        {% csrf_token %}
+        {% include "includes/errores_formulario.html" with form=form %}
+        <section class="card mb-3" aria-labelledby="sec-estado">
+          <div class="card-header" id="sec-estado">Nuevo estado</div>
+          <div class="card-body">
+            <p>
+              Estado actual:
+              {% include "transportistas/includes/estado_badge.html" with transportista=transportista %}
+            </p>
+            {% for campo in form %}
+              {% include "includes/campo_formulario.html" with campo=campo %}
+            {% endfor %}
+            {% if not puede_activarse %}
+              <div class="alert alert-warning mb-0" role="alert">
+                Para pasar a <strong>Activo</strong> se exige la fotografía del vehículo y la licencia
+                y la revisión técnica vigentes. Hoy esos requisitos no se cumplen.
+              </div>
+            {% endif %}
+          </div>
+        </section>
+        <div class="d-flex gap-2">
+          <button class="btn btn-primary" type="submit">Guardar estado</button>
+          <a class="btn btn-outline-secondary" href="{% url 'transportistas:detalle' transportista.pk %}">Cancelar</a>
+        </div>
+      </form>
+    </div>
+    <div class="col-lg-6">
+      <aside class="alert alert-info" aria-label="Estados posibles">
+        <h2 class="h6">Estados posibles</h2>
+        <ul class="mb-0 ps-3">
+          <li><strong>Activo:</strong> puede recibir asignaciones si cumple las demás reglas.</li>
+          <li><strong>En Reserva:</strong> no puede recibir nuevas asignaciones.</li>
+          <li><strong>Baja:</strong> no puede recibir asignaciones y no se reactiva desde esta pantalla.</li>
+        </ul>
+      </aside>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block titulo %}{{ titulo }} · TransCarga Express{% endblock %}
+
+{% block miga %}<li><a href="{% url 'panel:reportes' %}">Reportes</a></li><li aria-current="page">{{ titulo }}</li>{% endblock %}
+{% block titulo_pagina %}{{ titulo }}{% endblock %}
+{% block subtitulo_pagina %}{{ filas|length }} documento(s) con vencimiento próximo o vencido.{% endblock %}
+{% block acciones_pagina %}
+  <a class="btn btn-outline-secondary btn-sm" href="?{% if filtros.documento %}documento={{ filtros.documento }}&amp;{% endif %}{% if filtros.situacion %}situacion={{ filtros.situacion }}&amp;{% endif %}formato=csv">Exportar CSV</a>
+{% endblock %}
+
+{% block contenido %}
+  <form method="get" class="card card-body tc-filtros mb-3" aria-label="Filtrar reporte">
+    <div class="row g-2 align-items-end">
+      <div class="col-md-5">
+        <label class="form-label" for="documento">Documento</label>
+        <select class="form-select" id="documento" name="documento">
+          <option value="">Todos</option>
+          <option value="licencia" {% if filtros.documento == "licencia" %}selected{% endif %}>Licencia de conducir</option>
+          <option value="revision" {% if filtros.documento == "revision" %}selected{% endif %}>Revisión técnica</option>
+          <option value="soat" {% if filtros.documento == "soat" %}selected{% endif %}>SOAT</option>
+        </select>
+      </div>
+      <div class="col-md-5">
+        <label class="form-label" for="situacion">Situación</label>
+        <select class="form-select" id="situacion" name="situacion">
+          <option value="">Vencidos y próximos</option>
+          <option value="vencido" {% if filtros.situacion == "vencido" %}selected{% endif %}>Vencidos</option>
+          <option value="proximo" {% if filtros.situacion == "proximo" %}selected{% endif %}>Próximos a vencer</option>
+        </select>
+      </div>
+      <div class="col-md-2 d-grid">
+        <button class="btn btn-outline-secondary" type="submit">Filtrar</button>
+      </div>
+    </div>
+  </form>
+
+  <div class="table-responsive tc-tabla">
+    <table class="table table-hover align-middle mb-0">
+      <caption class="visually-hidden">Documentos vencidos y próximos a vencer</caption>
+      <thead>
+        <tr><th scope="col">Transportista</th><th scope="col">Placa</th><th scope="col">Documento</th><th scope="col">Vencimiento</th><th scope="col" class="text-end">Días</th><th scope="col">Situación</th></tr>
+      </thead>
+      <tbody>
+        {% for transportista, placa, documento, vencimiento, dias, situacion in filas %}
+          <tr>
+            <td>{{ transportista }}</td>
+            <td>{{ placa }}</td>
+            <td>{{ documento }}</td>
+            <td>{{ vencimiento }}</td>
+            <td class="text-end">{{ dias }}</td>
+            <td>
+              {% if situacion == "Vencido" %}
+                <span class="tc-etiqueta tc-etiqueta-error">Vencido</span>
+              {% else %}
+                <span class="tc-etiqueta tc-etiqueta-aviso">{{ situacion }}</span>
+              {% endif %}
+            </td>
+          </tr>
+        {% empty %}
+          <tr><td colspan="6">{% include "includes/vacio.html" with titulo="Sin resultados" %}</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

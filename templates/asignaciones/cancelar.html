@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block titulo %}{{ titulo }} · TransCarga Express{% endblock %}
+
+{% block miga %}<li><a href="{% url 'asignaciones:lista' %}">Asignaciones</a></li><li aria-current="page">{{ titulo }}</li>{% endblock %}
+{% block titulo_pagina %}{{ titulo }}{% endblock %}
+{% block subtitulo_pagina %}Esta operación es sensible: queda constancia en el historial y no se puede deshacer con un borrado.{% endblock %}
+{% block acciones_pagina %}{% endblock %}
+
+{% block contenido %}
+  <div class="row g-3">
+    <div class="col-lg-6">
+      <form method="post" novalidate>
+        {% csrf_token %}
+        {% include "includes/errores_formulario.html" with form=form %}
+        <section class="card mb-3" aria-labelledby="sec-cancelar">
+          <div class="card-header" id="sec-cancelar">Confirmación de cancelación</div>
+          <div class="card-body">
+            <div class="alert alert-light border">
+              <strong>{{ asignacion.oferta.codigo }}</strong> ·
+              {{ asignacion.oferta.origen }} → {{ asignacion.oferta.destino }}<br>
+              <span class="small">
+                {{ asignacion.transportista.nombre }} ({{ asignacion.transportista.placa }}) ·
+                inicio {{ asignacion.fecha_inicio|date:"d/m/Y" }}
+              </span>
+            </div>
+            {% for campo in form %}
+              {% include "includes/campo_formulario.html" with campo=campo %}
+            {% endfor %}
+          </div>
+        </section>
+        <div class="d-flex gap-2">
+          <button class="btn btn-danger" type="submit">Confirmar cancelación</button>
+          <a class="btn btn-outline-secondary" href="{% url 'asignaciones:detalle' asignacion.pk %}">
+            Volver sin cancelar
+          </a>
+        </div>
+      </form>
+    </div>
+
+    <div class="col-lg-6">
+      <aside class="alert alert-warning" aria-label="Consecuencias de cancelar">
+        <h2 class="h6">Qué ocurre al cancelar</h2>
+        <ul class="mb-0 ps-3">
+          <li>La asignación queda registrada como <strong>Cancelada</strong>; no se borra.</li>
+          <li>El transportista queda libre para recibir otra asignación.</li>
+          <li>
+            La oferta <strong>permanece Cubierta</strong> (la reasignación de ofertas cubiertas
+            está fuera del alcance de este MVP).
+          </li>
+        </ul>
+      </aside>
+    </div>
+  </div>
+{% endblock %}

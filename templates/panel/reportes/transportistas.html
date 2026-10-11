@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block titulo %}{{ titulo }} · TransCarga Express{% endblock %}
+
+{% block miga %}<li><a href="{% url 'panel:reportes' %}">Reportes</a></li><li aria-current="page">{{ titulo }}</li>{% endblock %}
+{% block titulo_pagina %}{{ titulo }}{% endblock %}
+{% block subtitulo_pagina %}Conteo agregado por estado y nivel. Total: {{ total }} transportista(s).{% endblock %}
+{% block acciones_pagina %}
+  <a class="btn btn-outline-secondary btn-sm" href="?{% if filtros.estado %}estado={{ filtros.estado }}&amp;{% endif %}{% if filtros.nivel %}nivel={{ filtros.nivel }}&amp;{% endif %}formato=csv">Exportar CSV</a>
+{% endblock %}
+
+{% block contenido %}
+  <form method="get" class="card card-body tc-filtros mb-3" aria-label="Filtrar reporte">
+    <div class="row g-2 align-items-end">
+      <div class="col-md-5">
+        <label class="form-label" for="estado">Estado</label>
+        <select class="form-select" id="estado" name="estado">
+          <option value="">Todos</option>
+          {% for valor, etiqueta in estados %}
+            <option value="{{ valor }}" {% if filtros.estado == valor %}selected{% endif %}>{{ etiqueta }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="col-md-5">
+        <label class="form-label" for="nivel">Nivel</label>
+        <select class="form-select" id="nivel" name="nivel">
+          <option value="">Todos</option>
+          {% for valor, etiqueta in niveles %}
+            <option value="{{ valor }}" {% if filtros.nivel == valor|stringformat:"s" %}selected{% endif %}>Nivel {{ valor }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="col-md-2 d-grid">
+        <button class="btn btn-outline-secondary" type="submit">Filtrar</button>
+      </div>
+    </div>
+  </form>
+
+  <div class="table-responsive tc-tabla">
+    <table class="table table-hover align-middle mb-0">
+      <caption class="visually-hidden">Transportistas por estado y nivel</caption>
+      <thead>
+        <tr><th scope="col">Estado</th><th scope="col">Nivel</th><th scope="col" class="text-end">Total</th></tr>
+      </thead>
+      <tbody>
+        {% for estado, nivel, total in filas %}
+          <tr><td>{{ estado }}</td><td>{{ nivel }}</td><td class="text-end fw-semibold">{{ total }}</td></tr>
+        {% empty %}
+          <tr><td colspan="3">{% include "includes/vacio.html" with titulo="Sin resultados" %}</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

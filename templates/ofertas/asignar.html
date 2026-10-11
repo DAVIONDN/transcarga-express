@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block titulo %}{{ titulo }} · TransCarga Express{% endblock %}
+
+{% block miga %}<li><a href="{% url 'ofertas:lista' %}">Ofertas de carga</a></li><li><a href="{% url 'ofertas:detalle' oferta.pk %}">{{ oferta.codigo }}</a></li><li aria-current="page">Asignar</li>{% endblock %}
+{% block titulo_pagina %}{{ titulo }}{% endblock %}
+{% block subtitulo_pagina %}La oferta pasará a Cubierta solo cuando confirme la asignación en el paso siguiente.{% endblock %}
+{% block acciones_pagina %}{% endblock %}
+
+{% block contenido %}
+  <div class="row g-3">
+    <div class="col-lg-6">
+      <form method="post" novalidate>
+        {% csrf_token %}
+        {% include "includes/errores_formulario.html" with form=form %}
+        <section class="card mb-3" aria-labelledby="sec-asignar">
+          <div class="card-header" id="sec-asignar">Selección del transportista</div>
+          <div class="card-body">
+            <div class="alert alert-light border">
+              <strong>{{ oferta.codigo }}</strong> · {{ oferta.origen }} → {{ oferta.destino }}<br>
+              <span class="small">
+                {{ oferta.empresa_cliente.razon_social }} ·
+                {{ oferta.get_tipo_vehiculo_requerido_display }} ·
+                Nivel {{ oferta.nivel_requerido }} requerido
+              </span>
+            </div>
+            {% for campo in form %}
+              {% include "includes/campo_formulario.html" with campo=campo %}
+            {% endfor %}
+            <p class="text-muted small mb-0">
+              Al continuar verá un resumen de la oferta, la empresa cliente, el transportista y el
+              vehículo antes de confirmar.
+            </p>
+          </div>
+        </section>
+        <div class="d-flex gap-2">
+          <button class="btn btn-primary" type="submit">Revisar y confirmar</button>
+          <a class="btn btn-outline-secondary" href="{% url 'ofertas:detalle' oferta.pk %}">Cancelar</a>
+        </div>
+      </form>
+    </div>
+
+    <div class="col-lg-6">
+      <section class="card" aria-labelledby="titulo-elegibilidad">
+        <div class="card-header" id="titulo-elegibilidad">
+          Elegibilidad de transportistas ({{ elegibles|length }} de {{ candidatos|length }})
+        </div>
+        <div class="card-body p-0">
+          <div class="table-responsive">
+            <table class="table table-sm mb-0 align-middle">
+              <caption class="visually-hidden">Elegibilidad de transportistas para la oferta</caption>
+              <thead class="table-light">
+                <tr><th scope="col">Transportista</th><th scope="col">Nivel</th><th scope="col">Vehículo</th><th scope="col">Resultado</th></tr>
+              </thead>
+              <tbody>
+                {% for candidato in candidatos %}
+                  <tr>
+                    <td>{{ candidato.transportista.nombre }}<br><span class="text-muted small">{{ candidato.transportista.placa }}</span></td>
+                    <td>Nivel {{ candidato.transportista.nivel }}</td>
+                    <td>{{ candidato.transportista.get_tipo_vehiculo_display }}</td>
+                    <td>
+                      {% if candidato.elegible %}
+                        <span class="tc-etiqueta tc-etiqueta-exito">Elegible</span>
+                      {% else %}
+                        <ul class="mb-0 ps-3 small text-danger">
+                          {% for motivo in candidato.motivos %}<li>{{ motivo }}</li>{% endfor %}
+                        </ul>
+                      {% endif %}
+                    </td>
+                  </tr>
+                {% empty %}
+                  <tr><td colspan="4">{% include "includes/vacio.html" with titulo="No hay transportistas registrados" %}</td></tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+{% endblock %}

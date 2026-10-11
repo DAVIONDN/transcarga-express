@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block titulo %}{{ titulo }} · Usuarios · TransCarga Express{% endblock %}
+
+{% block miga %}<li><a href="{% url 'panel:usuarios_lista' %}">Usuarios</a></li><li aria-current="page">{{ titulo }}</li>{% endblock %}
+{% block titulo_pagina %}{{ titulo }}{% endblock %}
+{% block subtitulo_pagina %}La contraseña nunca se muestra ni se guarda en texto legible.{% endblock %}
+{% block acciones_pagina %}{% endblock %}
+
+{% block contenido %}
+  <div class="row g-3">
+    <div class="col-lg-7">
+      <form method="post" novalidate>
+        {% csrf_token %}
+        {% include "includes/errores_formulario.html" with form=form %}
+        <section class="card mb-3" aria-labelledby="sec-cuenta">
+          <div class="card-header" id="sec-cuenta">Datos de la cuenta</div>
+          <div class="card-body">
+            {% for campo in form %}
+              {% include "includes/campo_formulario.html" with campo=campo %}
+            {% endfor %}
+          </div>
+        </section>
+        <div class="d-flex gap-2">
+          <button class="btn btn-primary" type="submit">{{ texto_boton }}</button>
+          <a class="btn btn-outline-secondary" href="{% url 'panel:usuarios_lista' %}">Cancelar</a>
+        </div>
+      </form>
+    </div>
+    <div class="col-lg-5">
+      <aside class="alert alert-info" aria-label="Roles disponibles">
+        <h2 class="h6">Roles disponibles</h2>
+        <ul class="mb-0 ps-3">
+          <li><strong>Administrador:</strong> acceso completo y gestión de usuarios.</li>
+          <li><strong>Operador:</strong> opera transportistas, clientes, ofertas, asignaciones y advertencias.</li>
+          <li><strong>Consulta:</strong> solo lectura de los módulos.</li>
+        </ul>
+        <p class="small text-muted mt-3 mb-0">
+          En el alta se solicita una contraseña inicial; para cambiarla después use «Restablecer clave».
+        </p>
+      </aside>
+    </div>
+  </div>
+{% endblock %}

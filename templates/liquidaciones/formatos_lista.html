@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block titulo %}Formatos semanales · TransCarga Express{% endblock %}
+
+{% block miga %}<li aria-current="page">Formatos semanales</li>{% endblock %}
+{% block titulo_pagina %}Formatos semanales{% endblock %}
+{% block subtitulo_pagina %}Cada semana de servicio se firma el viernes. Sin formato firmado no se paga la semana.{% endblock %}
+{% block acciones_pagina %}
+  {% if perms.liquidaciones.view_liquidacion %}
+    <a class="btn btn-outline-primary btn-sm" href="{% url 'liquidaciones:liquidaciones_lista' %}">Ver liquidaciones</a>
+  {% endif %}
+{% endblock %}
+
+{% block contenido %}
+  <form method="get" class="card card-body tc-filtros mb-3" role="search" aria-label="Buscar y filtrar formatos">
+    <div class="row g-2 align-items-end">
+      <div class="col-md-6">
+        <label class="form-label" for="q">Buscar</label>
+        <input type="search" class="form-control" id="q" name="q" value="{{ filtros.q }}"
+               placeholder="Código de oferta, transportista o placa" autocomplete="off">
+      </div>
+      <div class="col-md-4">
+        <label class="form-label" for="estado">Estado</label>
+        <select class="form-select" id="estado" name="estado">
+          {% for valor, etiqueta in filtros_estado %}
+            <option value="{{ valor }}" {% if filtros.estado == valor %}selected{% endif %}>{{ etiqueta }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="col-md-2 d-grid">
+        <button class="btn btn-outline-secondary" type="submit">Filtrar</button>
+      </div>
+    </div>
+    {% if hay_filtros %}
+      <div class="mt-2"><a class="small" href="{% url 'liquidaciones:formatos_lista' %}">Limpiar filtros</a></div>
+    {% endif %}
+  </form>
+
+  <div class="table-responsive tc-tabla">
+    <table class="table table-hover align-middle mb-0">
+      <caption class="visually-hidden">Listado de formatos semanales</caption>
+      <thead>
+        <tr>
+          <th scope="col">Oferta</th>
+          <th scope="col">Transportista</th>
+          <th scope="col">Periodo</th>
+          <th scope="col">Firma prevista</th>
+          <th scope="col">Firma real</th>
+          <th scope="col">Estado</th>
+          <th scope="col"><span class="visually-hidden">Acciones</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for formato in formatos %}
+          <tr>
+            <td><a href="{% url 'asignaciones:detalle' formato.asignacion.pk %}">{{ formato.asignacion.oferta.codigo }}</a></td>
+            <td>{{ formato.asignacion.transportista.nombre }}</td>
+            <td class="small">{{ formato.periodo_inicio|date:"d/m/Y" }} – {{ formato.periodo_fin|date:"d/m/Y" }}</td>
+            <td>{{ formato.fecha_prevista|date:"d/m/Y" }}</td>
+            <td>{{ formato.fecha_firma|date:"d/m/Y"|default:"—" }}</td>
+            <td>
+              {% if formato.etiqueta_estado == "Atrasado" %}
+                <span class="tc-etiqueta tc-etiqueta-error">Atrasado</span>
+              {% elif formato.estado == "PENDIENTE" %}
+                <span class="tc-etiqueta tc-etiqueta-aviso">Pendiente</span>
+              {% elif formato.estado == "PRESENTADO" %}
+                <span class="tc-etiqueta tc-etiqueta-exito">Presentado</span>
+              {% elif formato.estado == "REGULARIZADO" %}
+                <span class="tc-etiqueta tc-etiqueta-aviso">Regularizado</span>
+              {% else %}
+                <span class="tc-etiqueta tc-etiqueta-neutra">Liquidado</span>
+              {% endif %}
+            </td>
+            <td class="text-end text-nowrap">
+              <a class="btn btn-sm btn-outline-primary" href="{% url 'liquidaciones:formato_detalle' formato.pk %}">Ver</a>
+            </td>
+          </tr>
+        {% empty %}
+          <tr><td colspan="7">{% include "includes/vacio.html" with titulo="No hay formatos semanales" descripcion="Genere los formatos desde la ficha de una asignación." %}</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="mt-3">{% include "includes/paginacion.html" %}</div>
+{% endblock %}

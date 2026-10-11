@@ -1,0 +1,142 @@
+{% extends "base.html" %}
+
+{% block titulo %}Advertencias · TransCarga Express{% endblock %}
+
+{% block miga %}<li aria-current="page">Advertencias</li>{% endblock %}
+{% block titulo_pagina %}Advertencias{% endblock %}
+{% block subtitulo_pagina %}{{ total_advertencias }} advertencia(s) registrada(s). Al llegar a {{ maximo_advertencias }}, el transportista pasa automáticamente a estado «Baja».{% endblock %}
+{% block acciones_pagina %}{% endblock %}
+
+{% block contenido %}
+  <div class="row g-3">
+    <div class="col-lg-8">
+      <form method="get" class="card card-body tc-filtros mb-3" role="search" aria-label="Buscar y filtrar advertencias">
+        <div class="row g-2 align-items-end">
+          <div class="col-md-4">
+            <label class="form-label" for="q">Buscar</label>
+            <input type="search" class="form-control" id="q" name="q" value="{{ filtros.q }}"
+                   placeholder="Descripción, transportista o documento" autocomplete="off">
+          </div>
+          <div class="col-md-4">
+            <label class="form-label" for="transportista">Transportista</label>
+            <select class="form-select" id="transportista" name="transportista">
+              <option value="">Todos</option>
+              {% for opcion in transportistas %}
+                <option value="{{ opcion.pk }}" {% if filtros.transportista == opcion.pk|stringformat:"s" %}selected{% endif %}>
+                  {{ opcion.nombre }} ({{ opcion.placa }})
+                </option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="col-md-2">
+            <label class="form-label" for="desde">Desde</label>
+            <input type="date" class="form-control" id="desde" name="desde" value="{{ filtros.desde }}">
+          </div>
+          <div class="col-md-2">
+            <label class="form-label" for="hasta">Hasta</label>
+            <input type="date" class="form-control" id="hasta" name="hasta" value="{{ filtros.hasta }}">
+          </div>
+        </div>
+        <div class="d-flex justify-content-between align-items-center mt-3">
+          <div>
+            {% if hay_filtros %}
+              <a class="small" href="{% url 'transportistas:advertencias' %}">Limpiar filtros</a>
+            {% endif %}
+          </div>
+          <button class="btn btn-outline-secondary" type="submit">Filtrar</button>
+        </div>
+      </form>
+
+      <div class="table-responsive tc-tabla">
+        <table class="table table-hover mb-0">
+          <caption class="visually-hidden">Listado de advertencias registradas</caption>
+          <thead>
+            <tr>
+              <th scope="col">Fecha</th>
+              <th scope="col">Transportista</th>
+              <th scope="col">Descripción</th>
+              <th scope="col">Asignación</th>
+              <th scope="col" class="text-end">Registró</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for advertencia in advertencias %}
+              <tr>
+                <td class="text-nowrap">{{ advertencia.fecha|date:"d/m/Y" }}</td>
+                <td>
+                  <a href="{% url 'transportistas:detalle' advertencia.transportista.pk %}">
+                    {{ advertencia.transportista.nombre }}
+                  </a>
+                  <div class="text-muted small">DNI/RUC {{ advertencia.transportista.numero_documento }}</div>
+                </td>
+                <td>{{ advertencia.descripcion }}</td>
+                <td>
+                  {% if advertencia.asignacion %}
+                    <a href="{% url 'asignaciones:detalle' advertencia.asignacion.pk %}">
+                      {{ advertencia.asignacion.oferta.codigo }}
+                    </a>
+                  {% else %}
+                    <span class="text-muted">—</span>
+                  {% endif %}
+                </td>
+                <td class="text-end small">
+                  {% if advertencia.registrado_por %}
+                    {{ advertencia.registrado_por.get_username }}
+                  {% else %}
+                    <span class="text-muted">—</span>
+                  {% endif %}
+                </td>
+              </tr>
+            {% empty %}
+              <tr>
+                <td colspan="5">
+                  {% include "includes/vacio.html" with titulo="Todavía no hay advertencias registradas" descripcion="Para registrar una advertencia, abra la ficha del transportista y use el botón «Registrar advertencia»." url="/transportistas/" etiqueta="Ir al listado de transportistas" %}
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="mt-3">{% include "includes/paginacion.html" %}</div>
+    </div>
+
+    <div class="col-lg-4">
+      <section class="card" aria-labelledby="titulo-con-advertencias">
+        <div class="card-header" id="titulo-con-advertencias">Transportistas con advertencias</div>
+        <div class="card-body p-0">
+          <table class="table table-sm mb-0">
+            <tbody>
+              {% for transportista in transportistas_con_advertencias %}
+                <tr>
+                  <td>
+                    <a href="{% url 'transportistas:detalle' transportista.pk %}">{{ transportista.nombre }}</a>
+                    <div class="text-muted small">{{ transportista.placa }}</div>
+                  </td>
+                  <td class="text-end">
+                    {% if transportista.total >= maximo_advertencias %}
+                      <span class="tc-etiqueta tc-etiqueta-error">{{ transportista.total }} de {{ maximo_advertencias }}</span>
+                    {% else %}
+                      <span class="tc-etiqueta tc-etiqueta-aviso">{{ transportista.total }} de {{ maximo_advertencias }}</span>
+                    {% endif %}
+                  </td>
+                </tr>
+              {% empty %}
+                <tr>
+                  <td class="text-center text-muted py-3 small">
+                    Ningún transportista tiene advertencias registradas.
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <div class="alert alert-info mt-3 small mb-0">
+        El registro de advertencias se hace desde la ficha de cada transportista, porque cada
+        advertencia pertenece siempre a un transportista y puede asociarse a una de sus asignaciones.
+      </div>
+    </div>
+  </div>
+{% endblock %}

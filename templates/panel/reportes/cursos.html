@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block titulo %}{{ titulo }} · TransCarga Express{% endblock %}
+
+{% block miga %}<li><a href="{% url 'panel:reportes' %}">Reportes</a></li><li aria-current="page">{{ titulo }}</li>{% endblock %}
+{% block titulo_pagina %}{{ titulo }}{% endblock %}
+{% block subtitulo_pagina %}{{ filas|length }} participación(es) completada(s) con los filtros aplicados.{% endblock %}
+{% block acciones_pagina %}
+  <a class="btn btn-outline-secondary btn-sm" href="?{% if filtros.curso %}curso={{ filtros.curso }}&amp;{% endif %}{% if filtros.convocatoria %}convocatoria={{ filtros.convocatoria }}&amp;{% endif %}{% if filtros.desde %}desde={{ filtros.desde }}&amp;{% endif %}{% if filtros.hasta %}hasta={{ filtros.hasta }}&amp;{% endif %}formato=csv">Exportar CSV</a>
+{% endblock %}
+
+{% block contenido %}
+  <form method="get" class="card card-body tc-filtros mb-3" aria-label="Filtrar reporte">
+    <div class="row g-2 align-items-end">
+      <div class="col-md-3">
+        <label class="form-label" for="curso">Curso</label>
+        <select class="form-select" id="curso" name="curso">
+          <option value="">Todos</option>
+          {% for curso in cursos %}
+            <option value="{{ curso.pk }}" {% if filtros.curso == curso.pk|stringformat:"s" %}selected{% endif %}>{{ curso.codigo }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="col-md-3">
+        <label class="form-label" for="convocatoria">Convocatoria</label>
+        <input type="text" class="form-control" id="convocatoria" name="convocatoria" value="{{ filtros.convocatoria }}" placeholder="2026-03">
+      </div>
+      <div class="col-md-2">
+        <label class="form-label" for="desde">Desde</label>
+        <input type="date" class="form-control" id="desde" name="desde" value="{{ filtros.desde }}">
+      </div>
+      <div class="col-md-2">
+        <label class="form-label" for="hasta">Hasta</label>
+        <input type="date" class="form-control" id="hasta" name="hasta" value="{{ filtros.hasta }}">
+      </div>
+      <div class="col-md-2 d-grid">
+        <button class="btn btn-outline-secondary" type="submit">Filtrar</button>
+      </div>
+    </div>
+  </form>
+
+  <div class="table-responsive tc-tabla">
+    <table class="table table-hover align-middle mb-0">
+      <caption class="visually-hidden">Cursos completados</caption>
+      <thead>
+        <tr><th scope="col">Transportista</th><th scope="col">Curso</th><th scope="col">Convocatoria</th><th scope="col">Finalización</th><th scope="col">Resultado</th></tr>
+      </thead>
+      <tbody>
+        {% for nombre, curso, convocatoria, fin, resultado in filas %}
+          <tr><td>{{ nombre }}</td><td>{{ curso }}</td><td>{{ convocatoria }}</td><td>{{ fin }}</td><td>{{ resultado }}</td></tr>
+        {% empty %}
+          <tr><td colspan="5">{% include "includes/vacio.html" with titulo="Sin resultados" %}</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

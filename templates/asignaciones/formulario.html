@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block titulo %}{{ titulo }} · TransCarga Express{% endblock %}
+
+{% block miga %}<li><a href="{% url 'asignaciones:lista' %}">Asignaciones</a></li><li aria-current="page">{{ titulo }}</li>{% endblock %}
+{% block titulo_pagina %}{{ titulo }}{% endblock %}
+{% block subtitulo_pagina %}Seleccione la oferta disponible, el transportista y las fechas del servicio. Las reglas se verifican en el servidor.{% endblock %}
+{% block acciones_pagina %}
+  <a class="btn btn-outline-secondary btn-sm" href="{% url 'asignaciones:lista' %}">Volver a asignaciones</a>
+{% endblock %}
+
+{% block contenido %}
+  <div class="row g-3">
+    <div class="col-lg-7">
+      <form method="post" novalidate>
+        {% csrf_token %}
+        {% include "includes/errores_formulario.html" with form=form %}
+        <section class="card mb-3" aria-labelledby="sec-seleccion">
+          <div class="card-header" id="sec-seleccion">1 · Oferta y transportista</div>
+          <div class="card-body">
+            {% if form.oferta %}
+              {% include "includes/campo_formulario.html" with campo=form.oferta %}
+            {% endif %}
+            {% include "includes/campo_formulario.html" with campo=form.transportista %}
+          </div>
+        </section>
+        <section class="card mb-3" aria-labelledby="sec-fechas">
+          <div class="card-header" id="sec-fechas">2 · Fechas del servicio</div>
+          <div class="card-body">
+            {% include "includes/campo_formulario.html" with campo=form.fecha_inicio %}
+            {% include "includes/campo_formulario.html" with campo=form.fecha_fin %}
+            <p class="text-muted small mb-0">
+              Al continuar verá un resumen de la oferta, la empresa cliente, el transportista y el
+              vehículo antes de confirmar. Las reglas de asignación se verifican en el servidor
+              también al confirmar.
+            </p>
+          </div>
+        </section>
+        <div class="d-flex gap-2">
+          <button class="btn btn-primary" type="submit">{{ texto_boton }}</button>
+          <a class="btn btn-outline-secondary" href="{% url 'asignaciones:lista' %}">Cancelar</a>
+        </div>
+      </form>
+    </div>
+
+    <div class="col-lg-5">
+      <section class="card" aria-labelledby="titulo-disponibles">
+        <div class="card-header" id="titulo-disponibles">Ofertas disponibles ({{ ofertas_disponibles|length }})</div>
+        <div class="card-body p-0">
+          <div class="table-responsive">
+            <table class="table table-sm mb-0">
+              <caption class="visually-hidden">Ofertas disponibles para asignar</caption>
+              <thead class="table-light">
+                <tr><th scope="col">Código</th><th scope="col">Empresa</th><th scope="col">Ruta</th><th scope="col">Requisitos</th></tr>
+              </thead>
+              <tbody>
+                {% for oferta in ofertas_disponibles %}
+                  <tr>
+                    <td><a href="{% url 'ofertas:detalle' oferta.pk %}">{{ oferta.codigo }}</a></td>
+                    <td class="small">{{ oferta.empresa_cliente.razon_social }}</td>
+                    <td class="small">{{ oferta.origen }} → {{ oferta.destino }}</td>
+                    <td class="small">
+                      Nivel {{ oferta.nivel_requerido }} ·
+                      {{ oferta.get_tipo_vehiculo_requerido_display }}
+                    </td>
+                  </tr>
+                {% empty %}
+                  <tr>
+                    <td colspan="4">
+                      {% include "includes/vacio.html" with titulo="No hay ofertas disponibles" descripcion="Registre una oferta o revise las que ya están cubiertas." %}
+                    </td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+{% endblock %}

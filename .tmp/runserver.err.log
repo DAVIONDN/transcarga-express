@@ -1,0 +1,1772 @@
+Watching for file changes with StatReloader
+[10/Oct/2026 15:37:21] "GET /accounts/login/ HTTP/1.1" 200 2837
+[10/Oct/2026 15:37:21] "GET / HTTP/1.1" 302 0
+[10/Oct/2026 15:37:33] "GET / HTTP/1.1" 302 0
+[10/Oct/2026 15:37:33] "GET /accounts/login/?next=/ HTTP/1.1" 200 2838
+[10/Oct/2026 15:37:33] "GET /static/css/transcarga.css HTTP/1.1" 200 12676
+Not Found: /favicon.ico
+[10/Oct/2026 15:37:34] "GET /favicon.ico HTTP/1.1" 404 4986
+[10/Oct/2026 15:37:39] "POST /accounts/login/?next=/ HTTP/1.1" 200 2984
+[10/Oct/2026 15:37:45] "POST /accounts/login/?next=/ HTTP/1.1" 302 0
+[10/Oct/2026 15:37:45] "GET / HTTP/1.1" 200 29068
+[10/Oct/2026 15:37:49] "GET /transportistas/ HTTP/1.1" 200 18859
+[10/Oct/2026 15:37:52] "GET /ofertas/ HTTP/1.1" 200 18485
+[10/Oct/2026 15:37:53] "GET /asignaciones/ HTTP/1.1" 200 13135
+[10/Oct/2026 15:37:54] "GET /transportistas/advertencias/ HTTP/1.1" 200 22159
+[10/Oct/2026 15:37:58] "GET /usuarios/ HTTP/1.1" 200 10911
+[10/Oct/2026 15:37:59] "GET /admin/ HTTP/1.1" 200 11995
+[10/Oct/2026 15:37:59] "GET /static/admin/css/base.css HTTP/1.1" 200 22120
+[10/Oct/2026 15:37:59] "GET /static/admin/css/dark_mode.css HTTP/1.1" 200 2808
+[10/Oct/2026 15:37:59] "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2810
+[10/Oct/2026 15:37:59] "GET /static/admin/css/dashboard.css HTTP/1.1" 200 441
+[10/Oct/2026 15:37:59] "GET /static/admin/css/responsive.css HTTP/1.1" 200 16565
+[10/Oct/2026 15:37:59] "GET /static/admin/js/theme.js HTTP/1.1" 200 1653
+[10/Oct/2026 15:37:59] "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 380
+[10/Oct/2026 15:37:59] "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 331
+[10/Oct/2026 15:37:59] "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+[10/Oct/2026 15:38:04] "GET /admin/ HTTP/1.1" 200 11995
+[10/Oct/2026 15:38:09] "GET /usuarios/18/editar/ HTTP/1.1" 200 10785
+[10/Oct/2026 15:38:16] "GET / HTTP/1.1" 200 29068
+[10/Oct/2026 15:45:36] "GET /transportistas/ HTTP/1.1" 200 18859
+[10/Oct/2026 15:45:36] "GET /static/css/transcarga.css HTTP/1.1" 304 0
+[10/Oct/2026 15:45:41] "GET /transportistas/19/ HTTP/1.1" 200 14582
+[10/Oct/2026 15:45:41] "GET /media/vehiculos/2026/10/optimus.jpg HTTP/1.1" 200 51801
+[10/Oct/2026 15:51:35] "GET /transportistas/19/ HTTP/1.1" 200 14582
+[10/Oct/2026 15:51:35] "GET /static/css/transcarga.css HTTP/1.1" 304 0
+[10/Oct/2026 15:51:37] "GET /clientes/ HTTP/1.1" 200 12016
+[10/Oct/2026 15:51:38] "GET /ofertas/ HTTP/1.1" 200 18485
+[10/Oct/2026 15:56:26] "GET /ofertas/ HTTP/1.1" 200 18485
+[10/Oct/2026 15:56:30] "POST /accounts/logout/ HTTP/1.1" 302 0
+[10/Oct/2026 15:56:30] "GET /accounts/login/ HTTP/1.1" 200 2837
+[10/Oct/2026 15:56:30] "GET /static/css/transcarga.css HTTP/1.1" 304 0
+[10/Oct/2026 15:56:34] "POST /accounts/login/ HTTP/1.1" 200 2983
+[10/Oct/2026 15:56:38] "POST /accounts/login/ HTTP/1.1" 302 0
+[10/Oct/2026 15:56:38] "GET / HTTP/1.1" 200 29068
+[10/Oct/2026 15:59:19] "GET /ofertas/ HTTP/1.1" 200 18485
+[10/Oct/2026 15:59:19] "GET /transportistas/ HTTP/1.1" 200 18859
+[10/Oct/2026 15:59:21] "GET /ofertas/ HTTP/1.1" 200 18485
+[10/Oct/2026 15:59:27] "GET / HTTP/1.1" 200 29068
+[10/Oct/2026 16:01:34] "GET /static/css/transcarga.css HTTP/1.1" 200 13529
+[10/Oct/2026 16:03:04] "GET / HTTP/1.1" 200 29068
+[10/Oct/2026 16:03:04] "GET /static/css/transcarga.css HTTP/1.1" 200 13529
+[10/Oct/2026 16:03:07] "GET /transportistas/ HTTP/1.1" 200 18859
+[10/Oct/2026 16:03:08] "GET /clientes/ HTTP/1.1" 200 12016
+[10/Oct/2026 16:03:09] "GET /ofertas/ HTTP/1.1" 200 18485
+[10/Oct/2026 16:03:09] "GET /ofertas/ HTTP/1.1" 200 18485
+[10/Oct/2026 16:03:13] "GET /asignaciones/ HTTP/1.1" 200 13135
+[10/Oct/2026 16:03:18] "GET /transportistas/ HTTP/1.1" 200 18859
+[10/Oct/2026 16:03:18] "GET /static/css/transcarga.css HTTP/1.1" 304 0
+[10/Oct/2026 16:03:18] "GET / HTTP/1.1" 200 29068
+[10/Oct/2026 16:03:19] "GET /transportistas/ HTTP/1.1" 200 18859
+[10/Oct/2026 16:03:20] "GET /clientes/ HTTP/1.1" 200 12016
+[10/Oct/2026 16:03:21] "GET /transportistas/ HTTP/1.1" 200 18859
+[10/Oct/2026 16:03:21] "GET / HTTP/1.1" 200 29068
+[10/Oct/2026 16:03:32] "GET /transportistas/ HTTP/1.1" 200 18859
+[10/Oct/2026 16:03:32] "GET /static/css/transcarga.css HTTP/1.1" 304 0
+[10/Oct/2026 16:03:33] "GET /clientes/ HTTP/1.1" 200 12016
+[10/Oct/2026 16:03:34] "GET /ofertas/ HTTP/1.1" 200 18485
+[10/Oct/2026 16:03:34] "GET /asignaciones/ HTTP/1.1" 200 13135
+[10/Oct/2026 16:03:35] "GET /transportistas/advertencias/ HTTP/1.1" 200 22159
+[10/Oct/2026 16:03:38] "GET /usuarios/ HTTP/1.1" 200 10911
+[10/Oct/2026 16:03:44] "GET /usuarios/18/editar/ HTTP/1.1" 200 10785
+[10/Oct/2026 16:03:46] "GET /usuarios/ HTTP/1.1" 200 10911
+[10/Oct/2026 16:03:46] "GET /static/css/transcarga.css HTTP/1.1" 304 0
+C:\Users\Mariano\Documents\DEEP\comun\fechas.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Mariano\Documents\DEEP\comun\fechas.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Mariano\Documents\DEEP\transportistas\models.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Mariano\Documents\DEEP\transportistas\models.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Mariano\Documents\DEEP\transportistas\models.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Mariano\Documents\DEEP\transportistas\forms.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Mariano\Documents\DEEP\comun\fechas.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Mariano\Documents\DEEP\asignaciones\reglas.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Mariano\Documents\DEEP\asignaciones\reglas.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Mariano\Documents\DEEP\asignaciones\reglas.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Mariano\Documents\DEEP\asignaciones\forms.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Mariano\Documents\DEEP\asignaciones\models.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Mariano\Documents\DEEP\transportistas\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Mariano\Documents\DEEP\transportistas\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Mariano\Documents\DEEP\transportistas\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Mariano\Documents\DEEP\panel\views.py changed, reloading.
+Watching for file changes with StatReloader
+[10/Oct/2026 16:17:42] "GET /usuarios/ HTTP/1.1" 200 10911
+[10/Oct/2026 16:17:42] "GET /static/css/transcarga.css HTTP/1.1" 304 0
+[10/Oct/2026 16:17:43] "GET /usuarios/ HTTP/1.1" 200 10911
+[10/Oct/2026 16:17:45] "GET / HTTP/1.1" 200 29072
+[10/Oct/2026 16:17:47] "GET /transportistas/advertencias/ HTTP/1.1" 200 22159
+[10/Oct/2026 16:17:53] "GET /asignaciones/ HTTP/1.1" 200 13135
+[10/Oct/2026 16:17:56] "GET /ofertas/ HTTP/1.1" 200 18485
+[10/Oct/2026 16:18:01] "GET /clientes/ HTTP/1.1" 200 12016
+[10/Oct/2026 16:18:03] "GET /transportistas/ HTTP/1.1" 200 19371
+[10/Oct/2026 16:18:04] "GET / HTTP/1.1" 200 29072
+[10/Oct/2026 16:20:11] "GET / HTTP/1.1" 200 29072
+[10/Oct/2026 16:20:11] "GET /static/css/transcarga.css HTTP/1.1" 304 0
+[10/Oct/2026 16:20:11] "GET / HTTP/1.1" 200 29072
+[10/Oct/2026 16:20:14] "GET /transportistas/advertencias/ HTTP/1.1" 200 22159
+[10/Oct/2026 16:20:15] "GET / HTTP/1.1" 200 29072
+[10/Oct/2026 16:20:19] "GET /asignaciones/ HTTP/1.1" 200 13135
+[10/Oct/2026 16:20:21] "GET /ofertas/ HTTP/1.1" 200 18485
+[10/Oct/2026 16:20:22] "GET /transportistas/advertencias/ HTTP/1.1" 200 22159
+[10/Oct/2026 16:20:22] "GET /asignaciones/ HTTP/1.1" 200 13135
+[10/Oct/2026 16:20:25] "GET /asignaciones/?estado= HTTP/1.1" 200 13135
+[10/Oct/2026 16:20:33] "GET /ofertas/ HTTP/1.1" 200 18485
+[10/Oct/2026 16:20:35] "GET /clientes/ HTTP/1.1" 200 12016
+[10/Oct/2026 16:20:41] "GET / HTTP/1.1" 200 29072
+[10/Oct/2026 16:20:53] "GET /transportistas/ HTTP/1.1" 200 19371
+[10/Oct/2026 16:20:54] "GET /clientes/ HTTP/1.1" 200 12016
+[10/Oct/2026 16:20:55] "GET /asignaciones/ HTTP/1.1" 200 13135
+[10/Oct/2026 16:20:56] "GET /transportistas/advertencias/ HTTP/1.1" 200 22159
+[10/Oct/2026 16:21:11] "GET /transportistas/7/ HTTP/1.1" 200 16609
+[10/Oct/2026 16:21:11] "GET /media/vehiculos/2026/10/V7G-542.png HTTP/1.1" 200 1141
+[10/Oct/2026 16:21:25] "GET /ofertas/ HTTP/1.1" 200 18485
+[10/Oct/2026 16:21:28] "GET /ofertas/?page=2 HTTP/1.1" 200 17195
+[10/Oct/2026 16:21:29] "GET /transportistas/ HTTP/1.1" 200 19371
+[10/Oct/2026 16:21:39] "GET / HTTP/1.1" 200 29072
+[10/Oct/2026 16:21:41] "GET / HTTP/1.1" 200 29072
+[10/Oct/2026 16:22:24] "GET / HTTP/1.1" 200 29072
+[10/Oct/2026 16:22:24] "GET /static/css/transcarga.css HTTP/1.1" 304 0
+C:\Users\Mariano\Documents\DEEP\asignaciones\models.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Mariano\Documents\DEEP\asignaciones\models.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Mariano\Documents\DEEP\asignaciones\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Mariano\Documents\DEEP\comun\choices.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Mariano\Documents\DEEP\transportistas\models.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Mariano\Documents\DEEP\transportistas\models.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Mariano\Documents\DEEP\transportistas\admin.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Mariano\Documents\DEEP\transportistas\forms.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Mariano\Documents\DEEP\transportistas\forms.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Mariano\Documents\DEEP\transportistas\urls.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Mariano\Documents\DEEP\transportistas\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Mariano\Documents\DEEP\asignaciones\reglas.py changed, reloading.
+Watching for file changes with StatReloader
+[10/Oct/2026 16:42:38] "GET / HTTP/1.1" 200 29497
+[10/Oct/2026 16:42:39] "GET /static/css/transcarga.css HTTP/1.1" 304 0
+[10/Oct/2026 16:42:43] "GET /admin/ HTTP/1.1" 200 12671
+[10/Oct/2026 16:42:48] "GET /transportistas/incidencias/ HTTP/1.1" 200 10757
+C:\Users\Mariano\Documents\DEEP\comun\choices.py changed, reloading.
+Watching for file changes with StatReloader
+Exception in thread django-main-thread:
+Traceback (most recent call last):
+  File "C:\Users\Mariano\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 1043, in _bootstrap_inner
+    self.run()
+    ~~~~~~~~^^
+  File "C:\Users\Mariano\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 994, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\utils\autoreload.py", line 64, in wrapper
+    fn(*args, **kwargs)
+    ~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\management\commands\runserver.py", line 134, in inner_run
+    self.check(**check_kwargs)
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\management\base.py", line 573, in check
+    raise SystemCheckError(msg)
+django.core.management.base.SystemCheckError: SystemCheckError: System check identified some issues:
+
+ERRORS:
+transportistas.Transportista.estado: (fields.E009) 'max_length' is too small to fit the longest value in 'choices' (14 characters).
+
+System check identified 1 issue (0 silenced).
+C:\Users\Mariano\Documents\DEEP\transportistas\models.py changed, reloading.
+Watching for file changes with StatReloader
+Exception in thread django-main-thread:
+Traceback (most recent call last):
+  File "C:\Users\Mariano\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 1043, in _bootstrap_inner
+    self.run()
+    ~~~~~~~~^^
+  File "C:\Users\Mariano\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 994, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\utils\autoreload.py", line 64, in wrapper
+    fn(*args, **kwargs)
+    ~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\management\commands\runserver.py", line 134, in inner_run
+    self.check(**check_kwargs)
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\management\base.py", line 573, in check
+    raise SystemCheckError(msg)
+django.core.management.base.SystemCheckError: SystemCheckError: System check identified some issues:
+
+ERRORS:
+transportistas.Transportista.estado: (fields.E009) 'max_length' is too small to fit the longest value in 'choices' (14 characters).
+
+System check identified 1 issue (0 silenced).
+C:\Users\Mariano\Documents\DEEP\transportistas\models.py changed, reloading.
+Watching for file changes with StatReloader
+Exception in thread django-main-thread:
+Traceback (most recent call last):
+  File "C:\Users\Mariano\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 1043, in _bootstrap_inner
+    self.run()
+    ~~~~~~~~^^
+  File "C:\Users\Mariano\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 994, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\utils\autoreload.py", line 64, in wrapper
+    fn(*args, **kwargs)
+    ~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\management\commands\runserver.py", line 134, in inner_run
+    self.check(**check_kwargs)
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\management\base.py", line 573, in check
+    raise SystemCheckError(msg)
+django.core.management.base.SystemCheckError: SystemCheckError: System check identified some issues:
+
+ERRORS:
+transportistas.Transportista.estado: (fields.E009) 'max_length' is too small to fit the longest value in 'choices' (14 characters).
+
+System check identified 1 issue (0 silenced).
+C:\Users\Mariano\Documents\DEEP\transportistas\models.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Mariano\Documents\DEEP\asignaciones\reglas.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Mariano\Documents\DEEP\transportistas\forms.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Mariano\Documents\DEEP\transportistas\forms.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Mariano\Documents\DEEP\transportistas\views_incidencias.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Mariano\Documents\DEEP\transportistas\views_incidencias.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Mariano\Documents\DEEP\transportistas\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Exception in thread django-main-thread:
+Traceback (most recent call last):
+  File "C:\Users\Mariano\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 1043, in _bootstrap_inner
+    self.run()
+    ~~~~~~~~^^
+  File "C:\Users\Mariano\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 994, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\utils\autoreload.py", line 64, in wrapper
+    fn(*args, **kwargs)
+    ~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\management\commands\runserver.py", line 134, in inner_run
+    self.check(**check_kwargs)
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\management\base.py", line 496, in check
+    all_issues = checks.run_checks(
+        app_configs=app_configs,
+    ...<2 lines>...
+        databases=databases,
+    )
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\checks\registry.py", line 89, in run_checks
+    new_errors = check(app_configs=app_configs, databases=databases)
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\checks\urls.py", line 44, in check_url_namespaces_unique
+    all_namespaces = _load_all_namespaces(resolver)
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\checks\urls.py", line 63, in _load_all_namespaces
+    url_patterns = getattr(resolver, "url_patterns", [])
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\urls\resolvers.py", line 718, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+                       ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\urls\resolvers.py", line 711, in urlconf_module
+    return import_module(self.urlconf_name)
+  File "C:\Users\Mariano\AppData\Local\Programs\Python\Python313\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 1026, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "C:\Users\Mariano\Documents\DEEP\config\urls.py", line 18, in <module>
+    path("transportistas/", include("transportistas.urls")),
+                            ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\urls\conf.py", line 39, in include
+    urlconf_module = import_module(urlconf_module)
+  File "C:\Users\Mariano\AppData\Local\Programs\Python\Python313\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 1026, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "C:\Users\Mariano\Documents\DEEP\transportistas\urls.py", line 5, in <module>
+    from . import views, views_incidencias
+  File "C:\Users\Mariano\Documents\DEEP\transportistas\views.py", line 290, in <module>
+    class AplicarBajaDiferidaView(TransportistaMixin, PermisoRequeridoMixin, View):
+                                                                             ^^^^
+NameError: name 'View' is not defined
+C:\Users\Mariano\Documents\DEEP\transportistas\views.py changed, reloading.
+Watching for file changes with StatReloader
+Exception in thread django-main-thread:
+Traceback (most recent call last):
+  File "C:\Users\Mariano\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 1043, in _bootstrap_inner
+    self.run()
+    ~~~~~~~~^^
+  File "C:\Users\Mariano\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 994, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\utils\autoreload.py", line 64, in wrapper
+    fn(*args, **kwargs)
+    ~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\management\commands\runserver.py", line 134, in inner_run
+    self.check(**check_kwargs)
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\management\base.py", line 496, in check
+    all_issues = checks.run_checks(
+        app_configs=app_configs,
+    ...<2 lines>...
+        databases=databases,
+    )
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\checks\registry.py", line 89, in run_checks
+    new_errors = check(app_configs=app_configs, databases=databases)
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\checks\urls.py", line 44, in check_url_namespaces_unique
+    all_namespaces = _load_all_namespaces(resolver)
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\checks\urls.py", line 63, in _load_all_namespaces
+    url_patterns = getattr(resolver, "url_patterns", [])
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\urls\resolvers.py", line 718, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+                       ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\urls\resolvers.py", line 711, in urlconf_module
+    return import_module(self.urlconf_name)
+  File "C:\Users\Mariano\AppData\Local\Programs\Python\Python313\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 1026, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "C:\Users\Mariano\Documents\DEEP\config\urls.py", line 18, in <module>
+    path("transportistas/", include("transportistas.urls")),
+                            ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\urls\conf.py", line 39, in include
+    urlconf_module = import_module(urlconf_module)
+  File "C:\Users\Mariano\AppData\Local\Programs\Python\Python313\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 1026, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "C:\Users\Mariano\Documents\DEEP\transportistas\urls.py", line 5, in <module>
+    from . import views, views_incidencias
+  File "C:\Users\Mariano\Documents\DEEP\transportistas\views.py", line 297, in <module>
+    class AplicarBajaDiferidaView(TransportistaMixin, PermisoRequeridoMixin, View):
+                                                                             ^^^^
+NameError: name 'View' is not defined
+C:\Users\Mariano\Documents\DEEP\panel\views.py changed, reloading.
+Watching for file changes with StatReloader
+Exception in thread django-main-thread:
+Traceback (most recent call last):
+  File "C:\Users\Mariano\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 1043, in _bootstrap_inner
+    self.run()
+    ~~~~~~~~^^
+  File "C:\Users\Mariano\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 994, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\utils\autoreload.py", line 64, in wrapper
+    fn(*args, **kwargs)
+    ~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\management\commands\runserver.py", line 134, in inner_run
+    self.check(**check_kwargs)
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\management\base.py", line 496, in check
+    all_issues = checks.run_checks(
+        app_configs=app_configs,
+    ...<2 lines>...
+        databases=databases,
+    )
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\checks\registry.py", line 89, in run_checks
+    new_errors = check(app_configs=app_configs, databases=databases)
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\checks\urls.py", line 44, in check_url_namespaces_unique
+    all_namespaces = _load_all_namespaces(resolver)
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\checks\urls.py", line 63, in _load_all_namespaces
+    url_patterns = getattr(resolver, "url_patterns", [])
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\urls\resolvers.py", line 718, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+                       ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\urls\resolvers.py", line 711, in urlconf_module
+    return import_module(self.urlconf_name)
+  File "C:\Users\Mariano\AppData\Local\Programs\Python\Python313\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 1026, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "C:\Users\Mariano\Documents\DEEP\config\urls.py", line 18, in <module>
+    path("transportistas/", include("transportistas.urls")),
+                            ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\urls\conf.py", line 39, in include
+    urlconf_module = import_module(urlconf_module)
+  File "C:\Users\Mariano\AppData\Local\Programs\Python\Python313\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 1026, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "C:\Users\Mariano\Documents\DEEP\transportistas\urls.py", line 5, in <module>
+    from . import views, views_incidencias
+  File "C:\Users\Mariano\Documents\DEEP\transportistas\views.py", line 297, in <module>
+    class AplicarBajaDiferidaView(TransportistaMixin, PermisoRequeridoMixin, View):
+                                                                             ^^^^
+NameError: name 'View' is not defined
+C:\Users\Mariano\Documents\DEEP\transportistas\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Mariano\Documents\DEEP\transportistas\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Mariano\Documents\DEEP\config\settings.py changed, reloading.
+Watching for file changes with StatReloader
+Exception in thread django-main-thread:
+Traceback (most recent call last):
+  File "C:\Users\Mariano\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 1043, in _bootstrap_inner
+    self.run()
+    ~~~~~~~~^^
+  File "C:\Users\Mariano\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 994, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\utils\autoreload.py", line 64, in wrapper
+    fn(*args, **kwargs)
+    ~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\management\commands\runserver.py", line 134, in inner_run
+    self.check(**check_kwargs)
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\management\base.py", line 496, in check
+    all_issues = checks.run_checks(
+        app_configs=app_configs,
+    ...<2 lines>...
+        databases=databases,
+    )
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\checks\registry.py", line 89, in run_checks
+    new_errors = check(app_configs=app_configs, databases=databases)
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\checks\urls.py", line 44, in check_url_namespaces_unique
+    all_namespaces = _load_all_namespaces(resolver)
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\checks\urls.py", line 63, in _load_all_namespaces
+    url_patterns = getattr(resolver, "url_patterns", [])
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\urls\resolvers.py", line 718, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+                       ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\urls\resolvers.py", line 711, in urlconf_module
+    return import_module(self.urlconf_name)
+  File "C:\Users\Mariano\AppData\Local\Programs\Python\Python313\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 1026, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "C:\Users\Mariano\Documents\DEEP\config\urls.py", line 22, in <module>
+    path("liquidaciones/", include("liquidaciones.urls")),
+                           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\urls\conf.py", line 39, in include
+    urlconf_module = import_module(urlconf_module)
+  File "C:\Users\Mariano\AppData\Local\Programs\Python\Python313\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'liquidaciones.urls'
+C:\Users\Mariano\Documents\DEEP\comun\permisos.py changed, reloading.
+Watching for file changes with StatReloader
+Exception in thread django-main-thread:
+Traceback (most recent call last):
+  File "C:\Users\Mariano\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 1043, in _bootstrap_inner
+    self.run()
+    ~~~~~~~~^^
+  File "C:\Users\Mariano\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 994, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\utils\autoreload.py", line 64, in wrapper
+    fn(*args, **kwargs)
+    ~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\management\commands\runserver.py", line 134, in inner_run
+    self.check(**check_kwargs)
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\management\base.py", line 496, in check
+    all_issues = checks.run_checks(
+        app_configs=app_configs,
+    ...<2 lines>...
+        databases=databases,
+    )
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\checks\registry.py", line 89, in run_checks
+    new_errors = check(app_configs=app_configs, databases=databases)
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\checks\urls.py", line 44, in check_url_namespaces_unique
+    all_namespaces = _load_all_namespaces(resolver)
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\checks\urls.py", line 63, in _load_all_namespaces
+    url_patterns = getattr(resolver, "url_patterns", [])
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\urls\resolvers.py", line 718, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+                       ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\urls\resolvers.py", line 711, in urlconf_module
+    return import_module(self.urlconf_name)
+  File "C:\Users\Mariano\AppData\Local\Programs\Python\Python313\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 1026, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "C:\Users\Mariano\Documents\DEEP\config\urls.py", line 22, in <module>
+    path("liquidaciones/", include("liquidaciones.urls")),
+                           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\urls\conf.py", line 39, in include
+    urlconf_module = import_module(urlconf_module)
+  File "C:\Users\Mariano\AppData\Local\Programs\Python\Python313\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'liquidaciones.urls'
+C:\Users\Mariano\Documents\DEEP\comun\permisos.py changed, reloading.
+Watching for file changes with StatReloader
+Exception in thread django-main-thread:
+Traceback (most recent call last):
+  File "C:\Users\Mariano\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 1043, in _bootstrap_inner
+    self.run()
+    ~~~~~~~~^^
+  File "C:\Users\Mariano\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 994, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\utils\autoreload.py", line 64, in wrapper
+    fn(*args, **kwargs)
+    ~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\management\commands\runserver.py", line 134, in inner_run
+    self.check(**check_kwargs)
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\management\base.py", line 496, in check
+    all_issues = checks.run_checks(
+        app_configs=app_configs,
+    ...<2 lines>...
+        databases=databases,
+    )
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\checks\registry.py", line 89, in run_checks
+    new_errors = check(app_configs=app_configs, databases=databases)
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\checks\urls.py", line 44, in check_url_namespaces_unique
+    all_namespaces = _load_all_namespaces(resolver)
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\checks\urls.py", line 63, in _load_all_namespaces
+    url_patterns = getattr(resolver, "url_patterns", [])
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\urls\resolvers.py", line 718, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+                       ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\urls\resolvers.py", line 711, in urlconf_module
+    return import_module(self.urlconf_name)
+  File "C:\Users\Mariano\AppData\Local\Programs\Python\Python313\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 1026, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "C:\Users\Mariano\Documents\DEEP\config\urls.py", line 22, in <module>
+    path("liquidaciones/", include("liquidaciones.urls")),
+                           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\urls\conf.py", line 39, in include
+    urlconf_module = import_module(urlconf_module)
+  File "C:\Users\Mariano\AppData\Local\Programs\Python\Python313\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'liquidaciones.urls'
+C:\Users\Mariano\Documents\DEEP\comun\permisos.py changed, reloading.
+Watching for file changes with StatReloader
+Exception in thread django-main-thread:
+Traceback (most recent call last):
+  File "C:\Users\Mariano\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 1043, in _bootstrap_inner
+    self.run()
+    ~~~~~~~~^^
+  File "C:\Users\Mariano\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 994, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\utils\autoreload.py", line 64, in wrapper
+    fn(*args, **kwargs)
+    ~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\management\commands\runserver.py", line 134, in inner_run
+    self.check(**check_kwargs)
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\management\base.py", line 496, in check
+    all_issues = checks.run_checks(
+        app_configs=app_configs,
+    ...<2 lines>...
+        databases=databases,
+    )
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\checks\registry.py", line 89, in run_checks
+    new_errors = check(app_configs=app_configs, databases=databases)
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\checks\urls.py", line 44, in check_url_namespaces_unique
+    all_namespaces = _load_all_namespaces(resolver)
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\checks\urls.py", line 63, in _load_all_namespaces
+    url_patterns = getattr(resolver, "url_patterns", [])
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\urls\resolvers.py", line 718, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+                       ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\urls\resolvers.py", line 711, in urlconf_module
+    return import_module(self.urlconf_name)
+  File "C:\Users\Mariano\AppData\Local\Programs\Python\Python313\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 1026, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "C:\Users\Mariano\Documents\DEEP\config\urls.py", line 17, in <module>
+    path("", include("panel.urls")),
+             ~~~~~~~^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\urls\conf.py", line 39, in include
+    urlconf_module = import_module(urlconf_module)
+  File "C:\Users\Mariano\AppData\Local\Programs\Python\Python313\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 1026, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "C:\Users\Mariano\Documents\DEEP\panel\urls.py", line 3, in <module>
+    from . import views, views_usuarios
+  File "C:\Users\Mariano\Documents\DEEP\panel\views_usuarios.py", line 15, in <module>
+    from comun.permisos import (
+    ...<3 lines>...
+    )
+  File "C:\Users\Mariano\Documents\DEEP\comun\permisos.py", line 88, in <module>
+    + PERMISOS_LIQUIDACIONES_VISTA
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+NameError: name 'PERMISOS_LIQUIDACIONES_VISTA' is not defined
+C:\Users\Mariano\Documents\DEEP\comun\permisos.py changed, reloading.
+Watching for file changes with StatReloader
+Exception in thread django-main-thread:
+Traceback (most recent call last):
+  File "C:\Users\Mariano\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 1043, in _bootstrap_inner
+    self.run()
+    ~~~~~~~~^^
+  File "C:\Users\Mariano\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 994, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\utils\autoreload.py", line 64, in wrapper
+    fn(*args, **kwargs)
+    ~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\management\commands\runserver.py", line 134, in inner_run
+    self.check(**check_kwargs)
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\management\base.py", line 496, in check
+    all_issues = checks.run_checks(
+        app_configs=app_configs,
+    ...<2 lines>...
+        databases=databases,
+    )
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\checks\registry.py", line 89, in run_checks
+    new_errors = check(app_configs=app_configs, databases=databases)
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\checks\urls.py", line 44, in check_url_namespaces_unique
+    all_namespaces = _load_all_namespaces(resolver)
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\checks\urls.py", line 63, in _load_all_namespaces
+    url_patterns = getattr(resolver, "url_patterns", [])
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\urls\resolvers.py", line 718, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+                       ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\urls\resolvers.py", line 711, in urlconf_module
+    return import_module(self.urlconf_name)
+  File "C:\Users\Mariano\AppData\Local\Programs\Python\Python313\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 1026, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "C:\Users\Mariano\Documents\DEEP\config\urls.py", line 17, in <module>
+    path("", include("panel.urls")),
+             ~~~~~~~^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\urls\conf.py", line 39, in include
+    urlconf_module = import_module(urlconf_module)
+  File "C:\Users\Mariano\AppData\Local\Programs\Python\Python313\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 1026, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "C:\Users\Mariano\Documents\DEEP\panel\urls.py", line 3, in <module>
+    from . import views, views_usuarios
+  File "C:\Users\Mariano\Documents\DEEP\panel\views_usuarios.py", line 15, in <module>
+    from comun.permisos import (
+    ...<3 lines>...
+    )
+  File "C:\Users\Mariano\Documents\DEEP\comun\permisos.py", line 118, in <module>
+    + PERMISOS_LIQUIDACIONES_VISTA
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+NameError: name 'PERMISOS_LIQUIDACIONES_VISTA' is not defined
+C:\Users\Mariano\Documents\DEEP\comun\permisos.py changed, reloading.
+Watching for file changes with StatReloader
+Exception in thread django-main-thread:
+Traceback (most recent call last):
+  File "C:\Users\Mariano\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 1043, in _bootstrap_inner
+    self.run()
+    ~~~~~~~~^^
+  File "C:\Users\Mariano\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 994, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\utils\autoreload.py", line 64, in wrapper
+    fn(*args, **kwargs)
+    ~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\management\commands\runserver.py", line 134, in inner_run
+    self.check(**check_kwargs)
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\management\base.py", line 496, in check
+    all_issues = checks.run_checks(
+        app_configs=app_configs,
+    ...<2 lines>...
+        databases=databases,
+    )
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\checks\registry.py", line 89, in run_checks
+    new_errors = check(app_configs=app_configs, databases=databases)
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\checks\urls.py", line 44, in check_url_namespaces_unique
+    all_namespaces = _load_all_namespaces(resolver)
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\checks\urls.py", line 63, in _load_all_namespaces
+    url_patterns = getattr(resolver, "url_patterns", [])
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\urls\resolvers.py", line 718, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+                       ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\urls\resolvers.py", line 711, in urlconf_module
+    return import_module(self.urlconf_name)
+  File "C:\Users\Mariano\AppData\Local\Programs\Python\Python313\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 1026, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "C:\Users\Mariano\Documents\DEEP\config\urls.py", line 22, in <module>
+    path("liquidaciones/", include("liquidaciones.urls")),
+                           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\urls\conf.py", line 39, in include
+    urlconf_module = import_module(urlconf_module)
+  File "C:\Users\Mariano\AppData\Local\Programs\Python\Python313\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'liquidaciones.urls'
+C:\Users\Mariano\Documents\DEEP\asignaciones\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Mariano\Documents\DEEP\liquidaciones\calculos.py changed, reloading.
+Watching for file changes with StatReloader
+[10/Oct/2026 19:04:01] "GET /transportistas/incidencias/ HTTP/1.1" 200 11221
+[10/Oct/2026 19:04:01] "GET /static/css/transcarga.css HTTP/1.1" 304 0
+[10/Oct/2026 19:04:03] "GET /liquidaciones/formatos/ HTTP/1.1" 200 10806
+[10/Oct/2026 19:04:04] "GET /transportistas/advertencias/ HTTP/1.1" 200 23048
+[10/Oct/2026 19:04:05] "GET /liquidaciones/formatos/ HTTP/1.1" 200 10806
+[10/Oct/2026 19:04:10] "GET /transportistas/ HTTP/1.1" 200 20339
+[10/Oct/2026 19:04:11] "GET /clientes/ HTTP/1.1" 200 12905
+[10/Oct/2026 19:04:12] "GET /ofertas/ HTTP/1.1" 200 19374
+[10/Oct/2026 19:04:12] "GET /asignaciones/ HTTP/1.1" 200 14024
+[10/Oct/2026 19:04:13] "GET /liquidaciones/formatos/ HTTP/1.1" 200 10806
+[10/Oct/2026 19:04:15] "GET /transportistas/incidencias/ HTTP/1.1" 200 11221
+[10/Oct/2026 19:04:16] "GET /transportistas/advertencias/ HTTP/1.1" 200 23048
+[10/Oct/2026 19:04:18] "GET /transportistas/incidencias/ HTTP/1.1" 200 11221
+[10/Oct/2026 19:04:19] "GET /transportistas/advertencias/ HTTP/1.1" 200 23048
+[10/Oct/2026 19:04:38] "GET /transportistas/15/ HTTP/1.1" 200 18538
+[10/Oct/2026 19:04:38] "GET /media/vehiculos/2026/10/W5P-217.png HTTP/1.1" 200 1139
+[10/Oct/2026 19:04:45] "GET /clientes/ HTTP/1.1" 200 12905
+[10/Oct/2026 19:04:48] "GET /ofertas/ HTTP/1.1" 200 19374
+[10/Oct/2026 19:04:49] "GET /asignaciones/ HTTP/1.1" 200 14024
+[10/Oct/2026 19:04:50] "GET /liquidaciones/formatos/ HTTP/1.1" 200 10806
+[10/Oct/2026 19:04:52] "GET /transportistas/advertencias/ HTTP/1.1" 200 23048
+[10/Oct/2026 19:04:53] "GET /transportistas/incidencias/ HTTP/1.1" 200 11221
+[10/Oct/2026 19:04:57] "GET /ofertas/ HTTP/1.1" 200 19374
+[10/Oct/2026 19:04:59] "GET /transportistas/incidencias/ HTTP/1.1" 200 11221
+[10/Oct/2026 19:05:00] "GET /transportistas/advertencias/ HTTP/1.1" 200 23048
+[10/Oct/2026 19:05:00] "GET /liquidaciones/formatos/ HTTP/1.1" 200 10806
+[10/Oct/2026 19:05:01] "GET /asignaciones/ HTTP/1.1" 200 14024
+[10/Oct/2026 19:05:02] "GET /ofertas/ HTTP/1.1" 200 19374
+[10/Oct/2026 19:05:05] "GET /transportistas/incidencias/ HTTP/1.1" 200 11221
+[10/Oct/2026 19:05:09] "GET /transportistas/ HTTP/1.1" 200 20339
+[10/Oct/2026 19:05:10] "GET / HTTP/1.1" 200 29980
+[10/Oct/2026 19:05:14] "GET /transportistas/ HTTP/1.1" 200 20339
+[10/Oct/2026 19:05:15] "GET /clientes/ HTTP/1.1" 200 12905
+[10/Oct/2026 19:05:17] "GET /ofertas/ HTTP/1.1" 200 19374
+[10/Oct/2026 19:05:18] "GET /asignaciones/ HTTP/1.1" 200 14024
+[10/Oct/2026 19:06:54] "GET /asignaciones/ HTTP/1.1" 200 14024
+[10/Oct/2026 19:06:57] "GET /liquidaciones/formatos/ HTTP/1.1" 200 10806
+[10/Oct/2026 19:07:04] "GET /liquidaciones/ HTTP/1.1" 200 10715
+[10/Oct/2026 19:07:06] "GET /liquidaciones/formatos/ HTTP/1.1" 200 10806
+[10/Oct/2026 19:07:11] "GET /admin/ HTTP/1.1" 200 15332
+[10/Oct/2026 19:07:11] "GET /static/admin/css/base.css HTTP/1.1" 304 0
+[10/Oct/2026 19:07:11] "GET /static/admin/css/dark_mode.css HTTP/1.1" 304 0
+[10/Oct/2026 19:07:11] "GET /static/admin/js/theme.js HTTP/1.1" 304 0
+[10/Oct/2026 19:07:11] "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 304 0
+[10/Oct/2026 19:07:11] "GET /static/admin/css/responsive.css HTTP/1.1" 304 0
+[10/Oct/2026 19:07:11] "GET /static/admin/css/dashboard.css HTTP/1.1" 304 0
+[10/Oct/2026 19:07:11] "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 304 0
+[10/Oct/2026 19:07:11] "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 304 0
+[10/Oct/2026 19:07:11] "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 304 0
+[10/Oct/2026 19:07:13] "GET /admin/liquidaciones/formatosemanal/ HTTP/1.1" 200 16440
+[10/Oct/2026 19:07:13] "GET /static/admin/css/changelists.css HTTP/1.1" 200 6878
+[10/Oct/2026 19:07:13] "GET /static/admin/js/jquery.init.js HTTP/1.1" 200 347
+[10/Oct/2026 19:07:13] "GET /static/admin/js/core.js HTTP/1.1" 200 6208
+[10/Oct/2026 19:07:13] "GET /static/admin/js/actions.js HTTP/1.1" 200 8076
+[10/Oct/2026 19:07:13] "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 200 9777
+[10/Oct/2026 19:07:13] "GET /admin/jsi18n/ HTTP/1.1" 200 8054
+[10/Oct/2026 19:07:13] "GET /static/admin/js/urlify.js HTTP/1.1" 200 7887
+[10/Oct/2026 19:07:13] "GET /static/admin/img/search.svg HTTP/1.1" 200 458
+[10/Oct/2026 19:07:13] "GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1531
+[10/Oct/2026 19:07:13] "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 285314
+[10/Oct/2026 19:07:13] "GET /static/admin/js/filters.js HTTP/1.1" 200 978
+[10/Oct/2026 19:07:13] "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 325171
+[10/Oct/2026 19:07:13] "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 331
+[10/Oct/2026 19:07:13] "GET /static/admin/img/icon-viewlink.svg HTTP/1.1" 200 581
+[10/Oct/2026 19:07:17] "GET /admin/ HTTP/1.1" 200 15332
+[10/Oct/2026 19:07:32] "GET /liquidaciones/ HTTP/1.1" 200 10715
+[10/Oct/2026 19:07:37] "GET /liquidaciones/?q=&estado= HTTP/1.1" 200 10715
+[10/Oct/2026 19:07:39] "GET /liquidaciones/parametros/ HTTP/1.1" 200 10345
+[10/Oct/2026 19:07:50] "GET /liquidaciones/ HTTP/1.1" 200 10715
+[10/Oct/2026 19:07:56] "GET /asignaciones/ HTTP/1.1" 200 14024
+[10/Oct/2026 19:07:57] "GET /transportistas/advertencias/ HTTP/1.1" 200 23048
+[10/Oct/2026 19:07:58] "GET / HTTP/1.1" 200 29980
+C:\Users\Mariano\Documents\DEEP\comun\choices.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Mariano\Documents\DEEP\comun\permisos.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Mariano\Documents\DEEP\comun\permisos.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Mariano\Documents\DEEP\config\settings.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Mariano\Documents\DEEP\config\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Exception in thread django-main-thread:
+Traceback (most recent call last):
+  File "C:\Users\Mariano\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 1043, in _bootstrap_inner
+    self.run()
+    ~~~~~~~~^^
+  File "C:\Users\Mariano\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 994, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\utils\autoreload.py", line 64, in wrapper
+    fn(*args, **kwargs)
+    ~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\management\commands\runserver.py", line 134, in inner_run
+    self.check(**check_kwargs)
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\management\base.py", line 496, in check
+    all_issues = checks.run_checks(
+        app_configs=app_configs,
+    ...<2 lines>...
+        databases=databases,
+    )
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\checks\registry.py", line 89, in run_checks
+    new_errors = check(app_configs=app_configs, databases=databases)
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\checks\urls.py", line 44, in check_url_namespaces_unique
+    all_namespaces = _load_all_namespaces(resolver)
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\checks\urls.py", line 63, in _load_all_namespaces
+    url_patterns = getattr(resolver, "url_patterns", [])
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\urls\resolvers.py", line 718, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+                       ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\urls\resolvers.py", line 711, in urlconf_module
+    return import_module(self.urlconf_name)
+  File "C:\Users\Mariano\AppData\Local\Programs\Python\Python313\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 1026, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "C:\Users\Mariano\Documents\DEEP\config\urls.py", line 23, in <module>
+    path("capacitacion/", include("capacitacion.urls")),
+                          ~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\urls\conf.py", line 39, in include
+    urlconf_module = import_module(urlconf_module)
+  File "C:\Users\Mariano\AppData\Local\Programs\Python\Python313\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'capacitacion.urls'
+C:\Users\Mariano\Documents\DEEP\transportistas\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Mariano\Documents\DEEP\config\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Exception in thread django-main-thread:
+Traceback (most recent call last):
+  File "C:\Users\Mariano\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 1043, in _bootstrap_inner
+    self.run()
+    ~~~~~~~~^^
+  File "C:\Users\Mariano\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 994, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\utils\autoreload.py", line 64, in wrapper
+    fn(*args, **kwargs)
+    ~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\management\commands\runserver.py", line 134, in inner_run
+    self.check(**check_kwargs)
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\management\base.py", line 496, in check
+    all_issues = checks.run_checks(
+        app_configs=app_configs,
+    ...<2 lines>...
+        databases=databases,
+    )
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\checks\registry.py", line 89, in run_checks
+    new_errors = check(app_configs=app_configs, databases=databases)
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\checks\urls.py", line 44, in check_url_namespaces_unique
+    all_namespaces = _load_all_namespaces(resolver)
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\checks\urls.py", line 63, in _load_all_namespaces
+    url_patterns = getattr(resolver, "url_patterns", [])
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\urls\resolvers.py", line 718, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+                       ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\urls\resolvers.py", line 711, in urlconf_module
+    return import_module(self.urlconf_name)
+  File "C:\Users\Mariano\AppData\Local\Programs\Python\Python313\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 1026, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "C:\Users\Mariano\Documents\DEEP\config\urls.py", line 24, in <module>
+    path("auditoria/", include("auditoria.urls")),
+                       ~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\urls\conf.py", line 39, in include
+    urlconf_module = import_module(urlconf_module)
+  File "C:\Users\Mariano\AppData\Local\Programs\Python\Python313\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'auditoria.urls'
+C:\Users\Mariano\Documents\DEEP\comun\permisos.py changed, reloading.
+Watching for file changes with StatReloader
+Exception in thread django-main-thread:
+Traceback (most recent call last):
+  File "C:\Users\Mariano\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 1043, in _bootstrap_inner
+    self.run()
+    ~~~~~~~~^^
+  File "C:\Users\Mariano\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 994, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\utils\autoreload.py", line 64, in wrapper
+    fn(*args, **kwargs)
+    ~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\management\commands\runserver.py", line 134, in inner_run
+    self.check(**check_kwargs)
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\management\base.py", line 496, in check
+    all_issues = checks.run_checks(
+        app_configs=app_configs,
+    ...<2 lines>...
+        databases=databases,
+    )
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\checks\registry.py", line 89, in run_checks
+    new_errors = check(app_configs=app_configs, databases=databases)
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\checks\urls.py", line 44, in check_url_namespaces_unique
+    all_namespaces = _load_all_namespaces(resolver)
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\checks\urls.py", line 63, in _load_all_namespaces
+    url_patterns = getattr(resolver, "url_patterns", [])
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\urls\resolvers.py", line 718, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+                       ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\urls\resolvers.py", line 711, in urlconf_module
+    return import_module(self.urlconf_name)
+  File "C:\Users\Mariano\AppData\Local\Programs\Python\Python313\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 1026, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "C:\Users\Mariano\Documents\DEEP\config\urls.py", line 24, in <module>
+    path("auditoria/", include("auditoria.urls")),
+                       ~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\urls\conf.py", line 39, in include
+    urlconf_module = import_module(urlconf_module)
+  File "C:\Users\Mariano\AppData\Local\Programs\Python\Python313\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'auditoria.urls'
+C:\Users\Mariano\Documents\DEEP\comun\permisos.py changed, reloading.
+Watching for file changes with StatReloader
+Exception in thread django-main-thread:
+Traceback (most recent call last):
+  File "C:\Users\Mariano\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 1043, in _bootstrap_inner
+    self.run()
+    ~~~~~~~~^^
+  File "C:\Users\Mariano\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 994, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\utils\autoreload.py", line 64, in wrapper
+    fn(*args, **kwargs)
+    ~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\management\commands\runserver.py", line 134, in inner_run
+    self.check(**check_kwargs)
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\management\base.py", line 496, in check
+    all_issues = checks.run_checks(
+        app_configs=app_configs,
+    ...<2 lines>...
+        databases=databases,
+    )
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\checks\registry.py", line 89, in run_checks
+    new_errors = check(app_configs=app_configs, databases=databases)
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\checks\urls.py", line 44, in check_url_namespaces_unique
+    all_namespaces = _load_all_namespaces(resolver)
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\checks\urls.py", line 63, in _load_all_namespaces
+    url_patterns = getattr(resolver, "url_patterns", [])
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\urls\resolvers.py", line 718, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+                       ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\urls\resolvers.py", line 711, in urlconf_module
+    return import_module(self.urlconf_name)
+  File "C:\Users\Mariano\AppData\Local\Programs\Python\Python313\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 1026, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "C:\Users\Mariano\Documents\DEEP\config\urls.py", line 24, in <module>
+    path("auditoria/", include("auditoria.urls")),
+                       ~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\urls\conf.py", line 39, in include
+    urlconf_module = import_module(urlconf_module)
+  File "C:\Users\Mariano\AppData\Local\Programs\Python\Python313\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'auditoria.urls'
+C:\Users\Mariano\Documents\DEEP\comun\permisos.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Mariano\Documents\DEEP\comun\permisos.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Mariano\Documents\DEEP\transportistas\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Mariano\Documents\DEEP\transportistas\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Mariano\Documents\DEEP\transportistas\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Mariano\Documents\DEEP\clientes\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Mariano\Documents\DEEP\ofertas\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Mariano\Documents\DEEP\ofertas\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Mariano\Documents\DEEP\asignaciones\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Mariano\Documents\DEEP\asignaciones\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Mariano\Documents\DEEP\transportistas\views_incidencias.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Mariano\Documents\DEEP\transportistas\views_incidencias.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Mariano\Documents\DEEP\transportistas\views_incidencias.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Mariano\Documents\DEEP\liquidaciones\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Mariano\Documents\DEEP\liquidaciones\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Mariano\Documents\DEEP\liquidaciones\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Mariano\Documents\DEEP\capacitacion\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Mariano\Documents\DEEP\capacitacion\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Mariano\Documents\DEEP\panel\views_usuarios.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Mariano\Documents\DEEP\panel\views_usuarios.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Mariano\Documents\DEEP\panel\views_usuarios.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Mariano\Documents\DEEP\panel\views.py changed, reloading.
+Watching for file changes with StatReloader
+[10/Oct/2026 22:10:10] "GET /clientes/ HTTP/1.1" 200 13776
+[10/Oct/2026 22:10:10] "GET /static/css/transcarga.css HTTP/1.1" 304 0
+C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\views\generic\list.py:91: UnorderedObjectListWarning: Pagination may yield inconsistent results with an unordered object_list: <class 'capacitacion.models.Curso'> QuerySet.
+  return self.paginator_class(
+[10/Oct/2026 22:10:12] "GET /capacitacion/cursos/ HTTP/1.1" 200 11489
+[10/Oct/2026 22:10:15] "GET /transportistas/incidencias/ HTTP/1.1" 200 12092
+[10/Oct/2026 22:10:17] "GET /transportistas/advertencias/ HTTP/1.1" 200 23919
+[10/Oct/2026 22:10:17] "GET /liquidaciones/formatos/ HTTP/1.1" 200 11677
+[10/Oct/2026 22:10:18] "GET /liquidaciones/formatos/ HTTP/1.1" 200 11677
+[10/Oct/2026 22:10:18] "GET /asignaciones/ HTTP/1.1" 200 14895
+[10/Oct/2026 22:10:19] "GET /ofertas/ HTTP/1.1" 200 20245
+[10/Oct/2026 22:10:20] "GET /clientes/ HTTP/1.1" 200 13776
+[10/Oct/2026 22:10:20] "GET /transportistas/ HTTP/1.1" 200 21210
+Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\base.py", line 511, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'endblock'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\response.py", line 90, in rendered_content
+    template = self.resolve_template(self.template_name)
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\response.py", line 72, in resolve_template
+    return select_template(template, using=self.using)
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\loader.py", line 42, in select_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\base.py", line 155, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\base.py", line 197, in compile_nodelist
+    nodelist = parser.parse()
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\base.py", line 519, in parse
+    raise self.error(token, e)
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\base.py", line 517, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\loader_tags.py", line 299, in do_extends
+    nodelist = parser.parse()
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\base.py", line 519, in parse
+    raise self.error(token, e)
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\base.py", line 517, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\base.py", line 519, in parse
+    raise self.error(token, e)
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\base.py", line 517, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\defaulttags.py", line 962, in do_if
+    nodelist = parser.parse(("elif", "else", "endif"))
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\base.py", line 513, in parse
+    self.invalid_block_tag(token, command, parse_until)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\base.py", line 568, in invalid_block_tag
+    raise self.error(
+    ...<8 lines>...
+    )
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 406: 'endblock', expected 'elif', 'else' or 'endif'. Did you forget to register or load this tag?
+[10/Oct/2026 22:10:21] "GET / HTTP/1.1" 500 200693
+[10/Oct/2026 22:10:24] "GET /transportistas/ HTTP/1.1" 200 21210
+Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\base.py", line 511, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'endblock'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\response.py", line 90, in rendered_content
+    template = self.resolve_template(self.template_name)
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\response.py", line 72, in resolve_template
+    return select_template(template, using=self.using)
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\loader.py", line 42, in select_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\base.py", line 155, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\base.py", line 197, in compile_nodelist
+    nodelist = parser.parse()
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\base.py", line 519, in parse
+    raise self.error(token, e)
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\base.py", line 517, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\loader_tags.py", line 299, in do_extends
+    nodelist = parser.parse()
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\base.py", line 519, in parse
+    raise self.error(token, e)
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\base.py", line 517, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\base.py", line 519, in parse
+    raise self.error(token, e)
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\base.py", line 517, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\defaulttags.py", line 962, in do_if
+    nodelist = parser.parse(("elif", "else", "endif"))
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\base.py", line 513, in parse
+    self.invalid_block_tag(token, command, parse_until)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\base.py", line 568, in invalid_block_tag
+    raise self.error(
+    ...<8 lines>...
+    )
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 406: 'endblock', expected 'elif', 'else' or 'endif'. Did you forget to register or load this tag?
+[10/Oct/2026 22:10:24] "GET / HTTP/1.1" 500 200693
+C:\Users\Mariano\Documents\DEEP\auditoria\models.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Mariano\Documents\DEEP\panel\urls.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Mariano\Documents\DEEP\comun\permisos.py changed, reloading.
+Watching for file changes with StatReloader
+[10/Oct/2026 22:20:39] "GET / HTTP/1.1" 200 32839
+[10/Oct/2026 22:20:41] "GET / HTTP/1.1" 200 32839
+[10/Oct/2026 22:20:44] "GET /transportistas/ HTTP/1.1" 200 21595
+[10/Oct/2026 22:20:44] "GET /clientes/ HTTP/1.1" 200 14161
+[10/Oct/2026 22:20:45] "GET /ofertas/ HTTP/1.1" 200 20630
+[10/Oct/2026 22:20:46] "GET /asignaciones/ HTTP/1.1" 200 15280
+[10/Oct/2026 22:20:47] "GET /liquidaciones/formatos/ HTTP/1.1" 200 12062
+[10/Oct/2026 22:20:47] "GET /transportistas/advertencias/ HTTP/1.1" 200 24304
+[10/Oct/2026 22:20:48] "GET /transportistas/incidencias/ HTTP/1.1" 200 12477
+C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\views\generic\list.py:91: UnorderedObjectListWarning: Pagination may yield inconsistent results with an unordered object_list: <class 'capacitacion.models.Curso'> QuerySet.
+  return self.paginator_class(
+[10/Oct/2026 22:20:49] "GET /capacitacion/cursos/ HTTP/1.1" 200 11874
+[10/Oct/2026 22:20:50] "GET /reportes/ HTTP/1.1" 200 12434
+[10/Oct/2026 22:21:11] "GET /auditoria/ HTTP/1.1" 200 12704
+[10/Oct/2026 22:21:13] "GET / HTTP/1.1" 200 32839
+[10/Oct/2026 22:32:47] "GET / HTTP/1.1" 200 32839
+[10/Oct/2026 22:32:49] "GET /reportes/ HTTP/1.1" 200 12434
+[10/Oct/2026 22:32:50] "GET /capacitacion/cursos/ HTTP/1.1" 200 11874
+[10/Oct/2026 22:32:51] "GET /reportes/ HTTP/1.1" 200 12434
+[10/Oct/2026 22:32:56] "GET / HTTP/1.1" 200 32839
+[10/Oct/2026 22:33:10] "GET /transportistas/ HTTP/1.1" 200 21595
+[10/Oct/2026 22:36:54] "GET /reportes/ HTTP/1.1" 200 12434
+[10/Oct/2026 22:36:56] "GET /reportes/transportistas/ HTTP/1.1" 200 12307
+[10/Oct/2026 22:37:12] "GET /capacitacion/cursos/ HTTP/1.1" 200 11874
+[10/Oct/2026 22:37:13] "GET /reportes/ HTTP/1.1" 200 12434
+[10/Oct/2026 22:37:15] "GET /reportes/advertencias/ HTTP/1.1" 200 11742
+[10/Oct/2026 22:37:20] "GET /admin/ HTTP/1.1" 200 18364
+[10/Oct/2026 22:37:20] "GET /static/admin/css/base.css HTTP/1.1" 304 0
+[10/Oct/2026 22:37:20] "GET /static/admin/css/dark_mode.css HTTP/1.1" 304 0
+[10/Oct/2026 22:37:20] "GET /static/admin/css/dashboard.css HTTP/1.1" 304 0
+[10/Oct/2026 22:37:20] "GET /static/admin/js/theme.js HTTP/1.1" 304 0
+[10/Oct/2026 22:37:20] "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 304 0
+[10/Oct/2026 22:37:20] "GET /static/admin/css/responsive.css HTTP/1.1" 304 0
+[10/Oct/2026 22:37:20] "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 304 0
+[10/Oct/2026 22:37:20] "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 304 0
+[10/Oct/2026 22:37:20] "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 304 0
+[10/Oct/2026 22:37:24] "GET /ofertas/ HTTP/1.1" 200 20630
+[10/Oct/2026 22:37:25] "GET /asignaciones/ HTTP/1.1" 200 15280
+[10/Oct/2026 22:37:27] "GET /liquidaciones/formatos/ HTTP/1.1" 200 12062
+[10/Oct/2026 22:37:28] "GET /transportistas/ HTTP/1.1" 200 21595
+[10/Oct/2026 22:38:56] "GET /reportes/ HTTP/1.1" 200 12434
+[10/Oct/2026 22:38:57] "GET /transportistas/incidencias/ HTTP/1.1" 200 12477
+[10/Oct/2026 22:38:58] "GET /capacitacion/cursos/ HTTP/1.1" 200 11874
+[10/Oct/2026 22:38:58] "GET /transportistas/incidencias/ HTTP/1.1" 200 12477
+[10/Oct/2026 22:38:59] "GET /transportistas/advertencias/ HTTP/1.1" 200 24304
+[10/Oct/2026 22:38:59] "GET /transportistas/advertencias/ HTTP/1.1" 200 24304
+[10/Oct/2026 22:39:00] "GET /liquidaciones/formatos/ HTTP/1.1" 200 12062
+[10/Oct/2026 22:39:00] "GET /asignaciones/ HTTP/1.1" 200 15280
+[10/Oct/2026 22:39:01] "GET /ofertas/ HTTP/1.1" 200 20630
+[10/Oct/2026 22:39:01] "GET /clientes/ HTTP/1.1" 200 14161
+[10/Oct/2026 22:39:02] "GET /transportistas/ HTTP/1.1" 200 21595
+[10/Oct/2026 22:39:02] "GET / HTTP/1.1" 200 32839
+[10/Oct/2026 22:39:03] "GET /auditoria/ HTTP/1.1" 200 12704
+[10/Oct/2026 22:39:05] "GET /admin/ HTTP/1.1" 200 18364
+[10/Oct/2026 22:53:04] "GET /auditoria/ HTTP/1.1" 200 12704
+[10/Oct/2026 22:53:04] "GET /static/css/transcarga.css HTTP/1.1" 304 0
+[10/Oct/2026 22:53:05] "GET /capacitacion/cursos/ HTTP/1.1" 200 11874
+[10/Oct/2026 22:53:06] "GET /reportes/ HTTP/1.1" 200 12434
+[10/Oct/2026 22:53:07] "GET /transportistas/advertencias/ HTTP/1.1" 200 24304
+[10/Oct/2026 22:53:07] "GET /liquidaciones/formatos/ HTTP/1.1" 200 12062
+[10/Oct/2026 22:53:08] "GET /asignaciones/ HTTP/1.1" 200 15280
+[10/Oct/2026 22:53:09] "GET /ofertas/ HTTP/1.1" 200 20630
+[10/Oct/2026 22:53:09] "GET /clientes/ HTTP/1.1" 200 14161
+[10/Oct/2026 22:53:10] "GET /transportistas/ HTTP/1.1" 200 21595
+[10/Oct/2026 22:53:10] "GET / HTTP/1.1" 200 32839
+[10/Oct/2026 22:53:11] "GET /reportes/ HTTP/1.1" 200 12434
+[10/Oct/2026 22:53:11] "GET /capacitacion/cursos/ HTTP/1.1" 200 11874
+[10/Oct/2026 22:53:12] "GET /transportistas/incidencias/ HTTP/1.1" 200 12477
+[10/Oct/2026 22:53:12] "GET /transportistas/advertencias/ HTTP/1.1" 200 24304
+[10/Oct/2026 22:53:12] "GET /liquidaciones/formatos/ HTTP/1.1" 200 12062
+[10/Oct/2026 22:53:13] "GET /asignaciones/ HTTP/1.1" 200 15280
+[10/Oct/2026 22:53:13] "GET /ofertas/ HTTP/1.1" 200 20630
+[10/Oct/2026 22:53:13] "GET /clientes/ HTTP/1.1" 200 14161
+[10/Oct/2026 22:53:14] "GET /transportistas/ HTTP/1.1" 200 21595
+[10/Oct/2026 22:53:14] "GET / HTTP/1.1" 200 32839
+[10/Oct/2026 22:53:18] "GET /usuarios/ HTTP/1.1" 200 13056
+[10/Oct/2026 22:53:20] "GET / HTTP/1.1" 200 32839
+[10/Oct/2026 22:56:11] "GET /accounts/login/ HTTP/1.1" 200 2837
+[10/Oct/2026 23:03:28] "GET / HTTP/1.1" 200 32839
+[10/Oct/2026 23:03:59] "GET /transportistas/ HTTP/1.1" 200 21595
+[10/Oct/2026 23:04:16] "GET /clientes/ HTTP/1.1" 200 14161
+[10/Oct/2026 23:04:18] "GET /clientes/2/ HTTP/1.1" 200 13002
+[10/Oct/2026 23:04:40] "GET /ofertas/ HTTP/1.1" 200 20630
+[10/Oct/2026 23:04:53] "GET /asignaciones/ HTTP/1.1" 200 15280
+[10/Oct/2026 23:05:06] "GET /liquidaciones/formatos/ HTTP/1.1" 200 12062
+[10/Oct/2026 23:05:11] "GET /liquidaciones/formatos/ HTTP/1.1" 200 12062
+[10/Oct/2026 23:05:42] "GET / HTTP/1.1" 200 32839
+[10/Oct/2026 23:05:45] "POST /accounts/logout/ HTTP/1.1" 302 0
+[10/Oct/2026 23:05:45] "GET /accounts/login/ HTTP/1.1" 200 2837
+[10/Oct/2026 23:06:25] "POST /accounts/login/ HTTP/1.1" 200 3152
+[10/Oct/2026 23:06:34] "POST /accounts/login/ HTTP/1.1" 302 0
+[10/Oct/2026 23:06:34] "GET / HTTP/1.1" 200 32839
+[10/Oct/2026 23:06:45] "GET /transportistas/advertencias/ HTTP/1.1" 200 24304
+[10/Oct/2026 23:06:46] "GET /transportistas/incidencias/ HTTP/1.1" 200 12477
+[10/Oct/2026 23:06:50] "GET /transportistas/incidencias/nueva/ HTTP/1.1" 200 16940
+[10/Oct/2026 23:07:55] "POST /transportistas/incidencias/nueva/ HTTP/1.1" 200 17142
+[10/Oct/2026 23:07:56] "GET /transportistas/incidencias/ HTTP/1.1" 200 12477
+[10/Oct/2026 23:07:58] "GET /capacitacion/cursos/ HTTP/1.1" 200 11874
+[10/Oct/2026 23:07:59] "GET /transportistas/incidencias/ HTTP/1.1" 200 12477
+[10/Oct/2026 23:08:00] "GET /transportistas/incidencias/ HTTP/1.1" 200 12477
+[10/Oct/2026 23:08:00] "GET /capacitacion/cursos/ HTTP/1.1" 200 11874
+[10/Oct/2026 23:08:01] "GET /transportistas/incidencias/ HTTP/1.1" 200 12477
+[10/Oct/2026 23:08:01] "GET /transportistas/advertencias/ HTTP/1.1" 200 24304
+[10/Oct/2026 23:08:08] "GET /liquidaciones/formatos/ HTTP/1.1" 200 12062
+[10/Oct/2026 23:08:22] "GET /transportistas/advertencias/ HTTP/1.1" 200 24304
+[10/Oct/2026 23:08:24] "GET /liquidaciones/formatos/ HTTP/1.1" 200 12062
+[10/Oct/2026 23:08:25] "GET /transportistas/advertencias/ HTTP/1.1" 200 24304
+[10/Oct/2026 23:08:26] "GET /liquidaciones/formatos/ HTTP/1.1" 200 12062
+[10/Oct/2026 23:08:27] "GET /transportistas/advertencias/ HTTP/1.1" 200 24304
+[10/Oct/2026 23:08:28] "GET /asignaciones/ HTTP/1.1" 200 15280
+[10/Oct/2026 23:08:28] "GET /liquidaciones/formatos/ HTTP/1.1" 200 12062
+[10/Oct/2026 23:08:29] "GET /transportistas/advertencias/ HTTP/1.1" 200 24304
+[10/Oct/2026 23:08:42] "GET /transportistas/incidencias/ HTTP/1.1" 200 12477
+[10/Oct/2026 23:08:53] "GET /capacitacion/cursos/ HTTP/1.1" 200 11874
+[10/Oct/2026 23:09:04] "GET /reportes/ HTTP/1.1" 200 12434
+[10/Oct/2026 23:09:14] "GET /usuarios/ HTTP/1.1" 200 15972
+[10/Oct/2026 23:09:25] "GET /auditoria/ HTTP/1.1" 200 12704
+[10/Oct/2026 23:18:58] "GET /transportistas/advertencias/ HTTP/1.1" 200 24304
+[10/Oct/2026 23:18:59] "GET /asignaciones/ HTTP/1.1" 200 15280
+[10/Oct/2026 23:19:00] "GET /liquidaciones/formatos/ HTTP/1.1" 200 12062
+[10/Oct/2026 23:19:18] "GET /transportistas/advertencias/ HTTP/1.1" 200 24304
+[10/Oct/2026 23:19:19] "GET /transportistas/incidencias/ HTTP/1.1" 200 12477
+[10/Oct/2026 23:19:31] "GET /capacitacion/cursos/ HTTP/1.1" 200 11874
+[10/Oct/2026 23:19:41] "GET /reportes/ HTTP/1.1" 200 12434
+[10/Oct/2026 23:33:05] "GET /reportes/ HTTP/1.1" 200 12434
+[10/Oct/2026 23:33:07] "GET /capacitacion/cursos/ HTTP/1.1" 200 12801
+[10/Oct/2026 23:33:07] "GET /capacitacion/cursos/ HTTP/1.1" 200 12801
+[10/Oct/2026 23:33:09] "GET /transportistas/incidencias/ HTTP/1.1" 200 13757
+[10/Oct/2026 23:33:09] "GET /transportistas/incidencias/ HTTP/1.1" 200 13757
+[10/Oct/2026 23:33:10] "GET /transportistas/advertencias/ HTTP/1.1" 200 24304
+[10/Oct/2026 23:33:11] "GET /auditoria/ HTTP/1.1" 200 12704
+[10/Oct/2026 23:33:12] "GET /usuarios/ HTTP/1.1" 200 15972
+[10/Oct/2026 23:53:44] "GET /accounts/login/ HTTP/1.1" 200 4834
+[10/Oct/2026 23:54:35] "GET /usuarios/ HTTP/1.1" 200 18359
+[10/Oct/2026 23:54:35] "GET /static/css/transcarga.css HTTP/1.1" 200 20331
+[10/Oct/2026 23:54:35] "GET /static/js/transcarga.js HTTP/1.1" 200 2286
+[10/Oct/2026 23:54:42] "GET / HTTP/1.1" 200 37295
+[10/Oct/2026 23:54:44] "GET /clientes/ HTTP/1.1" 200 16548
+[10/Oct/2026 23:54:45] "GET /transportistas/ HTTP/1.1" 200 23982
+[10/Oct/2026 23:54:45] "GET /clientes/ HTTP/1.1" 200 16548
+[10/Oct/2026 23:54:46] "GET /ofertas/ HTTP/1.1" 200 23017
+[10/Oct/2026 23:54:46] "GET /asignaciones/ HTTP/1.1" 200 17667
+[10/Oct/2026 23:54:47] "GET /liquidaciones/formatos/ HTTP/1.1" 200 19422
+[10/Oct/2026 23:54:47] "GET /asignaciones/ HTTP/1.1" 200 17667
+[10/Oct/2026 23:54:49] "GET /liquidaciones/formatos/ HTTP/1.1" 200 19422
+[10/Oct/2026 23:54:50] "GET /transportistas/advertencias/ HTTP/1.1" 200 26691
+[10/Oct/2026 23:54:50] "GET /transportistas/incidencias/ HTTP/1.1" 200 16119
+[10/Oct/2026 23:54:51] "GET /capacitacion/cursos/ HTTP/1.1" 200 15188
+[10/Oct/2026 23:58:19] "GET /capacitacion/cursos/ HTTP/1.1" 200 15158
+[10/Oct/2026 23:58:19] "GET /static/css/transcarga.css HTTP/1.1" 304 0
+[10/Oct/2026 23:58:19] "GET /static/js/transcarga.js HTTP/1.1" 304 0
+[10/Oct/2026 23:59:15] "GET / HTTP/1.1" 200 37265
+[10/Oct/2026 23:59:20] "GET /transportistas/ HTTP/1.1" 200 23952
+[10/Oct/2026 23:59:20] "GET /clientes/ HTTP/1.1" 200 16518
+[10/Oct/2026 23:59:21] "GET /ofertas/ HTTP/1.1" 200 22987
+[10/Oct/2026 23:59:21] "GET /asignaciones/ HTTP/1.1" 200 17637
+[10/Oct/2026 23:59:21] "GET /liquidaciones/formatos/ HTTP/1.1" 200 19392
+[10/Oct/2026 23:59:22] "GET /asignaciones/ HTTP/1.1" 200 17637
+[11/Oct/2026 00:00:22] "GET /transportistas/advertencias/ HTTP/1.1" 200 26661
+[11/Oct/2026 00:00:22] "GET /static/css/transcarga.css HTTP/1.1" 304 0
+[11/Oct/2026 00:00:22] "GET /static/js/transcarga.js HTTP/1.1" 304 0
+[11/Oct/2026 00:00:22] "GET /liquidaciones/formatos/ HTTP/1.1" 200 19392
+[11/Oct/2026 00:00:24] "GET /reportes/ HTTP/1.1" 200 14791
+[11/Oct/2026 00:00:24] "GET /capacitacion/cursos/ HTTP/1.1" 200 15158
+[11/Oct/2026 00:00:25] "GET /transportistas/incidencias/ HTTP/1.1" 200 16089
+[11/Oct/2026 00:00:25] "GET /transportistas/incidencias/ HTTP/1.1" 200 16089
+[11/Oct/2026 00:00:25] "GET /transportistas/advertencias/ HTTP/1.1" 200 26661
+[11/Oct/2026 00:00:26] "GET /capacitacion/cursos/ HTTP/1.1" 200 15158
+[11/Oct/2026 00:00:26] "GET /reportes/ HTTP/1.1" 200 14791
+[11/Oct/2026 00:00:27] "GET /capacitacion/cursos/ HTTP/1.1" 200 15158
+[11/Oct/2026 00:00:28] "GET /reportes/ HTTP/1.1" 200 14791
+[11/Oct/2026 00:00:30] "GET /capacitacion/cursos/ HTTP/1.1" 200 15158
+[11/Oct/2026 00:00:30] "GET /transportistas/incidencias/ HTTP/1.1" 200 16089
+[11/Oct/2026 00:00:31] "GET /transportistas/advertencias/ HTTP/1.1" 200 26661
+[11/Oct/2026 00:00:32] "GET /reportes/ HTTP/1.1" 200 14791
+[11/Oct/2026 00:00:33] "GET /capacitacion/cursos/ HTTP/1.1" 200 15158
+[11/Oct/2026 00:00:35] "GET /capacitacion/cursos/1/editar/ HTTP/1.1" 200 15146
+[11/Oct/2026 00:00:40] "GET / HTTP/1.1" 200 37265
+C:\Users\Mariano\Documents\DEEP\asignaciones\views.py changed, reloading.
+Watching for file changes with StatReloader
+[11/Oct/2026 00:02:45] "GET / HTTP/1.1" 200 37265
+[11/Oct/2026 00:02:45] "GET /static/js/transcarga.js HTTP/1.1" 304 0
+[11/Oct/2026 00:02:46] "GET /static/css/transcarga.css HTTP/1.1" 200 21277
+[11/Oct/2026 00:02:48] "GET /asignaciones/ HTTP/1.1" 200 17875
+[11/Oct/2026 00:02:50] "GET /asignaciones/?estado=ACTIVA HTTP/1.1" 200 15727
+[11/Oct/2026 00:02:50] "GET /asignaciones/?estado=FINALIZADA HTTP/1.1" 200 15734
+[11/Oct/2026 00:02:51] "GET /asignaciones/?estado=CANCELADA HTTP/1.1" 200 14656
+[11/Oct/2026 00:02:51] "GET /asignaciones/ HTTP/1.1" 200 17875
+[11/Oct/2026 00:02:52] "GET /asignaciones/?estado=ACTIVA HTTP/1.1" 200 15727
+[11/Oct/2026 00:02:52] "GET /asignaciones/?estado=FINALIZADA HTTP/1.1" 200 15734
+[11/Oct/2026 00:02:53] "GET /asignaciones/?estado=CANCELADA HTTP/1.1" 200 14656
+[11/Oct/2026 00:02:53] "GET /static/css/transcarga.css HTTP/1.1" 304 0
+[11/Oct/2026 00:02:53] "GET /asignaciones/ HTTP/1.1" 200 17875
+[11/Oct/2026 00:02:56] "GET /asignaciones/nueva/ HTTP/1.1" 200 22588
+[11/Oct/2026 00:02:59] "GET /liquidaciones/formatos/ HTTP/1.1" 200 19392
+[11/Oct/2026 00:02:59] "GET /ofertas/ HTTP/1.1" 200 22987
+[11/Oct/2026 00:03:00] "GET /clientes/ HTTP/1.1" 200 16518
+[11/Oct/2026 00:03:01] "GET /ofertas/ HTTP/1.1" 200 22987
+[11/Oct/2026 00:03:01] "GET /static/css/transcarga.css HTTP/1.1" 304 0
+[11/Oct/2026 00:03:02] "GET /transportistas/ HTTP/1.1" 200 23952
+[11/Oct/2026 00:03:03] "GET /clientes/ HTTP/1.1" 200 16518
+[11/Oct/2026 00:03:03] "GET /ofertas/ HTTP/1.1" 200 22987
+[11/Oct/2026 00:03:04] "GET /asignaciones/ HTTP/1.1" 200 17875
+[11/Oct/2026 00:03:05] "GET /liquidaciones/formatos/ HTTP/1.1" 200 19392
+[11/Oct/2026 00:03:06] "GET /transportistas/advertencias/ HTTP/1.1" 200 26661
+[11/Oct/2026 00:03:06] "GET /transportistas/incidencias/ HTTP/1.1" 200 16089
+C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\views\generic\list.py:91: UnorderedObjectListWarning: Pagination may yield inconsistent results with an unordered object_list: <class 'capacitacion.models.Curso'> QuerySet.
+  return self.paginator_class(
+[11/Oct/2026 00:03:07] "GET /capacitacion/cursos/ HTTP/1.1" 200 15158
+[11/Oct/2026 00:03:07] "GET /reportes/ HTTP/1.1" 200 14791
+[11/Oct/2026 00:03:08] "GET /transportistas/ HTTP/1.1" 200 23952
+Internal Server Error: /transportistas/
+Traceback (most recent call last):
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\base.py", line 172, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\base.py", line 164, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\base.py", line 1018, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\base.py", line 979, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\loader_tags.py", line 134, in render
+    compiled_parent = self.get_parent(context)
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\loader_tags.py", line 131, in get_parent
+    return self.find_template(parent, context)
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\loader_tags.py", line 109, in find_template
+    template, origin = context.template.engine.find_template(
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        template_name,
+        ^^^^^^^^^^^^^^
+        skip=history,
+        ^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\base.py", line 155, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\base.py", line 197, in compile_nodelist
+    nodelist = parser.parse()
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\base.py", line 519, in parse
+    raise self.error(token, e)
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\base.py", line 517, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\defaulttags.py", line 962, in do_if
+    nodelist = parser.parse(("elif", "else", "endif"))
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\base.py", line 524, in parse
+    self.unclosed_block_tag(parse_until)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\base.py", line 591, in unclosed_block_tag
+    raise self.error(token, msg)
+django.template.exceptions.TemplateSyntaxError: Unclosed tag on line 1: 'if'. Looking for one of: elif, else, endif.
+[11/Oct/2026 00:03:48] "GET /transportistas/ HTTP/1.1" 500 198098
+[11/Oct/2026 00:03:57] "GET /transportistas/ HTTP/1.1" 200 23952
+[11/Oct/2026 00:03:57] "GET /static/css/transcarga.css HTTP/1.1" 304 0
+Internal Server Error: /transportistas/
+Traceback (most recent call last):
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\base.py", line 172, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\base.py", line 164, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\base.py", line 1018, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\base.py", line 979, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\loader_tags.py", line 134, in render
+    compiled_parent = self.get_parent(context)
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\loader_tags.py", line 131, in get_parent
+    return self.find_template(parent, context)
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\loader_tags.py", line 109, in find_template
+    template, origin = context.template.engine.find_template(
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        template_name,
+        ^^^^^^^^^^^^^^
+        skip=history,
+        ^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\base.py", line 155, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\base.py", line 197, in compile_nodelist
+    nodelist = parser.parse()
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\base.py", line 519, in parse
+    raise self.error(token, e)
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\base.py", line 517, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\defaulttags.py", line 962, in do_if
+    nodelist = parser.parse(("elif", "else", "endif"))
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\base.py", line 524, in parse
+    self.unclosed_block_tag(parse_until)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\Mariano\Documents\DEEP\.venv\Lib\site-packages\django\template\base.py", line 591, in unclosed_block_tag
+    raise self.error(token, msg)
+django.template.exceptions.TemplateSyntaxError: Unclosed tag on line 1: 'if'. Looking for one of: elif, else, endif.
+[11/Oct/2026 00:04:54] "GET /transportistas/ HTTP/1.1" 500 198098
+[11/Oct/2026 00:05:10] "GET /transportistas/ HTTP/1.1" 200 23952
+[11/Oct/2026 00:05:10] "GET /static/css/transcarga.css HTTP/1.1" 304 0
+[11/Oct/2026 00:05:10] "GET /static/js/transcarga.js HTTP/1.1" 304 0
+[11/Oct/2026 00:05:15] "GET /transportistas/ HTTP/1.1" 200 24979
+[11/Oct/2026 00:05:19] "GET /transportistas/ HTTP/1.1" 200 24979
+[11/Oct/2026 00:06:59] "GET /transportistas/ HTTP/1.1" 200 24979
+[11/Oct/2026 00:06:59] "GET /static/css/transcarga.css HTTP/1.1" 200 22389
+[11/Oct/2026 00:07:02] "GET / HTTP/1.1" 200 38292
+[11/Oct/2026 00:07:02] "GET /static/css/transcarga.css HTTP/1.1" 304 0
+[11/Oct/2026 00:07:03] "GET /transportistas/ HTTP/1.1" 200 24979
+[11/Oct/2026 00:07:03] "GET /static/css/transcarga.css HTTP/1.1" 304 0
+[11/Oct/2026 00:07:03] "GET /clientes/ HTTP/1.1" 200 17545
+[11/Oct/2026 00:07:04] "GET /ofertas/ HTTP/1.1" 200 24014
+[11/Oct/2026 00:07:04] "GET /static/css/transcarga.css HTTP/1.1" 304 0
+[11/Oct/2026 00:07:04] "GET /asignaciones/ HTTP/1.1" 200 18902
+[11/Oct/2026 00:07:05] "GET /liquidaciones/formatos/ HTTP/1.1" 200 20419
+[11/Oct/2026 00:07:05] "GET /static/css/transcarga.css HTTP/1.1" 304 0
+[11/Oct/2026 00:07:05] "GET /transportistas/advertencias/ HTTP/1.1" 200 27688
+[11/Oct/2026 00:07:06] "GET /transportistas/incidencias/ HTTP/1.1" 200 17116
+[11/Oct/2026 00:07:06] "GET /static/css/transcarga.css HTTP/1.1" 304 0
+[11/Oct/2026 00:07:06] "GET /capacitacion/cursos/ HTTP/1.1" 200 16185
+[11/Oct/2026 00:07:06] "GET /reportes/ HTTP/1.1" 200 15818
+[11/Oct/2026 00:07:07] "GET /auditoria/ HTTP/1.1" 200 16338
+[11/Oct/2026 00:07:07] "GET /static/css/transcarga.css HTTP/1.1" 304 0
+[11/Oct/2026 00:07:08] "GET /usuarios/ HTTP/1.1" 200 19356
+[11/Oct/2026 00:07:08] "GET /static/css/transcarga.css HTTP/1.1" 304 0
+[11/Oct/2026 00:07:15] "GET /transportistas/ HTTP/1.1" 200 24979
+[11/Oct/2026 00:07:15] "GET /static/css/transcarga.css HTTP/1.1" 304 0
+[11/Oct/2026 00:07:15] "GET / HTTP/1.1" 200 38292
+[11/Oct/2026 00:07:51] "GET / HTTP/1.1" 200 38292
+[11/Oct/2026 00:07:51] "GET /static/js/transcarga.js HTTP/1.1" 304 0
+[11/Oct/2026 00:07:51] "GET /static/css/transcarga.css HTTP/1.1" 200 22389
+[11/Oct/2026 00:07:51] "GET / HTTP/1.1" 200 38292
+[11/Oct/2026 00:07:51] "GET / HTTP/1.1" 200 38292
+[11/Oct/2026 00:07:52] "GET / HTTP/1.1" 200 38292
+[11/Oct/2026 00:07:52] "GET / HTTP/1.1" 200 38292
+[11/Oct/2026 00:07:52] "GET /static/css/transcarga.css HTTP/1.1" 304 0
+[11/Oct/2026 00:07:53] "GET / HTTP/1.1" 200 38292
+[11/Oct/2026 00:07:53] "GET / HTTP/1.1" 200 38292
+[11/Oct/2026 00:07:53] "GET /static/css/transcarga.css HTTP/1.1" 304 0
+[11/Oct/2026 00:07:53] "GET / HTTP/1.1" 200 38292
+[11/Oct/2026 00:07:53] "GET / HTTP/1.1" 200 38292

@@ -1,0 +1,33 @@
+{% if is_paginated %}
+  {% comment %}
+    Conserva todos los filtros de los listados al cambiar de página:
+    q (búsqueda), estado, nivel, tipo, empresa, ofertas, doc (situación
+    documental) y los filtros propios del listado de advertencias
+    (transportista, desde, hasta).
+    Los valores se codifican con urlencode para que una búsqueda con "&", "#" o
+    acentos no rompa el enlace.
+  {% endcomment %}
+  {% with qs_q=request.GET.q|default:""|urlencode qs_estado=request.GET.estado|default:""|urlencode qs_nivel=request.GET.nivel|default:""|urlencode qs_tipo=request.GET.tipo|default:""|urlencode qs_empresa=request.GET.empresa|default:""|urlencode qs_ofertas=request.GET.ofertas|default:""|urlencode qs_doc=request.GET.doc|default:""|urlencode qs_transportista=request.GET.transportista|default:""|urlencode qs_desde=request.GET.desde|default:""|urlencode qs_hasta=request.GET.hasta|default:""|urlencode %}
+    <nav aria-label="Paginación de resultados">
+      <ul class="pagination justify-content-center">
+        {% if page_obj.has_previous %}
+          <li class="page-item">
+            <a class="page-link" rel="prev" href="?{% if qs_q %}q={{ qs_q }}&amp;{% endif %}{% if qs_estado %}estado={{ qs_estado }}&amp;{% endif %}{% if qs_nivel %}nivel={{ qs_nivel }}&amp;{% endif %}{% if qs_tipo %}tipo={{ qs_tipo }}&amp;{% endif %}{% if qs_empresa %}empresa={{ qs_empresa }}&amp;{% endif %}{% if qs_ofertas %}ofertas={{ qs_ofertas }}&amp;{% endif %}{% if qs_doc %}doc={{ qs_doc }}&amp;{% endif %}{% if qs_transportista %}transportista={{ qs_transportista }}&amp;{% endif %}{% if qs_desde %}desde={{ qs_desde }}&amp;{% endif %}{% if qs_hasta %}hasta={{ qs_hasta }}&amp;{% endif %}page={{ page_obj.previous_page_number }}" aria-label="Página anterior">Anterior</a>
+          </li>
+        {% else %}
+          <li class="page-item disabled" aria-disabled="true"><span class="page-link" aria-hidden="true">Anterior</span></li>
+        {% endif %}
+        <li class="page-item disabled" aria-current="page">
+          <span class="page-link">Página {{ page_obj.number }} de {{ paginator.num_pages }}</span>
+        </li>
+        {% if page_obj.has_next %}
+          <li class="page-item">
+            <a class="page-link" rel="next" href="?{% if qs_q %}q={{ qs_q }}&amp;{% endif %}{% if qs_estado %}estado={{ qs_estado }}&amp;{% endif %}{% if qs_nivel %}nivel={{ qs_nivel }}&amp;{% endif %}{% if qs_tipo %}tipo={{ qs_tipo }}&amp;{% endif %}{% if qs_empresa %}empresa={{ qs_empresa }}&amp;{% endif %}{% if qs_ofertas %}ofertas={{ qs_ofertas }}&amp;{% endif %}{% if qs_doc %}doc={{ qs_doc }}&amp;{% endif %}{% if qs_transportista %}transportista={{ qs_transportista }}&amp;{% endif %}{% if qs_desde %}desde={{ qs_desde }}&amp;{% endif %}{% if qs_hasta %}hasta={{ qs_hasta }}&amp;{% endif %}page={{ page_obj.next_page_number }}" aria-label="Página siguiente">Siguiente</a>
+          </li>
+        {% else %}
+          <li class="page-item disabled" aria-disabled="true"><span class="page-link" aria-hidden="true">Siguiente</span></li>
+        {% endif %}
+      </ul>
+    </nav>
+  {% endwith %}
+{% endif %}

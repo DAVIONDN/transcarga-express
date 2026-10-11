@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block titulo %}{{ titulo }} · TransCarga Express{% endblock %}
+
+{% block miga %}<li><a href="{% url 'panel:reportes' %}">Reportes</a></li><li aria-current="page">{{ titulo }}</li>{% endblock %}
+{% block titulo_pagina %}{{ titulo }}{% endblock %}
+{% block subtitulo_pagina %}Total en el rango: {{ total }} advertencia(s).{% endblock %}
+{% block acciones_pagina %}
+  <a class="btn btn-outline-secondary btn-sm" href="?{% if filtros.desde %}desde={{ filtros.desde }}&amp;{% endif %}{% if filtros.hasta %}hasta={{ filtros.hasta }}&amp;{% endif %}formato=csv">Exportar CSV</a>
+{% endblock %}
+
+{% block contenido %}
+  <form method="get" class="card card-body tc-filtros mb-3" aria-label="Filtrar reporte">
+    <div class="row g-2 align-items-end">
+      <div class="col-md-5">
+        <label class="form-label" for="desde">Desde</label>
+        <input type="date" class="form-control" id="desde" name="desde" value="{{ filtros.desde }}">
+      </div>
+      <div class="col-md-5">
+        <label class="form-label" for="hasta">Hasta</label>
+        <input type="date" class="form-control" id="hasta" name="hasta" value="{{ filtros.hasta }}">
+      </div>
+      <div class="col-md-2 d-grid">
+        <button class="btn btn-outline-secondary" type="submit">Filtrar</button>
+      </div>
+    </div>
+  </form>
+
+  <div class="table-responsive tc-tabla">
+    <table class="table table-hover align-middle mb-0">
+      <caption class="visually-hidden">Advertencias acumuladas por transportista</caption>
+      <thead>
+        <tr><th scope="col">Transportista</th><th scope="col">Placa</th><th scope="col" class="text-end">Total</th><th scope="col">Última</th></tr>
+      </thead>
+      <tbody>
+        {% for nombre, placa, total, ultima in filas %}
+          <tr><td>{{ nombre }}</td><td>{{ placa }}</td><td class="text-end fw-semibold">{{ total }}</td><td>{{ ultima }}</td></tr>
+        {% empty %}
+          <tr><td colspan="4">{% include "includes/vacio.html" with titulo="Sin resultados" %}</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block titulo %}Formato {{ formato }} · TransCarga Express{% endblock %}
+
+{% block miga %}<li><a href="{% url 'liquidaciones:formatos_lista' %}">Formatos semanales</a></li><li aria-current="page">{{ formato.asignacion.oferta.codigo }}</li>{% endblock %}
+{% block titulo_pagina %}Formato semanal {{ formato.asignacion.oferta.codigo }}{% endblock %}
+{% block subtitulo_pagina %}
+  <span class="text-muted small">Periodo {{ formato.periodo_inicio|date:"d/m/Y" }} – {{ formato.periodo_fin|date:"d/m/Y" }} · {{ formato.etiqueta_estado }}</span>
+{% endblock %}
+{% block acciones_pagina %}
+  {% if formato.estado == "PENDIENTE" and perms.liquidaciones.firmar_formato %}
+    <a class="btn btn-primary btn-sm" href="{% url 'liquidaciones:formato_firmar' formato.pk %}">Registrar firma</a>
+  {% endif %}
+  {% if formato.esta_firmado and perms.liquidaciones.generar_liquidacion %}
+    <a class="btn btn-outline-primary btn-sm" href="{% url 'liquidaciones:liquidacion_generar' formato.pk %}">Liquidar</a>
+  {% endif %}
+{% endblock %}
+
+{% block contenido %}
+  <div class="row g-3">
+    <div class="col-lg-6">
+      <section class="card h-100" aria-labelledby="titulo-formato">
+        <div class="card-header" id="titulo-formato">Datos del formato</div>
+        <div class="card-body">
+          <table class="table table-sm tabla-datos mb-0">
+            <tbody>
+              <tr><th scope="row">Asignación</th>
+                <td><a href="{% url 'asignaciones:detalle' formato.asignacion.pk %}">{{ formato.asignacion.oferta.codigo }}</a>
+                  — {{ formato.asignacion.transportista.nombre }}</td>
+              </tr>
+              <tr><th scope="row">Periodo</th><td>{{ formato.periodo_inicio|date:"d/m/Y" }} – {{ formato.periodo_fin|date:"d/m/Y" }}</td></tr>
+              <tr><th scope="row">Firma prevista</th><td>{{ formato.fecha_prevista|date:"d/m/Y" }} (viernes)</td></tr>
+              <tr><th scope="row">Firma real</th><td>{{ formato.fecha_firma|date:"d/m/Y"|default:"Pendiente de firma" }}</td></tr>
+              <tr><th scope="row">Estado</th><td>{{ formato.etiqueta_estado }}</td></tr>
+              {% if formato.exento_penalidad %}
+                <tr><th scope="row">Penalidad</th><td><span class="tc-etiqueta tc-etiqueta-neutra">Exento: contrato inferior a una semana</span></td></tr>
+              {% elif formato.semanas_retraso %}
+                <tr><th scope="row">Retraso</th><td><span class="tc-etiqueta tc-etiqueta-aviso">{{ formato.semanas_retraso }} semana(s) de retraso</span></td></tr>
+              {% endif %}
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+
+    <div class="col-lg-6">
+      <section class="card h-100" aria-labelledby="titulo-liquidacion">
+        <div class="card-header" id="titulo-liquidacion">Liquidación</div>
+        <div class="card-body">
+          {% if formato.liquidacion %}
+            <table class="table table-sm tabla-datos mb-0">
+              <tbody>
+                <tr><th scope="row">Estado</th><td>{{ formato.liquidacion.get_estado_display }}</td></tr>
+                <tr><th scope="row">Neto a pagar</th><td>S/ {{ formato.liquidacion.total }}</td></tr>
+              </tbody>
+            </table>
+            <a class="btn btn-sm btn-outline-primary mt-3" href="{% url 'liquidaciones:liquidacion_detalle' formato.liquidacion.pk %}">Ver liquidación</a>
+          {% else %}
+            <p class="text-muted mb-0">
+              {% if formato.esta_firmado %}
+                El formato está firmado y listo para liquidar en borrador.
+              {% else %}
+                Sin formato firmado no se paga la semana: primero registre la firma.
+              {% endif %}
+            </p>
+          {% endif %}
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <div class="mt-3">
+    <a class="btn btn-outline-secondary" href="{% url 'liquidaciones:formatos_lista' %}">Volver al listado</a>
+  </div>
+{% endblock %}

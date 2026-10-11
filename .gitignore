@@ -1,0 +1,32 @@
+# Entorno virtual de Python
+venv/
+.venv/
+env/
+
+# Archivos temporales de Python
+__pycache__/
+*.py[cod]
+
+# Configuración privada y secretos
+.env
+.env.*
+!.env.example
+
+# Base de datos local con datos de desarrollo
+db.sqlite3
+db.sqlite3-journal
+
+# Archivos cargados por usuarios
+media/
+
+# Archivos y configuraciones de editores
+.vscode/
+.idea/
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
+
+# Archivos de pruebas y cobertura
+.coverage
+htmlcov/

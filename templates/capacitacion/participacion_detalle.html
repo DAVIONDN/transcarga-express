@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block titulo %}Participación en {{ participacion.curso.codigo }} · TransCarga Express{% endblock %}
+
+{% block miga %}<li><a href="{% url 'capacitacion:participaciones_lista' %}">Participaciones</a></li><li aria-current="page">{{ participacion.curso.codigo }}</li>{% endblock %}
+{% block titulo_pagina %}{{ participacion.curso.titulo }}{% endblock %}
+{% block subtitulo_pagina %}
+  {{ participacion.transportista.nombre }} · {{ participacion.curso.codigo }} ({{ participacion.convocatoria }}) ·
+  {% if participacion.estado == "COMPLETADO" %}
+    <span class="tc-etiqueta tc-etiqueta-exito">Completado</span>
+  {% elif participacion.estado == "EN_PROGRESO" %}
+    <span class="tc-etiqueta tc-etiqueta-info">En progreso</span>
+  {% else %}
+    <span class="tc-etiqueta tc-etiqueta-aviso">Inscrito</span>
+  {% endif %}
+{% endblock %}
+{% block acciones_pagina %}
+  {% if not participacion.esta_completada and perms.capacitacion.add_participacion %}
+    <a class="btn btn-outline-primary btn-sm" href="{% url 'capacitacion:participacion_avance' participacion.pk %}">Actualizar avance</a>
+  {% endif %}
+  {% if not participacion.esta_completada and perms.capacitacion.finalizar_participacion %}
+    <a class="btn btn-primary btn-sm" href="{% url 'capacitacion:participacion_confirmar' participacion.pk %}">Confirmar finalización</a>
+  {% endif %}
+{% endblock %}
+
+{% block contenido %}
+  <div class="row g-3">
+    <div class="col-lg-6">
+      <section class="card h-100" aria-labelledby="titulo-datos">
+        <div class="card-header" id="titulo-datos">Datos de la participación</div>
+        <div class="card-body">
+          <table class="table table-sm tabla-datos mb-0">
+            <tbody>
+              <tr><th scope="row">Transportista</th>
+                <td><a href="{% url 'transportistas:detalle' participacion.transportista.pk %}">{{ participacion.transportista.nombre }}</a></td>
+              </tr>
+              <tr><th scope="row">Curso</th><td>{{ participacion.curso.codigo }} — {{ participacion.curso.titulo }} ({{ participacion.curso.duracion_horas }} h)</td></tr>
+              <tr><th scope="row">Convocatoria</th><td>{{ participacion.convocatoria }}</td></tr>
+              <tr><th scope="row">Inscripción</th><td>{{ participacion.fecha|date:"d/m/Y" }}</td></tr>
+              <tr><th scope="row">Estado</th><td>{{ participacion.get_estado_display }}</td></tr>
+              <tr><th scope="row">Finalización</th><td>{{ participacion.fecha_finalizacion|date:"d/m/Y"|default:"—" }}</td></tr>
+              <tr><th scope="row">Resultado</th><td>{{ participacion.get_resultado_display|default:"—" }}</td></tr>
+              <tr><th scope="row">Confirmado por</th><td>{{ participacion.confirmado_por.get_username|default:"—" }}</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+
+    <div class="col-lg-6">
+      <section class="card h-100" aria-labelledby="titulo-constancia">
+        <div class="card-header" id="titulo-constancia">Constancia y observaciones</div>
+        <div class="card-body">
+          {% if participacion.observaciones %}
+            <p class="small">{{ participacion.observaciones }}</p>
+          {% endif %}
+          {% if participacion.constancia %}
+            <a class="btn btn-sm btn-outline-secondary" href="{% url 'capacitacion:participacion_constancia' participacion.pk %}">
+              Descargar constancia
+            </a>
+          {% elif participacion.constancia_pendiente %}
+            <div class="alert alert-warning small mb-0" role="alert">
+              Participación aprobada: todavía falta cargar la constancia digital.
+            </div>
+          {% else %}
+            <p class="text-muted small mb-0">Sin constancia cargada (solo exigible como evidencia de un aprobado).</p>
+          {% endif %}
+          <p class="text-muted small mt-2 mb-0">La constancia es propia de esta repetición: no se comparte con otras participaciones.</p>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <div class="mt-3">
+    <a class="btn btn-outline-secondary" href="{% url 'capacitacion:participaciones_lista' %}">Volver al listado</a>
+  </div>
+{% endblock %}

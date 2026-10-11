@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block titulo %}{{ titulo }} · TransCarga Express{% endblock %}
+
+{% block miga %}<li><a href="{% url 'asignaciones:lista' %}">Asignaciones</a></li><li aria-current="page">{{ titulo }}</li>{% endblock %}
+{% block titulo_pagina %}{{ titulo }}{% endblock %}
+{% block subtitulo_pagina %}Se crean solo las semanas que falten; repetir la operación no duplica nada.{% endblock %}
+{% block acciones_pagina %}{% endblock %}
+
+{% block contenido %}
+  <div class="row justify-content-center">
+    <div class="col-md-7">
+      <section class="card mb-3" aria-labelledby="sec-semanas">
+        <div class="card-header" id="sec-semanas">Semanas a generar</div>
+        <div class="card-body">
+          <p>
+            <strong>{{ asignacion.oferta.codigo }}</strong> ·
+            {{ asignacion.oferta.origen }} → {{ asignacion.oferta.destino }}<br>
+            <span class="small text-muted">
+              {{ asignacion.transportista.nombre }} · inicio {{ asignacion.fecha_inicio|date:"d/m/Y" }}
+            </span>
+          </p>
+          {% if semanas %}
+            <ul class="mb-0 ps-3 small">
+              {% for lunes, domingo, viernes in semanas %}
+                <li>{{ lunes|date:"d/m/Y" }} – {{ domingo|date:"d/m/Y" }} · firma el viernes {{ viernes|date:"d/m/Y" }}</li>
+              {% endfor %}
+            </ul>
+          {% else %}
+            <p class="text-muted mb-0">No hay semanas nuevas: todo ya está generado.</p>
+          {% endif %}
+        </div>
+      </section>
+      <form method="post" class="d-flex gap-2">
+        {% csrf_token %}
+        <button class="btn btn-primary" type="submit">Generar formatos</button>
+        <a class="btn btn-outline-secondary" href="{% url 'asignaciones:detalle' asignacion.pk %}">Cancelar</a>
+      </form>
+    </div>
+  </div>
+{% endblock %}

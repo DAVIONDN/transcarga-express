@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block titulo %}{{ titulo }} · TransCarga Express{% endblock %}
+
+{% block miga %}<li><a href="{% url 'transportistas:lista' %}">Transportistas</a></li><li aria-current="page">{{ titulo }}</li>{% endblock %}
+{% block titulo_pagina %}{{ titulo }}{% endblock %}
+{% block subtitulo_pagina %}Complete los datos por secciones. Los campos marcados con * son obligatorios. El nivel se calcula automáticamente desde la capacidad.{% endblock %}
+{% block acciones_pagina %}{% endblock %}
+
+{% block contenido %}
+  <div class="row g-3">
+    <div class="col-lg-8">
+      <form method="post" enctype="multipart/form-data" novalidate>
+        {% csrf_token %}
+        {% include "includes/errores_formulario.html" with form=form %}
+
+        <section class="card mb-3" aria-labelledby="sec-identificacion">
+          <div class="card-header" id="sec-identificacion">1 · Identificación del transportista</div>
+          <div class="card-body">
+            {% include "includes/campo_formulario.html" with campo=form.tipo_documento %}
+            {% include "includes/campo_formulario.html" with campo=form.numero_documento %}
+            {% include "includes/campo_formulario.html" with campo=form.nombre %}
+            {% include "includes/campo_formulario.html" with campo=form.direccion %}
+            {% include "includes/campo_formulario.html" with campo=form.anios_experiencia %}
+          </div>
+        </section>
+
+        <section class="card mb-3" aria-labelledby="sec-vehiculo">
+          <div class="card-header" id="sec-vehiculo">2 · Vehículo y clasificación</div>
+          <div class="card-body">
+            {% include "includes/campo_formulario.html" with campo=form.placa %}
+            {% include "includes/campo_formulario.html" with campo=form.tipo_vehiculo %}
+            {% include "includes/campo_formulario.html" with campo=form.capacidad_toneladas %}
+            {% include "includes/campo_formulario.html" with campo=form.certificacion_carga_peligrosa %}
+            <p class="text-muted small mb-0">
+              El <strong>nivel</strong> se calcula automáticamente: menos de 5 t, Nivel 3;
+              de 5 a 20 t, Nivel 2; más de 20 t, Nivel 1 con certificación de carga peligrosa obligatoria.
+            </p>
+          </div>
+        </section>
+
+        <section class="card mb-3" aria-labelledby="sec-documentos">
+          <div class="card-header" id="sec-documentos">3 · Documentación y fotografía</div>
+          <div class="card-body">
+            {% include "includes/campo_formulario.html" with campo=form.fecha_vencimiento_licencia %}
+            {% include "includes/campo_formulario.html" with campo=form.fecha_vencimiento_revision_tecnica %}
+            {% include "includes/campo_formulario.html" with campo=form.fecha_vencimiento_soat %}
+            {% include "includes/campo_formulario.html" with campo=form.copia_soat %}
+            {% include "includes/campo_formulario.html" with campo=form.fotografia_vehiculo %}
+          </div>
+        </section>
+
+        <section class="card mb-3" aria-labelledby="sec-estado">
+          <div class="card-header" id="sec-estado">4 · Estado operativo</div>
+          <div class="card-body">
+            {% include "includes/campo_formulario.html" with campo=form.estado %}
+            <p class="text-muted small mb-0">Para el estado Activo se exige fotografía y licencia y revisión técnica vigentes.</p>
+          </div>
+        </section>
+
+        <div class="d-flex gap-2">
+          <button class="btn btn-primary" type="submit">{{ texto_boton }}</button>
+          {% if form.instance.pk %}
+            <a class="btn btn-outline-secondary" href="{% url 'transportistas:detalle' form.instance.pk %}">Cancelar</a>
+          {% else %}
+            <a class="btn btn-outline-secondary" href="{% url 'transportistas:lista' %}">Cancelar</a>
+          {% endif %}
+        </div>
+      </form>
+    </div>
+    <div class="col-lg-4">
+      <aside class="alert alert-info" aria-label="Ayuda sobre clasificación">
+        <h2 class="h6">Clasificación por capacidad</h2>
+        <ul class="mb-0 ps-3">
+          <li><strong>Nivel 3:</strong> menos de 5 toneladas.</li>
+          <li><strong>Nivel 2:</strong> de 5 a 20 toneladas inclusive.</li>
+          <li><strong>Nivel 1:</strong> más de 20 toneladas (certificación obligatoria).</li>
+        </ul>
+      </aside>
+    </div>
+  </div>
+{% endblock %}

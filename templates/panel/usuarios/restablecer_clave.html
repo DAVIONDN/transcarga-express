@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block titulo %}{{ titulo }} · Usuarios · TransCarga Express{% endblock %}
+
+{% block miga %}<li><a href="{% url 'panel:usuarios_lista' %}">Usuarios</a></li><li aria-current="page">{{ titulo }}</li>{% endblock %}
+{% block titulo_pagina %}{{ titulo }}{% endblock %}
+{% block subtitulo_pagina %}La contraseña anterior no se muestra ni se puede recuperar; solo se reemplaza por una nueva.{% endblock %}
+{% block acciones_pagina %}{% endblock %}
+
+{% block contenido %}
+  <div class="row justify-content-center">
+    <div class="col-md-7">
+      <form method="post" novalidate>
+        {% csrf_token %}
+        {% include "includes/errores_formulario.html" with form=form %}
+        <section class="card mb-3" aria-labelledby="sec-clave">
+          <div class="card-header" id="sec-clave">Nueva contraseña para {{ usuario.username }}</div>
+          <div class="card-body">
+            {% for campo in form %}
+              {% include "includes/campo_formulario.html" with campo=campo %}
+            {% endfor %}
+          </div>
+        </section>
+        <div class="d-flex gap-2">
+          <button class="btn btn-primary" type="submit">Guardar contraseña</button>
+          <a class="btn btn-outline-secondary" href="{% url 'panel:usuarios_lista' %}">Cancelar</a>
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock %}
